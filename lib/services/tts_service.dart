@@ -14,11 +14,6 @@ class TtsService {
   bool _bengaliAvailable = false;
   String? _language;
 
-  /// Bengali locales in order of preference. The content uses the West Bengal
-  /// (Kolkata) variant, so `bn-IN` sounds most correct; fall back to Bangladesh
-  /// and the bare language tag.
-  static const List<String> _preferredLanguages = ['bn-IN', 'bn-BD', 'bn'];
-
   /// Whether a genuine Bengali voice was found and selected.
   bool get bengaliAvailable => _bengaliAvailable;
 
@@ -42,19 +37,60 @@ class TtsService {
     }
   }
 
-  /// Returns the first preferred Bengali locale the engine reports as available,
-  /// or null if the device has no Bengali voice installed.
+  /// Picks the best available Bengali locale as the engine reports it, so we use
+  /// whatever exact tag the device expects (Android may report `bn-IN`, `bn_IN`,
+  /// `ben-IND`, etc.). Prefers the India (Kolkata) variant the content uses,
+  /// then Bangladesh, then any Bengali. Returns null if none is installed.
   Future<String?> _resolveBengaliLanguage() async {
-    for (final lang in _preferredLanguages) {
+    List<String> langs = const [];
+    try {
+      final raw = await _tts.getLanguages;
+      if (raw is List) {
+        langs = raw.map((e) => e.toString()).toList();
+      }
+    } catch (_) {
+      // getLanguages unsupported; fall through to direct probing below.
+    }
+
+    final bengali = langs.where(_isBengali).toList();
+    // Prefer India, then Bangladesh, then any Bengali variant.
+    for (final match in [
+      bengali.where(_isIndia),
+      bengali.where(_isBangladesh),
+      bengali,
+    ]) {
+      if (match.isNotEmpty) return match.first;
+    }
+
+    // Fallback: probe common tags directly if the language list was empty.
+    for (final lang in const ['bn-IN', 'bn_IN', 'bn-BD', 'bn']) {
       try {
         final available = await _tts.isLanguageAvailable(lang);
-        // Android returns a bool; iOS may return an int/other truthy value.
         if (available == true || available == 1) return lang;
       } catch (_) {
-        // Ignore and try the next candidate.
+        // Try the next candidate.
       }
     }
     return null;
+  }
+
+  /// Splits a locale tag on `-`/`_` and lowercases the parts.
+  static List<String> _localeParts(String locale) =>
+      locale.toLowerCase().split(RegExp('[-_]'));
+
+  static bool _isBengali(String locale) {
+    final lang = _localeParts(locale).first;
+    return lang == 'bn' || lang == 'ben';
+  }
+
+  static bool _isIndia(String locale) {
+    final parts = _localeParts(locale);
+    return parts.contains('in') || parts.contains('ind');
+  }
+
+  static bool _isBangladesh(String locale) {
+    final parts = _localeParts(locale);
+    return parts.contains('bd') || parts.contains('bgd');
   }
 
   /// Explicitly bind a Bengali voice for the chosen language when one exists.
@@ -63,19 +99,18 @@ class TtsService {
     try {
       final voices = await _tts.getVoices;
       if (voices is! List) return;
-      final langLower = language.toLowerCase();
-      final prefix = langLower.split('-').first; // e.g. "bn"
+      final wantIndia = _isIndia(language);
       Map? match;
       for (final v in voices) {
         if (v is Map) {
-          final locale = (v['locale'] ?? '').toString().toLowerCase();
-          if (locale == langLower) {
+          final locale = (v['locale'] ?? '').toString();
+          if (!_isBengali(locale)) continue;
+          // Exact preference: a Bengali-India voice when we chose India.
+          if (wantIndia && _isIndia(locale)) {
             match = v;
             break;
           }
-          if (match == null && locale.startsWith(prefix)) {
-            match = v;
-          }
+          match ??= v;
         }
       }
       if (match != null) {
