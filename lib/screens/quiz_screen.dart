@@ -301,20 +301,32 @@ class _QuizScreenState extends State<QuizScreen> {
             style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
           )
         else
-          Row(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Flexible(
-                child: Text(
-                  entry.bengali,
-                  style:
-                      const TextStyle(fontSize: 34, fontWeight: FontWeight.bold),
-                ),
+              Row(
+                children: [
+                  Flexible(
+                    child: Text(
+                      entry.bengali,
+                      style: const TextStyle(
+                          fontSize: 34, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  IconButton.filledTonal(
+                    onPressed: () => widget.tts.speak(entry.bengali),
+                    icon: const Icon(Icons.volume_up),
+                    tooltip: 'Listen',
+                  ),
+                ],
               ),
-              const SizedBox(width: 8),
-              IconButton.filledTonal(
-                onPressed: () => widget.tts.speak(entry.bengali),
-                icon: const Icon(Icons.volume_up),
-                tooltip: 'Listen',
+              Text(
+                entry.roman,
+                style: const TextStyle(
+                    fontSize: 20,
+                    fontStyle: FontStyle.italic,
+                    color: Colors.teal),
               ),
             ],
           ),
