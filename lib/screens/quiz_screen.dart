@@ -235,44 +235,46 @@ class _QuizScreenState extends State<QuizScreen> {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            LinearProgressIndicator(value: (_index + 1) / _questions.length),
-            const SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Score: $_score',
-                    style: const TextStyle(fontWeight: FontWeight.w600)),
-                Text(
-                  _mode == QuizMode.reviewMistakes
-                      ? 'Reviewing mistakes'
-                      : 'Random words',
-                  style: TextStyle(color: Colors.grey[600]),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    _prompt(),
-                    const SizedBox(height: 20),
-                    if (_current.kind == QuestionKind.multipleChoice)
-                      ..._current.options.map(_optionTile)
-                    else
-                      _typingArea(),
-                  ],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              LinearProgressIndicator(value: (_index + 1) / _questions.length),
+              const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Score: $_score',
+                      style: const TextStyle(fontWeight: FontWeight.w600)),
+                  Text(
+                    _mode == QuizMode.reviewMistakes
+                        ? 'Reviewing mistakes'
+                        : 'Random words',
+                    style: TextStyle(color: Colors.grey[600]),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      _prompt(),
+                      const SizedBox(height: 20),
+                      if (_current.kind == QuestionKind.multipleChoice)
+                        ..._current.options.map(_optionTile)
+                      else
+                        _typingArea(),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            _bottomBar(),
-          ],
+              _bottomBar(),
+            ],
+          ),
         ),
       ),
     );
