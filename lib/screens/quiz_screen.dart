@@ -90,9 +90,10 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 
   List<_Question> _buildQuestions() {
-    final entries = _mode == QuizMode.reviewMistakes
-        ? widget.stats.reviewEntries(widget.lesson, _random)
-        : widget.lesson.sessionEntries(_random);
+    final entries =
+        _mode == QuizMode.reviewMistakes
+            ? widget.stats.reviewEntries(widget.lesson, _random)
+            : widget.lesson.sessionEntries(_random);
     return entries.map(_makeQuestion).toList();
   }
 
@@ -102,13 +103,12 @@ class _QuizScreenState extends State<QuizScreen> {
     final direction =
         _random.nextBool() ? QuizDirection.enToBn : QuizDirection.bnToEn;
 
-    final distractors = List<Entry>.from(widget.lesson.entries)
-      ..remove(entry)
+    final distractors =
+        List<Entry>.from(widget.lesson.entries)
+          ..remove(entry)
+          ..shuffle(_random);
+    final options = [entry, ...distractors.take(_optionCount - 1)]
       ..shuffle(_random);
-    final options = [
-      entry,
-      ...distractors.take(_optionCount - 1),
-    ]..shuffle(_random);
 
     return _Question(
       entry: entry,
@@ -121,15 +121,17 @@ class _QuizScreenState extends State<QuizScreen> {
   _Question get _current => _questions[_index];
 
   /// The text a typed answer is compared against for the current direction.
-  String get _expectedTyped => _current.direction == QuizDirection.enToBn
-      ? _current.entry.roman
-      : _current.entry.english;
+  String get _expectedTyped =>
+      _current.direction == QuizDirection.enToBn
+          ? _current.entry.roman
+          : _current.entry.english;
 
-  String _normalize(String value) => value
-      .toLowerCase()
-      .replaceAll(RegExp(r'[^a-z0-9\s]'), '')
-      .replaceAll(RegExp(r'\s+'), ' ')
-      .trim();
+  String _normalize(String value) =>
+      value
+          .toLowerCase()
+          .replaceAll(RegExp(r'[^a-z0-9\s]'), '')
+          .replaceAll(RegExp(r'\s+'), ' ')
+          .trim();
 
   void _answer(bool correct, {Entry? selected}) {
     setState(() {
@@ -150,7 +152,16 @@ class _QuizScreenState extends State<QuizScreen> {
   void _submitTyped() {
     if (_answered) return;
     if (_typedController.text.trim().isEmpty) return;
-    _answer(_normalize(_typedController.text) == _normalize(_expectedTyped));
+
+    _expectedTyped.split("/").forEach((expected) {
+      if (_normalize(_typedController.text) == _normalize(expected)) {
+        _answer(true);
+        return;
+      }
+    });
+
+    _answer(false);
+    return;
   }
 
   void _next() {
@@ -188,26 +199,27 @@ class _QuizScreenState extends State<QuizScreen> {
   void _showResult() {
     showDialog<void>(
       context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: const Text('Quiz complete'),
-        content: Text('You scored $_score / ${_questions.length}'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(dialogContext);
-              Navigator.pop(context);
-            },
-            child: const Text('Done'),
+      builder:
+          (dialogContext) => AlertDialog(
+            title: const Text('Quiz complete'),
+            content: Text('You scored $_score / ${_questions.length}'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(dialogContext);
+                  Navigator.pop(context);
+                },
+                child: const Text('Done'),
+              ),
+              FilledButton(
+                onPressed: () {
+                  Navigator.pop(dialogContext);
+                  _restart();
+                },
+                child: const Text('Retry'),
+              ),
+            ],
           ),
-          FilledButton(
-            onPressed: () {
-              Navigator.pop(dialogContext);
-              _restart();
-            },
-            child: const Text('Retry'),
-          ),
-        ],
-      ),
     );
   }
 
@@ -222,16 +234,17 @@ class _QuizScreenState extends State<QuizScreen> {
             tooltip: 'Quiz mode',
             initialValue: _mode,
             onSelected: _setMode,
-            itemBuilder: (context) => const [
-              PopupMenuItem(
-                value: QuizMode.random,
-                child: Text('Random words'),
-              ),
-              PopupMenuItem(
-                value: QuizMode.reviewMistakes,
-                child: Text('Review my mistakes'),
-              ),
-            ],
+            itemBuilder:
+                (context) => const [
+                  PopupMenuItem(
+                    value: QuizMode.random,
+                    child: Text('Random words'),
+                  ),
+                  PopupMenuItem(
+                    value: QuizMode.reviewMistakes,
+                    child: Text('Review my mistakes'),
+                  ),
+                ],
           ),
         ],
       ),
@@ -246,8 +259,10 @@ class _QuizScreenState extends State<QuizScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Score: $_score',
-                      style: const TextStyle(fontWeight: FontWeight.w600)),
+                  Text(
+                    'Score: $_score',
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
                   Text(
                     _mode == QuizMode.reviewMistakes
                         ? 'Reviewing mistakes'
@@ -286,7 +301,9 @@ class _QuizScreenState extends State<QuizScreen> {
     final String instruction;
     if (_current.direction == QuizDirection.enToBn) {
       instruction =
-          isTyping ? 'Type the pronunciation (roman) for:' : 'What is the Bengali for:';
+          isTyping
+              ? 'Type the pronunciation (roman) for:'
+              : 'What is the Bengali for:';
     } else {
       instruction =
           isTyping ? 'Type the English for:' : 'What is the English for:';
@@ -312,7 +329,9 @@ class _QuizScreenState extends State<QuizScreen> {
                     child: Text(
                       entry.bengali,
                       style: const TextStyle(
-                          fontSize: 34, fontWeight: FontWeight.bold),
+                        fontSize: 34,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   const SizedBox(width: 8),
@@ -326,9 +345,10 @@ class _QuizScreenState extends State<QuizScreen> {
               Text(
                 entry.roman,
                 style: const TextStyle(
-                    fontSize: 20,
-                    fontStyle: FontStyle.italic,
-                    color: Colors.teal),
+                  fontSize: 20,
+                  fontStyle: FontStyle.italic,
+                  color: Colors.teal,
+                ),
               ),
             ],
           ),
@@ -358,27 +378,34 @@ class _QuizScreenState extends State<QuizScreen> {
           onTap: () => _choose(option),
           child: Padding(
             padding: const EdgeInsets.all(16),
-            child: showBengali
-                ? Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        option.bengali,
-                        style: const TextStyle(
-                            fontSize: 22, fontWeight: FontWeight.w600),
+            child:
+                showBengali
+                    ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          option.bengali,
+                          style: const TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        Text(
+                          option.roman,
+                          style: const TextStyle(
+                            fontStyle: FontStyle.italic,
+                            color: Colors.teal,
+                          ),
+                        ),
+                      ],
+                    )
+                    : Text(
+                      option.english,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
                       ),
-                      Text(
-                        option.roman,
-                        style: const TextStyle(
-                            fontStyle: FontStyle.italic, color: Colors.teal),
-                      ),
-                    ],
-                  )
-                : Text(
-                    option.english,
-                    style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.w600),
-                  ),
+                    ),
           ),
         ),
       ),
@@ -418,12 +445,16 @@ class _QuizScreenState extends State<QuizScreen> {
                   style: const TextStyle(fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(height: 6),
-                Text('Answer: $_expectedTyped',
-                    style: const TextStyle(fontSize: 18)),
+                Text(
+                  'Answer: $_expectedTyped',
+                  style: const TextStyle(fontSize: 18),
+                ),
                 Text(
                   '${_current.entry.bengali} · ${_current.entry.roman}',
                   style: const TextStyle(
-                      fontStyle: FontStyle.italic, color: Colors.teal),
+                    fontStyle: FontStyle.italic,
+                    color: Colors.teal,
+                  ),
                 ),
               ],
             ),
@@ -436,17 +467,17 @@ class _QuizScreenState extends State<QuizScreen> {
   Widget _bottomBar() {
     return Padding(
       padding: const EdgeInsets.only(top: 12),
-      child: _answered
-          ? FilledButton(
-              onPressed: _next,
-              child:
-                  Text(_index < _questions.length - 1 ? 'Next' : 'Finish'),
-            )
-          : _current.kind == QuestionKind.typing
+      child:
+          _answered
               ? FilledButton(
-                  onPressed: _submitTyped,
-                  child: const Text('Check answer'),
-                )
+                onPressed: _next,
+                child: Text(_index < _questions.length - 1 ? 'Next' : 'Finish'),
+              )
+              : _current.kind == QuestionKind.typing
+              ? FilledButton(
+                onPressed: _submitTyped,
+                child: const Text('Check answer'),
+              )
               : const SizedBox.shrink(),
     );
   }
