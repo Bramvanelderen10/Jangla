@@ -2,7 +2,7 @@
   "//": "EASY CONFIG. Edit this file to add/change words and sentences.",
   "//defaults": "entriesPerSession = how many random entries a lesson shows each time. Set 0 to use all entries. A lesson can override it with its own 'entriesPerSession'.",
   "defaults": {
-    "entriesPerSession": 20,
+    "entriesPerSession": 15,
     "shuffle": true
   },
   "categories": [
@@ -14,7 +14,7 @@
           "id": "food",
           "title": "Food Names",
           "entries": [
-            { "en": "rice", "bn": "ভাত", "roman": "bhat" },
+            { "en": "rice", "bn": "ভাত", "roman": "bhaat" },
             { "en": "water", "bn": "জল", "roman": "jol" },
             { "en": "fish", "bn": "মাছ", "roman": "mach" },
             { "en": "meat", "bn": "মাংস", "roman": "mangsho" },
@@ -26,7 +26,7 @@
             { "en": "salt", "bn": "নুন", "roman": "nun" },
             { "en": "sugar", "bn": "চিনি", "roman": "chini" },
             { "en": "tea", "bn": "চা", "roman": "cha" },
-            { "en": "lentils (dal)", "bn": "ডাল", "roman": "dal" },
+            { "en": "lentils", "bn": "ডাল", "roman": "dal" },
             { "en": "potato", "bn": "আলু", "roman": "alu" },
             { "en": "chicken", "bn": "মুরগি", "roman": "murgi" },
             { "en": "oil", "bn": "তেল", "roman": "tel" },
@@ -34,8 +34,7 @@
             { "en": "banana", "bn": "কলা", "roman": "kola" },
             { "en": "yogurt", "bn": "দই", "roman": "doi" },
             { "en": "sweet / dessert", "bn": "মিষ্টি", "roman": "mishti" },
-            { "en": "spicy", "bn": "ঝাল", "roman": "jhal" },
-            { "en": "delicious", "bn": "সুস্বাদু", "roman": "tasty" }
+            { "en": "spicy", "bn": "ঝাল", "roman": "jhaal" }
           ]
         },
         {
@@ -47,23 +46,63 @@
             { "en": "city", "bn": "শহর", "roman": "shohor" },
             { "en": "village", "bn": "গ্রাম", "roman": "gram" },
             { "en": "street / road", "bn": "রাস্তা", "roman": "rasta" },
-            { "en": "school", "bn": "স্কুল", "roman": "school" },
             { "en": "market", "bn": "বাজার", "roman": "bazar" },
             { "en": "shop", "bn": "দোকান", "roman": "dokan" },
-            { "en": "hospital", "bn": "হাসপাতাল", "roman": "hashpatal" },
-            { "en": "office", "bn": "অফিস", "roman": "ofish" },
-            { "en": "airport", "bn": "বিমানবন্দর", "roman": "bimanbondor" },
-            { "en": "station", "bn": "স্টেশন", "roman": "steshon" },
-            { "en": "restaurant", "bn": "রেস্তোরাঁ", "roman": "restora" },
-            { "en": "hotel", "bn": "হোটেল", "roman": "hotel" },
-            { "en": "bank", "bn": "ব্যাংক", "roman": "bank" },
             { "en": "mosque", "bn": "মসজিদ", "roman": "moshjid" },
             { "en": "temple", "bn": "মন্দির", "roman": "mondir" },
-            { "en": "park", "bn": "পার্ক", "roman": "park" },
-            { "en": "university", "bn": "বিশ্ববিদ্যালয়", "roman": "university" },
             { "en": "country", "bn": "দেশ", "roman": "desh" },
             { "en": "here", "bn": "এখানে", "roman": "ekhane" },
             { "en": "there", "bn": "সেখানে", "roman": "shekhane" }
+          ]
+        },
+        {
+          "id": "pronouns_questions",
+          "title": "Pronouns & Questions",
+          "entries": [
+            { "en": "I", "bn": "আমি", "roman": "ami" },
+            { "en": "my", "bn": "আমার", "roman": "amar" },
+            { "en": "you (formal)", "bn": "আপনি", "roman": "apni" },
+            { "en": "your (formal)", "bn": "আপনার", "roman": "apnar" },
+            { "en": "we", "bn": "আমরা", "roman": "amra" },
+            { "en": "what", "bn": "কী", "roman": "ki" },
+            { "en": "where", "bn": "কোথায়", "roman": "kothay" },
+            { "en": "how", "bn": "কীভাবে", "roman": "kibhabe" },
+            { "en": "how much / how many", "bn": "কত", "roman": "koto" },
+            { "en": "name", "bn": "নাম", "roman": "nam" }
+          ]
+        },
+        {
+          "id": "time_calendar",
+          "title": "Time & Calendar",
+          "entries": [
+            { "en": "time", "bn": "সময়", "roman": "shomoy" },
+            { "en": "now", "bn": "এখন", "roman": "ekhon" },
+            { "en": "later", "bn": "পরে", "roman": "pore" },
+            { "en": "day", "bn": "দিন", "roman": "din" },
+            { "en": "morning", "bn": "সকাল", "roman": "shokal" },
+            { "en": "night", "bn": "রাত", "roman": "raat" },
+            { "en": "today", "bn": "আজ", "roman": "aj" },
+            { "en": "tomorrow", "bn": "আগামীকাল", "roman": "agamikal" }
+          ]
+        },
+        {
+          "id": "action_feeling_words",
+          "title": "Common Actions & Feelings",
+          "entries": [
+            { "en": "want", "bn": "চাই", "roman": "chai" },
+            { "en": "buy", "bn": "কেনা", "roman": "kena" },
+            { "en": "wait", "bn": "অপেক্ষা", "roman": "opekkha" },
+            { "en": "help", "bn": "সাহায্য", "roman": "shahajjo" },
+            { "en": "understand", "bn": "বোঝা", "roman": "bojha" },
+            { "en": "learn", "bn": "শেখা", "roman": "shekha" },
+            { "en": "cook", "bn": "রান্না করা", "roman": "ranna kora" },
+            { "en": "good", "bn": "ভালো", "roman": "bhalo" },
+            { "en": "beautiful", "bn": "সুন্দর", "roman": "shundor" },
+            { "en": "happy", "bn": "খুশি", "roman": "khushi" },
+            { "en": "hunger", "bn": "খিদে", "roman": "khide" },
+            { "en": "thirst", "bn": "তৃষ্ণা", "roman": "teshta" },
+            { "en": "little / bit", "bn": "একটু", "roman": "ektu" },
+            { "en": "everything / all", "bn": "সব", "roman": "shob" }
           ]
         },
         {
@@ -76,11 +115,8 @@
             { "en": "yes", "bn": "হ্যাঁ", "roman": "ha" },
             { "en": "no", "bn": "না", "roman": "na" },
             { "en": "thank you", "bn": "ধন্যবাদ", "roman": "dhonnobad" },
-            { "en": "please", "bn": "দয়া করে", "roman": "doya kore" },
-            { "en": "sorry", "bn": "দুঃখিত", "roman": "dukkhito" },
-            { "en": "excuse me / forgive me", "bn": "ক্ষমা করবেন", "roman": "khoma korben" },
             { "en": "okay", "bn": "ঠিক আছে", "roman": "thik ache" },
-            { "en": "left", "bn": "বাম", "roman": "bam" },
+            { "en": "left", "bn": "বাঁ", "roman": "ba" },
             { "en": "right", "bn": "ডান", "roman": "dan" },
             { "en": "straight", "bn": "সোজা", "roman": "shoja" },
             { "en": "back / behind", "bn": "পিছনে", "roman": "pichhone" },
@@ -148,6 +184,139 @@
             { "en": "friend", "bn": "বন্ধু", "roman": "bondhu" },
             { "en": "guest", "bn": "অতিথি", "roman": "otithi" }
           ]
+        },
+        {
+          "id": "common_verbs",
+          "title": "Common Verbs",
+          "entries": [
+            { "en": "eat", "bn": "খাওয়া", "roman": "khaowa" },
+            { "en": "drink", "bn": "পান করা", "roman": "pan kora" },
+            { "en": "go", "bn": "যাওয়া", "roman": "jaowa" },
+            { "en": "come", "bn": "আসা", "roman": "asha" },
+            { "en": "see", "bn": "দেখা", "roman": "dekha" },
+            { "en": "speak / say", "bn": "বলা", "roman": "bola" },
+            { "en": "know", "bn": "জানা", "roman": "jana" },
+            { "en": "give", "bn": "দেওয়া", "roman": "deowa" },
+            { "en": "take", "bn": "নেওয়া", "roman": "neowa" },
+            { "en": "make / do", "bn": "করা", "roman": "kora" },
+            { "en": "live / stay", "bn": "থাকা", "roman": "thaka" },
+            { "en": "like", "bn": "পছন্দ করা", "roman": "pochondo kora" },
+            { "en": "love", "bn": "ভালোবাসা", "roman": "bhalobasha" },
+            { "en": "need", "bn": "দরকার হওয়া", "roman": "dorkar howa" },
+            { "en": "can / be able to", "bn": "পারা", "roman": "para" },
+            { "en": "read", "bn": "পড়া", "roman": "pora" },
+            { "en": "write", "bn": "লেখা", "roman": "lekha" },
+            { "en": "sleep", "bn": "ঘুমানো", "roman": "ghumano" },
+            { "en": "work", "bn": "কাজ করা", "roman": "kaj kora" },
+            { "en": "live (reside)", "bn": "থাকা", "roman": "thaka" }
+          ]
+        },
+        {
+          "id": "adjectives_descriptions",
+          "title": "Adjectives & Descriptions",
+          "entries": [
+            { "en": "big", "bn": "বড়", "roman": "boro" },
+            { "en": "small", "bn": "ছোট", "roman": "chhoto" },
+            { "en": "good", "bn": "ভালো", "roman": "bhalo" },
+            { "en": "bad", "bn": "খারাপ", "roman": "kharap" },
+            { "en": "new", "bn": "নতুন", "roman": "notun" },
+            { "en": "old", "bn": "পুরোনো", "roman": "purono" },
+            { "en": "hot", "bn": "গরম", "roman": "gorom" },
+            { "en": "cold", "bn": "ঠান্ডা", "roman": "thanda" },
+            { "en": "easy", "bn": "সহজ", "roman": "shohoj" },
+            { "en": "difficult", "bn": "কঠিন", "roman": "kothin" },
+            { "en": "beautiful", "bn": "সুন্দর", "roman": "shundor" },
+            { "en": "delicious", "bn": "সুস্বাদু", "roman": "shushadu" },
+            { "en": "expensive", "bn": "দামি", "roman": "dami" },
+            { "en": "cheap", "bn": "সস্তা", "roman": "shosta" },
+            { "en": "busy", "bn": "ব্যস্ত", "roman": "byasto" },
+            { "en": "free / not busy", "bn": "ফাঁকা", "roman": "phanka" },
+            { "en": "fast", "bn": "দ্রুত", "roman": "druto" },
+            { "en": "slow", "bn": "ধীরে", "roman": "dhire" },
+            { "en": "beautiful / nice", "bn": "চমৎকার", "roman": "chomotkar" },
+            { "en": "interesting", "bn": "মজার", "roman": "mojar" }
+          ]
+        },
+        {
+          "id": "people_social",
+          "title": "People & Social Words",
+          "entries": [
+            { "en": "man", "bn": "পুরুষ", "roman": "purush" },
+            { "en": "woman", "bn": "মহিলা", "roman": "mohila" },
+            { "en": "child", "bn": "বাচ্চা", "roman": "bachcha" },
+            { "en": "person", "bn": "মানুষ", "roman": "manush" },
+            { "en": "husband", "bn": "স্বামী", "roman": "shami" },
+            { "en": "wife", "bn": "স্ত্রী", "roman": "stri" },
+            { "en": "boy", "bn": "ছেলে", "roman": "chhele" },
+            { "en": "girl", "bn": "মেয়ে", "roman": "meye" },
+            { "en": "neighbor", "bn": "প্রতিবেশী", "roman": "protibeshi" },
+            { "en": "host", "bn": "আয়োজক", "roman": "ayojok" },
+            { "en": "everyone", "bn": "সবাই", "roman": "shobai" },
+            { "en": "someone", "bn": "কেউ", "roman": "keu" },
+            { "en": "people", "bn": "লোকজন", "roman": "lokjon" }
+          ]
+        },
+        {
+          "id": "question_connectors",
+          "title": "Question & Connector Words",
+          "entries": [
+            { "en": "who", "bn": "কে", "roman": "ke" },
+            { "en": "when", "bn": "কখন", "roman": "kokhon" },
+            { "en": "why", "bn": "কেন", "roman": "keno" },
+            { "en": "which", "bn": "কোন", "roman": "kon" },
+            { "en": "whose", "bn": "কার", "roman": "kar" },
+            { "en": "this", "bn": "এটা", "roman": "eta" },
+            { "en": "that", "bn": "ওটা", "roman": "ota" },
+            { "en": "these", "bn": "এগুলো", "roman": "egulo" },
+            { "en": "those", "bn": "ওগুলো", "roman": "ogulo" },
+            { "en": "very", "bn": "খুব", "roman": "khub" },
+            { "en": "also", "bn": "এছাড়াও", "roman": "echharau" },
+            { "en": "but", "bn": "কিন্তু", "roman": "kintu" },
+            { "en": "because", "bn": "কারণ", "roman": "karon" },
+            { "en": "only", "bn": "শুধু", "roman": "shudhu" },
+            { "en": "again", "bn": "আবার", "roman": "abar" },
+            { "en": "really", "bn": "সত্যিই", "roman": "shotyi-i" }
+          ]
+        },
+        {
+          "id": "home_everyday",
+          "title": "Home & Everyday Things",
+          "entries": [
+            { "en": "house / home", "bn": "বাড়ি", "roman": "bari" },
+            { "en": "door", "bn": "দরজা", "roman": "dorja" },
+            { "en": "window", "bn": "জানালা", "roman": "janala" },
+            { "en": "table", "bn": "টেবিল", "roman": "tebil" },
+            { "en": "chair", "bn": "চেয়ার", "roman": "cheyar" },
+            { "en": "bed", "bn": "বিছানা", "roman": "bichhana" },
+            { "en": "kitchen", "bn": "রান্নাঘর", "roman": "rannaghor" },
+            { "en": "bathroom", "bn": "বাথরুম", "roman": "bathroom" },
+            { "en": "phone", "bn": "ফোন", "roman": "phon" },
+            { "en": "car", "bn": "গাড়ি", "roman": "gari" },
+            { "en": "key", "bn": "চাবি", "roman": "chabi" },
+            { "en": "clothes", "bn": "কাপড়", "roman": "kapor" },
+            { "en": "shoes", "bn": "জুতো", "roman": "juto" },
+            { "en": "bag", "bn": "ব্যাগ", "roman": "bag" }
+          ]
+        },
+        {
+          "id": "days_week",
+          "title": "Days of the Week",
+          "entries": [
+            { "en": "Sunday", "bn": "রবিবার", "roman": "robibar" },
+            { "en": "Monday", "bn": "সোমবার", "roman": "shombar" },
+            { "en": "Tuesday", "bn": "মঙ্গলবার", "roman": "mongolbar" },
+            { "en": "Wednesday", "bn": "বুধবার", "roman": "budhbar" },
+            { "en": "Thursday", "bn": "বৃহস্পতিবার", "roman": "brihospotibar" },
+            { "en": "Friday", "bn": "শুক্রবার", "roman": "shukrobar" },
+            { "en": "Saturday", "bn": "শনিবার", "roman": "shonibar" },
+            { "en": "weekday", "bn": "সপ্তাহের দিন", "roman": "shoptaher din" },
+            { "en": "weekend", "bn": "সপ্তাহান্ত", "roman": "shoptahanto" },
+            { "en": "week", "bn": "সপ্তাহ", "roman": "shoptaho" },
+            { "en": "next week", "bn": "আগামী সপ্তাহ", "roman": "agami shoptaho" },
+            { "en": "last week", "bn": "গত সপ্তাহ", "roman": "goto shoptaho" },
+            { "en": "this week", "bn": "এই সপ্তাহ", "roman": "ei shoptaho" },
+            { "en": "every week", "bn": "প্রতি সপ্তাহে", "roman": "proti shoptah-e" }
+          ]
         }
       ]
     },
@@ -168,7 +337,7 @@
             { "en": "Good night.", "bn": "শুভ রাত্রি।", "roman": "shubho ratri." },
             { "en": "Goodbye.", "bn": "বিদায়।", "roman": "biday." },
             { "en": "See you later.", "bn": "পরে দেখা হবে।", "roman": "pore dekha hobe." },
-            { "en": "Take care.", "bn": "সাবধানে থেকো।", "roman": "shabdhane theko." },
+            { "en": "Take care.", "bn": "সাবধানে থাকবেন।", "roman": "shabdhane thakben." },
             { "en": "Welcome.", "bn": "স্বাগতম।", "roman": "shagotom." },
             { "en": "Long time no see.", "bn": "অনেক দিন পর দেখা।", "roman": "onek din por dekha." },
             { "en": "How is your family?", "bn": "আপনার পরিবার কেমন আছে?", "roman": "apnar poribar kemon ache?" },
@@ -258,6 +427,273 @@
             { "en": "I will take good care of her.", "bn": "আমি ওর খুব যত্ন নেব।", "roman": "ami or khub jotno nebo." },
             { "en": "Please forgive my broken Bengali.", "bn": "আমার ভাঙা বাংলা ক্ষমা করবেন।", "roman": "amar bhanga bangla khoma korben." },
             { "en": "It is an honour to meet you.", "bn": "আপনার সাথে দেখা হওয়া আমার সৌভাগ্য।", "roman": "apnar shathe dekha howa amar shoubhaggo." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "core_grammar",
+      "title": "Core Grammar & Patterns",
+      "lessons": [
+        {
+          "id": "pronouns_and_respect",
+          "title": "Pronouns & Respect",
+          "entries": [
+            { "en": "I", "bn": "আমি", "roman": "ami" },
+            { "en": "you (casual)", "bn": "তুমি", "roman": "tumi" },
+            { "en": "you (formal/respectful)", "bn": "আপনি", "roman": "apni" },
+            { "en": "he / she (ordinary)", "bn": "সে", "roman": "she" },
+            { "en": "he / she (respectful)", "bn": "তিনি", "roman": "tini" },
+            { "en": "we", "bn": "আমরা", "roman": "amra" },
+            { "en": "you all (formal)", "bn": "আপনারা", "roman": "apnara" },
+            { "en": "they", "bn": "তারা", "roman": "tara" },
+            { "en": "my", "bn": "আমার", "roman": "amar" },
+            { "en": "your (casual)", "bn": "তোমার", "roman": "tomar" },
+            { "en": "your (formal)", "bn": "আপনার", "roman": "apnar" },
+            { "en": "his / her", "bn": "তার", "roman": "tar" },
+            { "en": "our", "bn": "আমাদের", "roman": "amader" },
+            { "en": "their", "bn": "তাদের", "roman": "tader" },
+            { "en": "me", "bn": "আমাকে", "roman": "amake" },
+            { "en": "you (formal) object", "bn": "আপনাকে", "roman": "apnake" }
+          ]
+        },
+        {
+          "id": "sentence_building",
+          "title": "Sentence Building",
+          "entries": [
+            { "en": "I eat rice.", "bn": "আমি ভাত খাই।", "roman": "ami bhat khai." },
+            { "en": "I am eating rice.", "bn": "আমি ভাত খাচ্ছি।", "roman": "ami bhat khachchi." },
+            { "en": "I will eat rice.", "bn": "আমি ভাত খাব।", "roman": "ami bhat khabo." },
+            { "en": "I ate rice.", "bn": "আমি ভাত খেয়েছি।", "roman": "ami bhat kheyechi." },
+            { "en": "I want to eat.", "bn": "আমি খেতে চাই।", "roman": "ami khete chai." },
+            { "en": "I can eat.", "bn": "আমি খেতে পারি।", "roman": "ami khete pari." },
+            { "en": "I need to eat.", "bn": "আমার খেতে হবে।", "roman": "amar khete hobe." },
+            { "en": "I like rice.", "bn": "আমার ভাত পছন্দ।", "roman": "amar bhat pochondo." },
+            { "en": "I know.", "bn": "আমি জানি।", "roman": "ami jani." },
+            { "en": "I don’t know.", "bn": "আমি জানি না।", "roman": "ami jani na." },
+            { "en": "I understand.", "bn": "আমি বুঝি।", "roman": "ami bujhi." },
+            { "en": "I don’t understand.", "bn": "আমি বুঝতে পারছি না।", "roman": "ami bujhte parchi na." },
+            { "en": "I live in...", "bn": "আমি ... থাকি।", "roman": "ami ... thaki." },
+            { "en": "I am going to...", "bn": "আমি ... যাচ্ছি।", "roman": "ami ... jachchi." },
+            { "en": "I came from...", "bn": "আমি ... থেকে এসেছি।", "roman": "ami ... theke eshechi." },
+            { "en": "Can I...?", "bn": "আমি কি ... করতে পারি?", "roman": "ami ki ... korte pari?" }
+          ]
+        },
+        {
+          "id": "questions_negation_existence",
+          "title": "Questions, Negation & “Have/There Is”",
+          "entries": [
+            { "en": "Do you...?", "bn": "আপনি কি ...?", "roman": "apni ki ...?" },
+            { "en": "What is this?", "bn": "এটা কী?", "roman": "eta ki?" },
+            { "en": "Who is this?", "bn": "ইনি কে?", "roman": "ini ke?" },
+            { "en": "Where is it?", "bn": "এটা কোথায়?", "roman": "eta kothay?" },
+            { "en": "Why?", "bn": "কেন?", "roman": "keno?" },
+            { "en": "When?", "bn": "কখন?", "roman": "kokhon?" },
+            { "en": "I don’t want it.", "bn": "আমি এটা চাই না।", "roman": "ami eta chai na." },
+            { "en": "I cannot.", "bn": "আমি পারি না।", "roman": "ami pari na." },
+            { "en": "Not now.", "bn": "এখন না।", "roman": "ekhon na." },
+            { "en": "There is / it exists.", "bn": "আছে।", "roman": "ache." },
+            { "en": "There isn’t / none.", "bn": "নেই।", "roman": "nei." },
+            { "en": "Do you have...?", "bn": "আপনার কি ... আছে?", "roman": "apnar ki ... ache?" },
+            { "en": "I have...", "bn": "আমার ... আছে।", "roman": "amar ... ache." },
+            { "en": "I don’t have...", "bn": "আমার ... নেই।", "roman": "amar ... nei." },
+            { "en": "That’s okay / no problem.", "bn": "কোনো সমস্যা নেই।", "roman": "kono shomossha nei." }
+          ]
+        },
+        {
+          "id": "useful_verb_patterns",
+          "title": "Useful Verb Patterns",
+          "entries": [
+            { "en": "I am learning Bengali.", "bn": "আমি বাংলা শিখছি।", "roman": "ami bangla shikhchi." },
+            { "en": "I am trying.", "bn": "আমি চেষ্টা করছি।", "roman": "ami cheshta korchi." },
+            { "en": "I want to learn.", "bn": "আমি শিখতে চাই।", "roman": "ami shikhte chai." },
+            { "en": "I can speak a little.", "bn": "আমি একটু বলতে পারি।", "roman": "ami ektu bolte pari." },
+            { "en": "I cannot speak well.", "bn": "আমি ভালো বলতে পারি না।", "roman": "ami bhalo bolte pari na." },
+            { "en": "Please tell me.", "bn": "দয়া করে আমাকে বলুন।", "roman": "doya kore amake bolun." },
+            { "en": "Please show me.", "bn": "দয়া করে আমাকে দেখান।", "roman": "doya kore amake dekhan." },
+            { "en": "Please give me...", "bn": "দয়া করে আমাকে ... দিন।", "roman": "doya kore amake ... din." },
+            { "en": "Please take this.", "bn": "এটা নিন।", "roman": "eta nin." },
+            { "en": "Please come.", "bn": "আসুন।", "roman": "ashun." },
+            { "en": "Please sit.", "bn": "বসুন।", "roman": "boshun." },
+            { "en": "Please wait.", "bn": "অপেক্ষা করুন।", "roman": "opekkha korun." },
+            { "en": "Let’s go.", "bn": "চলুন।", "roman": "cholun." },
+            { "en": "Let’s eat.", "bn": "চলুন খাই।", "roman": "cholun khai." },
+            { "en": "I would like...", "bn": "আমি ... চাই।", "roman": "ami ... chai." }
+          ]
+        },
+        {
+          "id": "time_connectors",
+          "title": "Time & Conversation Connectors",
+          "entries": [
+            { "en": "now", "bn": "এখন", "roman": "ekhon" },
+            { "en": "then / at that time", "bn": "তখন", "roman": "tokhon" },
+            { "en": "before", "bn": "আগে", "roman": "age" },
+            { "en": "after", "bn": "পরে", "roman": "pore" },
+            { "en": "today", "bn": "আজ", "roman": "aj" },
+            { "en": "tomorrow", "bn": "আগামীকাল", "roman": "agamikal" },
+            { "en": "yesterday", "bn": "গতকাল", "roman": "gotokal" },
+            { "en": "soon", "bn": "শিগগির", "roman": "shiggir" },
+            { "en": "later", "bn": "পরে", "roman": "pore" },
+            { "en": "always", "bn": "সবসময়", "roman": "shobshomoy" },
+            { "en": "sometimes", "bn": "মাঝে মাঝে", "roman": "majhe majhe" },
+            { "en": "usually", "bn": "সাধারণত", "roman": "shadharonoto" },
+            { "en": "also", "bn": "আরও", "roman": "aro" },
+            { "en": "but", "bn": "কিন্তু", "roman": "kintu" },
+            { "en": "because", "bn": "কারণ", "roman": "karon" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "real_life",
+      "title": "Real-Life Conversations",
+      "lessons": [
+        {
+          "id": "introductions_smalltalk",
+          "title": "Introduce Yourself & Small Talk",
+          "entries": [
+            { "en": "I am from...", "bn": "আমি ... থেকে এসেছি।", "roman": "ami ... theke eshechi." },
+            { "en": "I live in...", "bn": "আমি ... থাকি।", "roman": "ami ... thaki." },
+            { "en": "I work as...", "bn": "আমি ... হিসেবে কাজ করি।", "roman": "ami ... hisebe kaj kori." },
+            { "en": "I am learning Bengali.", "bn": "আমি বাংলা শিখছি।", "roman": "ami bangla shikhchi." },
+            { "en": "I only know a little Bengali.", "bn": "আমি শুধু একটু বাংলা জানি।", "roman": "ami shudhu ektu bangla jani." },
+            { "en": "I am happy to meet you.", "bn": "আপনার সাথে দেখা হয়ে আমি খুশি।", "roman": "apnar shathe dekha hoye ami khushi." },
+            { "en": "How was your day?", "bn": "আপনার দিন কেমন গেল?", "roman": "apnar din kemon gelo?" },
+            { "en": "How are you feeling?", "bn": "আপনি কেমন আছেন?", "roman": "apni kemon achen?" },
+            { "en": "What do you do?", "bn": "আপনি কী করেন?", "roman": "apni ki koren?" },
+            { "en": "Where do you live?", "bn": "আপনি কোথায় থাকেন?", "roman": "apni kothay thaken?" },
+            { "en": "What do you like?", "bn": "আপনার কী পছন্দ?", "roman": "apnar ki pochondo?" },
+            { "en": "Really?", "bn": "সত্যি?", "roman": "shotyi?" },
+            { "en": "That’s nice.", "bn": "ভালো তো।", "roman": "bhalo to." },
+            { "en": "That sounds good.", "bn": "ভালো শোনাচ্ছে।", "roman": "bhalo shonachche." },
+            { "en": "I’m glad to hear that.", "bn": "শুনে ভালো লাগলো।", "roman": "shune bhalo laglo." }
+          ]
+        },
+        {
+          "id": "conversation_repair",
+          "title": "When You Don’t Understand",
+          "entries": [
+            { "en": "I understand a little.", "bn": "আমি একটু বুঝতে পারি।", "roman": "ami ektu bujhte pari." },
+            { "en": "I don’t understand.", "bn": "আমি বুঝতে পারছি না।", "roman": "ami bujhte parchi na." },
+            { "en": "Please say it again.", "bn": "দয়া করে আবার বলুন।", "roman": "doya kore abar bolun." },
+            { "en": "Please speak slowly.", "bn": "দয়া করে ধীরে বলুন।", "roman": "doya kore dhire bolun." },
+            { "en": "Please speak a little slower.", "bn": "একটু আস্তে বলুন।", "roman": "ektu aste bolun." },
+            { "en": "What does that mean?", "bn": "ওটার মানে কী?", "roman": "otar mane ki?" },
+            { "en": "What does this word mean?", "bn": "এই শব্দের মানে কী?", "roman": "ei shobder mane ki?" },
+            { "en": "How do you say this in Bengali?", "bn": "এটা বাংলায় কী বলে?", "roman": "eta banglay ki bole?" },
+            { "en": "How do I pronounce this?", "bn": "এটা কীভাবে উচ্চারণ করি?", "roman": "eta kibhabe uccharon kori?" },
+            { "en": "Can you explain?", "bn": "আপনি কি বুঝিয়ে বলতে পারেন?", "roman": "apni ki bujhiye bolte paren?" },
+            { "en": "I am still learning.", "bn": "আমি এখনও শিখছি।", "roman": "ami ekhono shikhchi." },
+            { "en": "My Bengali is not very good yet.", "bn": "আমার বাংলা এখনও খুব ভালো নয়।", "roman": "amar bangla ekhono khub bhalo noy." },
+            { "en": "Please correct me.", "bn": "দয়া করে আমাকে ঠিক করে দিন।", "roman": "doya kore amake thik kore din." },
+            { "en": "Did I say that correctly?", "bn": "আমি কি ঠিক বলেছি?", "roman": "ami ki thik bolechi?" },
+            { "en": "Thank you for helping me learn.", "bn": "আমাকে শিখতে সাহায্য করার জন্য ধন্যবাদ।", "roman": "amake shikhte shahajjo korar jonno dhonnobad." }
+          ]
+        },
+        {
+          "id": "shopping_money",
+          "title": "Shopping & Money",
+          "entries": [
+            { "en": "How much is this?", "bn": "এটার দাম কত?", "roman": "etar dam koto?" },
+            { "en": "How much are these?", "bn": "এগুলোর দাম কত?", "roman": "egulor dam koto?" },
+            { "en": "That is expensive.", "bn": "ওটা দামি।", "roman": "ota dami." },
+            { "en": "Do you have a cheaper one?", "bn": "আরও সস্তা কিছু আছে?", "roman": "aro shosta kichhu ache?" },
+            { "en": "I would like this.", "bn": "আমি এটা চাই।", "roman": "ami eta chai." },
+            { "en": "I don’t want this.", "bn": "আমি এটা চাই না।", "roman": "ami eta chai na." },
+            { "en": "Can you lower the price?", "bn": "দামটা একটু কম হবে?", "roman": "damta ektu kom hobe?" },
+            { "en": "I will take it.", "bn": "আমি এটা নেব।", "roman": "ami eta nebo." },
+            { "en": "I am just looking.", "bn": "আমি শুধু দেখছি।", "roman": "ami shudhu dekhchi." },
+            { "en": "Do you take cards?", "bn": "কার্ড নেন?", "roman": "card nen?" },
+            { "en": "Cash", "bn": "নগদ টাকা", "roman": "nogod taka" },
+            { "en": "Money", "bn": "টাকা", "roman": "taka" },
+            { "en": "Change", "bn": "খুচরা", "roman": "khuchra" },
+            { "en": "Receipt", "bn": "রসিদ", "roman": "roshid" },
+            { "en": "That’s enough, thank you.", "bn": "এতেই হবে, ধন্যবাদ।", "roman": "etei hobe, dhonnobad." }
+          ]
+        },
+        {
+          "id": "family_home",
+          "title": "At Home With Family",
+          "entries": [
+            { "en": "Please come in.", "bn": "ভেতরে আসুন।", "roman": "bhetore ashun." },
+            { "en": "Please sit down.", "bn": "বসুন।", "roman": "boshun." },
+            { "en": "Make yourself comfortable.", "bn": "আরাম করে বসুন।", "roman": "aram kore boshun." },
+            { "en": "Can I help?", "bn": "আমি কি সাহায্য করতে পারি?", "roman": "ami ki shahajjo korte pari?" },
+            { "en": "Do you need anything?", "bn": "আপনার কিছু দরকার আছে?", "roman": "apnar kichhu dorkar ache?" },
+            { "en": "Where should I put this?", "bn": "এটা কোথায় রাখব?", "roman": "eta kothay rakhbo?" },
+            { "en": "What can I do?", "bn": "আমি কী করতে পারি?", "roman": "ami ki korte pari?" },
+            { "en": "The house is beautiful.", "bn": "বাড়িটা খুব সুন্দর।", "roman": "barita khub shundor." },
+            { "en": "The food smells wonderful.", "bn": "খাবারের গন্ধ দারুণ।", "roman": "khabarer gondho darun." },
+            { "en": "Thank you for inviting me.", "bn": "আমাকে আমন্ত্রণ জানানোর জন্য ধন্যবাদ।", "roman": "amake amontron jananor jonno dhonnobad." },
+            { "en": "I feel at home here.", "bn": "আমি এখানে নিজের বাড়ির মতো অনুভব করি।", "roman": "ami ekhane nijer barir moto onubhob kori." },
+            { "en": "I really enjoyed today.", "bn": "আজ আমার খুব ভালো লেগেছে।", "roman": "aj amar khub bhalo legeche." },
+            { "en": "I will come again.", "bn": "আমি আবার আসব।", "roman": "ami abar ashbo." },
+            { "en": "Please take care.", "bn": "সাবধানে থাকবেন।", "roman": "shabdhane thakben." },
+            { "en": "Thank you for everything.", "bn": "সব কিছুর জন্য ধন্যবাদ।", "roman": "shob kichur jonno dhonnobad." }
+          ]
+        },
+        {
+          "id": "food_preferences",
+          "title": "Food Preferences & Eating",
+          "entries": [
+            { "en": "I like this.", "bn": "এটা আমার ভালো লাগে।", "roman": "eta amar bhalo lage." },
+            { "en": "I really like this.", "bn": "এটা আমার খুব ভালো লাগে।", "roman": "eta amar khub bhalo lage." },
+            { "en": "This is delicious.", "bn": "এটা খুব সুস্বাদু।", "roman": "eta khub shushadu." },
+            { "en": "It is a little spicy.", "bn": "এটা একটু ঝাল।", "roman": "eta ektu jhal." },
+            { "en": "It is very spicy.", "bn": "এটা খুব ঝাল।", "roman": "eta khub jhal." },
+            { "en": "I don’t eat meat.", "bn": "আমি মাংস খাই না।", "roman": "ami mangsho khai na." },
+            { "en": "I eat everything.", "bn": "আমি সব কিছু খাই।", "roman": "ami shob kichhu khai." },
+            { "en": "A little, please.", "bn": "একটু দিন, দয়া করে।", "roman": "ektu din, doya kore." },
+            { "en": "A little more, please.", "bn": "আরেকটু দিন, দয়া করে।", "roman": "arektu din, doya kore." },
+            { "en": "I am full.", "bn": "আমার পেট ভরে গেছে।", "roman": "amar pet bhore geche." },
+            { "en": "I can’t eat any more.", "bn": "আমি আর খেতে পারব না।", "roman": "ami ar khete parbo na." },
+            { "en": "May I have some water?", "bn": "একটু জল পাব?", "roman": "ektu jol pabo?" },
+            { "en": "Can I have some tea?", "bn": "একটু চা পাব?", "roman": "ektu cha pabo?" },
+            { "en": "Please don’t give me too much.", "bn": "বেশি দেবেন না, দয়া করে।", "roman": "beshi deben na, doya kore." },
+            { "en": "Thank you, I really enjoyed it.", "bn": "ধন্যবাদ, আমার খুব ভালো লেগেছে।", "roman": "dhonnobad, amar khub bhalo legeche." }
+          ]
+        },
+        {
+          "id": "plans_future",
+          "title": "Plans & Future",
+          "entries": [
+            { "en": "I will come tomorrow.", "bn": "আমি আগামীকাল আসব।", "roman": "ami agamikal ashbo." },
+            { "en": "I will see you later.", "bn": "পরে দেখা হবে।", "roman": "pore dekha hobe." },
+            { "en": "What are you doing tomorrow?", "bn": "আপনি আগামীকাল কী করবেন?", "roman": "apni agamikal ki korben?" },
+            { "en": "What time will you come?", "bn": "আপনি কখন আসবেন?", "roman": "apni kokhon ashben?" },
+            { "en": "I am going now.", "bn": "আমি এখন যাচ্ছি।", "roman": "ami ekhon jachchi." },
+            { "en": "I have to go.", "bn": "আমাকে যেতে হবে।", "roman": "amake jete hobe." },
+            { "en": "I would like to come again.", "bn": "আমি আবার আসতে চাই।", "roman": "ami abar ashte chai." },
+            { "en": "See you tomorrow.", "bn": "আগামীকাল দেখা হবে।", "roman": "agamikal dekha hobe." },
+            { "en": "Maybe later.", "bn": "হয়তো পরে।", "roman": "hoyto pore." },
+            { "en": "Not today.", "bn": "আজ না।", "roman": "aj na." },
+            { "en": "I will call you.", "bn": "আমি আপনাকে ফোন করব।", "roman": "ami apnake phone korbo." },
+            { "en": "Please let me know.", "bn": "আমাকে জানাবেন।", "roman": "amake janaben." },
+            { "en": "That sounds good.", "bn": "ভালো শোনাচ্ছে।", "roman": "bhalo shonachche." },
+            { "en": "I am looking forward to it.", "bn": "আমি এর জন্য অপেক্ষা করছি।", "roman": "ami er jonno opekkha korchi." },
+            { "en": "See you soon.", "bn": "শিগগিরই দেখা হবে।", "roman": "shiggiri dekha hobe." }
+          ]
+        },
+        {
+          "id": "family_address",
+          "title": "Family Address & Respect",
+          "entries": [
+            { "en": "uncle (mother’s sister’s husband)", "bn": "মেসো", "roman": "mesho" },
+            { "en": "aunt (mother’s brother’s wife)", "bn": "মামী", "roman": "mami" },
+            { "en": "paternal uncle (older)", "bn": "জ্যাঠা", "roman": "jyatha" },
+            { "en": "paternal aunt (older uncle’s wife)", "bn": "জ্যাঠাইমা", "roman": "jyathai-ma" },
+            { "en": "father-in-law", "bn": "শ্বশুর", "roman": "shoshur" },
+            { "en": "mother-in-law", "bn": "শাশুড়ি", "roman": "shashuri" },
+            { "en": "son-in-law", "bn": "জামাই", "roman": "jamai" },
+            { "en": "daughter-in-law", "bn": "বউমা", "roman": "bouma" },
+            { "en": "older brother / respectful address", "bn": "দাদা", "roman": "dada" },
+            { "en": "older sister / respectful address", "bn": "দিদি", "roman": "didi" },
+            { "en": "younger brother", "bn": "ভাই", "roman": "bhai" },
+            { "en": "younger sister", "bn": "বোন", "roman": "bon" },
+            { "en": "uncle / older man (common address)", "bn": "কাকু", "roman": "kaku" },
+            { "en": "aunt / older woman (common address)", "bn": "কাকিমা", "roman": "kakima" },
+            { "en": "grandfather", "bn": "দাদু", "roman": "dadu" },
+            { "en": "grandmother", "bn": "দিদা", "roman": "dida" }
           ]
         }
       ]
