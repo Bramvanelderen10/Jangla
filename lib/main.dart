@@ -2,22 +2,23 @@ import 'package:flutter/material.dart';
 
 import 'data/content_repository.dart';
 import 'models/content_models.dart';
+import 'models/language.dart';
 import 'screens/categories_screen.dart';
 import 'services/custom_list_service.dart';
 import 'services/quiz_stats_service.dart';
 import 'services/tts_service.dart';
 
 void main() {
-  runApp(const BanglaLearnApp());
+  runApp(const JanglaApp());
 }
 
-class BanglaLearnApp extends StatelessWidget {
-  const BanglaLearnApp({super.key});
+class JanglaApp extends StatelessWidget {
+  const JanglaApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Learn Bengali',
+      title: 'Jangla',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorSchemeSeed: const Color(0xFF00695C),
@@ -28,7 +29,9 @@ class BanglaLearnApp extends StatelessWidget {
   }
 }
 
-/// Loads content once and shows the category list when ready.
+/// Loads the language config and the selected language's content, then shows
+/// the category list. Switching language re-loads the matching content file
+/// and reconfigures text-to-speech.
 class HomeLoader extends StatefulWidget {
   const HomeLoader({super.key});
 
@@ -38,22 +41,46 @@ class HomeLoader extends StatefulWidget {
 
 class _HomeLoaderState extends State<HomeLoader> {
   final ContentRepository _repo = ContentRepository();
-  final TtsService _tts = TtsService();
   final QuizStatsService _stats = QuizStatsService();
   final CustomListService _customLists = CustomListService();
-  late final Future<AppContent> _future;
+
+  AppConfig? _config;
+  LanguageOption? _language;
+  TtsService? _tts;
+  late Future<AppContent> _future;
 
   @override
   void initState() {
     super.initState();
-    _future = _load();
-    _tts.init();
+    _future = _bootstrap();
   }
 
-  Future<AppContent> _load() async {
+  Future<AppContent> _bootstrap() async {
     await _stats.init();
     await _customLists.init();
-    return _repo.load();
+    final config = await _repo.loadConfig();
+    _config = config;
+    final savedCode = await _repo.loadSelectedLanguageCode();
+    final language = config.languageForCode(savedCode) ?? config.defaultLanguage;
+    return _selectAndLoad(language);
+  }
+
+  /// Points the app at [language]: reconfigures TTS and loads its content.
+  Future<AppContent> _selectAndLoad(LanguageOption language) async {
+    _language = language;
+    await _tts?.stop();
+    final tts = TtsService(language);
+    _tts = tts;
+    await tts.init();
+    return _repo.loadContent(language);
+  }
+
+  void _switchLanguage(LanguageOption language) {
+    if (language.code == _language?.code) return;
+    _repo.saveSelectedLanguageCode(language.code);
+    setState(() {
+      _future = _selectAndLoad(language);
+    });
   }
 
   @override
@@ -78,9 +105,12 @@ class _HomeLoaderState extends State<HomeLoader> {
         }
         return CategoriesScreen(
           content: snapshot.data!,
-          tts: _tts,
+          tts: _tts!,
           stats: _stats,
           customLists: _customLists,
+          language: _language!,
+          languages: _config!.languages,
+          onSelectLanguage: _switchLanguage,
         );
       },
     );

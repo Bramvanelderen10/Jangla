@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   List<Entry> makeEntries(int n) => List.generate(
         n,
-        (i) => Entry(english: 'e$i', bengali: 'b$i', roman: 'r$i'),
+        (i) => Entry(english: 'e$i', target: 'b$i', roman: 'r$i'),
       );
 
   test('sessionEntries returns entriesPerSession unique items', () {

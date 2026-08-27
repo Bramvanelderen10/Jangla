@@ -20,4 +20,6 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/content/content.json
+    # Bundles config.json + every content.<code>.json. Adding a new language
+    # file to this folder makes it available without editing pubspec.
+    - assets/content/

@@ -1,0 +1,22 @@
+{
+  "//": "LANGUAGE CONFIG. To add a language: drop a content.<code>.json file next to this one and add an entry below. No code changes needed.",
+  "//defaultLanguage": "code of the language shown on first launch (before the user picks one).",
+  "defaultLanguage": "bn",
+  "//languages": "code = short id + shared_preferences key; name = English label; nativeName = shown in the language menu; file = the content asset; ttsLocales = preferred text-to-speech locales, best first.",
+  "languages": [
+    {
+      "code": "bn",
+      "name": "Bengali",
+      "nativeName": "বাংলা",
+      "file": "content.bn.json",
+      "ttsLocales": ["bn-IN", "bn-BD", "bn"]
+    },
+    {
+      "code": "ja",
+      "name": "Japanese",
+      "nativeName": "日本語",
+      "file": "content.ja.json",
+      "ttsLocales": ["ja-JP", "ja"]
+    }
+  ]
+}

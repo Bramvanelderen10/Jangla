@@ -17,11 +17,11 @@ enum QuizMode {
 
 /// Which way the question is asked.
 enum QuizDirection {
-  /// Prompt in English, answer in Bengali (typed answer is the roman form).
-  enToBn,
+  /// Prompt in English, answer in the target language (typed answer is roman).
+  enToTarget,
 
-  /// Prompt in Bengali, answer in English.
-  bnToEn,
+  /// Prompt in the target language, answer in English.
+  targetToEn,
 }
 
 /// The two question formats.
@@ -101,7 +101,7 @@ class _QuizScreenState extends State<QuizScreen> {
     final kind =
         _random.nextBool() ? QuestionKind.multipleChoice : QuestionKind.typing;
     final direction =
-        _random.nextBool() ? QuizDirection.enToBn : QuizDirection.bnToEn;
+        _random.nextBool() ? QuizDirection.enToTarget : QuizDirection.targetToEn;
 
     final distractors =
         List<Entry>.from(widget.lesson.entries)
@@ -122,7 +122,7 @@ class _QuizScreenState extends State<QuizScreen> {
 
   /// The text a typed answer is compared against for the current direction.
   String get _expectedTyped =>
-      _current.direction == QuizDirection.enToBn
+      _current.direction == QuizDirection.enToTarget
           ? _current.entry.roman
           : _current.entry.english;
 
@@ -141,7 +141,7 @@ class _QuizScreenState extends State<QuizScreen> {
       if (correct) _score++;
     });
     widget.stats.record(widget.lesson.id, _current.entry, correct);
-    widget.tts.speak(_current.entry.bengali);
+    widget.tts.speak(_current.entry.target);
   }
 
   void _choose(Entry option) {
@@ -303,11 +303,11 @@ class _QuizScreenState extends State<QuizScreen> {
     final entry = _current.entry;
     final isTyping = _current.kind == QuestionKind.typing;
     final String instruction;
-    if (_current.direction == QuizDirection.enToBn) {
+    if (_current.direction == QuizDirection.enToTarget) {
       instruction =
           isTyping
               ? 'Type the pronunciation (roman) for:'
-              : 'What is the Bengali for:';
+              : 'What is the ${widget.tts.languageName} for:';
     } else {
       instruction =
           isTyping ? 'Type the English for:' : 'What is the English for:';
@@ -318,7 +318,7 @@ class _QuizScreenState extends State<QuizScreen> {
       children: [
         Text(instruction, style: TextStyle(color: Colors.grey[600])),
         const SizedBox(height: 8),
-        if (_current.direction == QuizDirection.enToBn)
+        if (_current.direction == QuizDirection.enToTarget)
           Text(
             entry.english,
             style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
@@ -331,7 +331,7 @@ class _QuizScreenState extends State<QuizScreen> {
                 children: [
                   Flexible(
                     child: Text(
-                      entry.bengali,
+                      entry.target,
                       style: const TextStyle(
                         fontSize: 34,
                         fontWeight: FontWeight.bold,
@@ -340,7 +340,7 @@ class _QuizScreenState extends State<QuizScreen> {
                   ),
                   const SizedBox(width: 8),
                   IconButton.filledTonal(
-                    onPressed: () => widget.tts.speak(entry.bengali),
+                    onPressed: () => widget.tts.speak(entry.target),
                     icon: const Icon(Icons.volume_up),
                     tooltip: 'Listen',
                   ),
@@ -371,7 +371,7 @@ class _QuizScreenState extends State<QuizScreen> {
       }
     }
 
-    final showBengali = _current.direction == QuizDirection.enToBn;
+    final showTarget = _current.direction == QuizDirection.enToTarget;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: Material(
@@ -383,12 +383,12 @@ class _QuizScreenState extends State<QuizScreen> {
           child: Padding(
             padding: const EdgeInsets.all(16),
             child:
-                showBengali
+                showTarget
                     ? Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          option.bengali,
+                          option.target,
                           style: const TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.w600,
@@ -454,7 +454,7 @@ class _QuizScreenState extends State<QuizScreen> {
                   style: const TextStyle(fontSize: 18),
                 ),
                 Text(
-                  '${_current.entry.bengali} · ${_current.entry.roman}',
+                  '${_current.entry.target} · ${_current.entry.roman}',
                   style: const TextStyle(
                     fontStyle: FontStyle.italic,
                     color: Colors.teal,

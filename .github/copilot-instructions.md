@@ -1,19 +1,28 @@
 # Copilot instructions — Bangla Learn
 
-A Flutter (Dart) Android app for learning basic Bengali (Bangla) words and
-sentences. Content is data-driven from a single JSON config; the app never
-hardcodes vocabulary.
+A Flutter (Dart) Android app for learning basic vocabulary and sentences in a
+chosen language (Bengali and Japanese ship in the box). Content is data-driven
+from one JSON file per language plus a small `config.json` mapping; the app
+never hardcodes vocabulary.
 
 ## Architecture
 
 - Entry point [`lib/main.dart`](../lib/main.dart): `BanglaLearnApp` → `HomeLoader`
-  loads content once via a `FutureBuilder`, then shows `CategoriesScreen`.
+  loads `config.json`, resolves the selected/default language, then loads that
+  language's content via a `FutureBuilder` and shows `CategoriesScreen`. Picking
+  a different language re-runs the future and rebuilds `TtsService`.
 - Content flow: **AppContent → Category → Lesson → Entry** (defined in
   [`lib/models/content_models.dart`](../lib/models/content_models.dart)).
 - [`lib/data/content_repository.dart`](../lib/data/content_repository.dart)
-  reads and decodes `assets/content/content.json` via `rootBundle`.
+  decodes `assets/content/config.json` into `AppConfig`/`LanguageOption`
+  (defined in [`lib/models/language.dart`](../lib/models/language.dart)), loads
+  a language's `content.<code>.json` via `rootBundle`, and persists the chosen
+  language code in `shared_preferences` (key `selected_language_v1`).
 - [`lib/services/tts_service.dart`](../lib/services/tts_service.dart) wraps
-  `flutter_tts` for Bengali speech (`bn-BD`) and fails silently if unavailable.
+  `flutter_tts`. It is constructed for the selected `LanguageOption` and speaks
+  using the best available locale from its `ttsLocales` (e.g. `bn-IN`, `ja-JP`);
+  it exposes `languageName` for UI labels and fails silently if no matching
+  voice is installed.
 - [`lib/services/quiz_stats_service.dart`](../lib/services/quiz_stats_service.dart)
   persists per-entry right/wrong tallies via `shared_preferences` (keyed by
   `lessonId::english`) and provides `reviewEntries()` — a session weighted toward
@@ -42,9 +51,17 @@ hardcodes vocabulary.
 
 ## Data model & config
 
-- Content lives in [`assets/content/content.json`](../assets/content/content.json)
-  ("easy config"). It is the source of truth — add words/lessons/categories here,
-  not in Dart.
+- Content lives in one file per language,
+  `assets/content/content.<code>.json` (e.g. `content.bn.json`,
+  `content.ja.json`) — the "easy config". It is the source of truth — add
+  words/lessons/categories there, not in Dart.
+- [`assets/content/config.json`](../assets/content/config.json) maps each
+  language `code` to its display `name`, `nativeName`, content `file`, and
+  preferred `ttsLocales`, and sets `defaultLanguage`. To add a language, drop a
+  `content.<code>.json` file in `assets/content/` and add an entry here — the
+  folder is bundled wholesale via pubspec, so no `pubspec.yaml` change is needed.
+- The per-entry `bn` JSON key holds the target-language script regardless of
+  language (kept as `bn` for backward compatibility); `Entry.bengali` mirrors it.
 - Entry shape: `{ "en": <english>, "bn": <Bengali script>, "roman": <pronunciation> }`.
   Always provide all three fields. `Entry` also has `toJson()` and a `key` getter
   (`en|bn|roman`) used to persist and de-duplicate custom-list entries.

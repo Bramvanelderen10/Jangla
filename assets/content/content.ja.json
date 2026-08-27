@@ -1,0 +1,555 @@
+{
+  "//": "EASY CONFIG (Japanese). Same shape as the other content files. The 'bn' key holds the target-language script (here Japanese); 'roman' is the Hepburn reading.",
+  "defaults": {
+    "entriesPerSession": 15,
+    "shuffle": true
+  },
+  "categories": [
+    {
+      "id": "basic_words",
+      "title": "Basic Words",
+      "lessons": [
+        {
+          "id": "food",
+          "title": "Food Names",
+          "entries": [
+            { "en": "rice (cooked)", "bn": "ご飯", "roman": "gohan" },
+            { "en": "water", "bn": "水", "roman": "mizu" },
+            { "en": "fish", "bn": "魚", "roman": "sakana" },
+            { "en": "meat", "bn": "肉", "roman": "niku" },
+            { "en": "egg", "bn": "卵", "roman": "tamago" },
+            { "en": "milk", "bn": "牛乳", "roman": "gyunyu" },
+            { "en": "bread", "bn": "パン", "roman": "pan" },
+            { "en": "vegetable", "bn": "野菜", "roman": "yasai" },
+            { "en": "fruit", "bn": "果物", "roman": "kudamono" },
+            { "en": "salt", "bn": "塩", "roman": "shio" },
+            { "en": "sugar", "bn": "砂糖", "roman": "sato" },
+            { "en": "tea", "bn": "お茶", "roman": "ocha" },
+            { "en": "coffee", "bn": "コーヒー", "roman": "kohi" },
+            { "en": "potato", "bn": "じゃがいも", "roman": "jagaimo" },
+            { "en": "chicken", "bn": "鶏肉", "roman": "toriniku" },
+            { "en": "oil", "bn": "油", "roman": "abura" },
+            { "en": "apple", "bn": "りんご", "roman": "ringo" },
+            { "en": "banana", "bn": "バナナ", "roman": "banana" },
+            { "en": "soup", "bn": "スープ", "roman": "supu" },
+            { "en": "sweet / dessert", "bn": "デザート", "roman": "dezato" },
+            { "en": "spicy", "bn": "辛い", "roman": "karai" }
+          ]
+        },
+        {
+          "id": "locations",
+          "title": "Places & Locations",
+          "entries": [
+            { "en": "home / house", "bn": "家", "roman": "ie" },
+            { "en": "room", "bn": "部屋", "roman": "heya" },
+            { "en": "town", "bn": "町", "roman": "machi" },
+            { "en": "village", "bn": "村", "roman": "mura" },
+            { "en": "street / road", "bn": "道", "roman": "michi" },
+            { "en": "market", "bn": "市場", "roman": "ichiba" },
+            { "en": "shop / store", "bn": "店", "roman": "mise" },
+            { "en": "station", "bn": "駅", "roman": "eki" },
+            { "en": "temple", "bn": "お寺", "roman": "otera" },
+            { "en": "shrine", "bn": "神社", "roman": "jinja" },
+            { "en": "country", "bn": "国", "roman": "kuni" },
+            { "en": "here", "bn": "ここ", "roman": "koko" },
+            { "en": "there", "bn": "そこ", "roman": "soko" },
+            { "en": "school", "bn": "学校", "roman": "gakko" },
+            { "en": "hospital", "bn": "病院", "roman": "byoin" },
+            { "en": "restaurant", "bn": "レストラン", "roman": "resutoran" }
+          ]
+        },
+        {
+          "id": "pronouns_questions",
+          "title": "Pronouns & Questions",
+          "entries": [
+            { "en": "I", "bn": "私", "roman": "watashi" },
+            { "en": "my", "bn": "私の", "roman": "watashi no" },
+            { "en": "you", "bn": "あなた", "roman": "anata" },
+            { "en": "we", "bn": "私たち", "roman": "watashitachi" },
+            { "en": "what", "bn": "何", "roman": "nani" },
+            { "en": "where", "bn": "どこ", "roman": "doko" },
+            { "en": "how", "bn": "どうやって", "roman": "doyatte" },
+            { "en": "how much (price)", "bn": "いくら", "roman": "ikura" },
+            { "en": "how many", "bn": "いくつ", "roman": "ikutsu" },
+            { "en": "who", "bn": "誰", "roman": "dare" },
+            { "en": "when", "bn": "いつ", "roman": "itsu" },
+            { "en": "why", "bn": "なぜ", "roman": "naze" },
+            { "en": "which", "bn": "どれ", "roman": "dore" },
+            { "en": "name", "bn": "名前", "roman": "namae" }
+          ]
+        },
+        {
+          "id": "time_calendar",
+          "title": "Time & Calendar",
+          "entries": [
+            { "en": "time", "bn": "時間", "roman": "jikan" },
+            { "en": "now", "bn": "今", "roman": "ima" },
+            { "en": "later", "bn": "後で", "roman": "ato de" },
+            { "en": "day", "bn": "日", "roman": "hi" },
+            { "en": "morning", "bn": "朝", "roman": "asa" },
+            { "en": "noon / daytime", "bn": "昼", "roman": "hiru" },
+            { "en": "night", "bn": "夜", "roman": "yoru" },
+            { "en": "today", "bn": "今日", "roman": "kyo" },
+            { "en": "tomorrow", "bn": "明日", "roman": "ashita" },
+            { "en": "yesterday", "bn": "昨日", "roman": "kino" },
+            { "en": "week", "bn": "週", "roman": "shu" },
+            { "en": "month", "bn": "月", "roman": "tsuki" },
+            { "en": "year", "bn": "年", "roman": "toshi" },
+            { "en": "minute", "bn": "分", "roman": "fun" }
+          ]
+        },
+        {
+          "id": "action_feeling_words",
+          "title": "Common Actions & Feelings",
+          "entries": [
+            { "en": "want", "bn": "ほしい", "roman": "hoshii" },
+            { "en": "buy", "bn": "買う", "roman": "kau" },
+            { "en": "wait", "bn": "待つ", "roman": "matsu" },
+            { "en": "help", "bn": "助ける", "roman": "tasukeru" },
+            { "en": "understand", "bn": "わかる", "roman": "wakaru" },
+            { "en": "learn", "bn": "習う", "roman": "narau" },
+            { "en": "cook", "bn": "料理する", "roman": "ryori suru" },
+            { "en": "good", "bn": "いい", "roman": "ii" },
+            { "en": "beautiful / clean", "bn": "きれい", "roman": "kirei" },
+            { "en": "happy", "bn": "嬉しい", "roman": "ureshii" },
+            { "en": "hungry", "bn": "お腹がすいた", "roman": "onaka ga suita" },
+            { "en": "thirsty", "bn": "のどが渇いた", "roman": "nodo ga kawaita" },
+            { "en": "a little", "bn": "少し", "roman": "sukoshi" },
+            { "en": "everything / all", "bn": "全部", "roman": "zenbu" },
+            { "en": "tired", "bn": "疲れた", "roman": "tsukareta" },
+            { "en": "fun", "bn": "楽しい", "roman": "tanoshii" }
+          ]
+        },
+        {
+          "id": "conversation",
+          "title": "Greetings & Direction Words",
+          "entries": [
+            { "en": "hello", "bn": "こんにちは", "roman": "konnichiwa" },
+            { "en": "how are you?", "bn": "お元気ですか？", "roman": "ogenki desu ka?" },
+            { "en": "I am fine", "bn": "元気です", "roman": "genki desu" },
+            { "en": "yes", "bn": "はい", "roman": "hai" },
+            { "en": "no", "bn": "いいえ", "roman": "iie" },
+            { "en": "thank you", "bn": "ありがとう", "roman": "arigato" },
+            { "en": "okay / all right", "bn": "大丈夫", "roman": "daijobu" },
+            { "en": "left", "bn": "左", "roman": "hidari" },
+            { "en": "right", "bn": "右", "roman": "migi" },
+            { "en": "straight", "bn": "まっすぐ", "roman": "massugu" },
+            { "en": "behind", "bn": "後ろ", "roman": "ushiro" },
+            { "en": "front", "bn": "前", "roman": "mae" },
+            { "en": "up", "bn": "上", "roman": "ue" },
+            { "en": "down", "bn": "下", "roman": "shita" },
+            { "en": "near", "bn": "近い", "roman": "chikai" },
+            { "en": "far", "bn": "遠い", "roman": "toi" },
+            { "en": "stop", "bn": "止まって", "roman": "tomatte" },
+            { "en": "go", "bn": "行く", "roman": "iku" },
+            { "en": "come", "bn": "来る", "roman": "kuru" }
+          ]
+        },
+        {
+          "id": "counting",
+          "title": "Counting & Numbers",
+          "entries": [
+            { "en": "zero", "bn": "ゼロ", "roman": "zero" },
+            { "en": "one", "bn": "一", "roman": "ichi" },
+            { "en": "two", "bn": "二", "roman": "ni" },
+            { "en": "three", "bn": "三", "roman": "san" },
+            { "en": "four", "bn": "四", "roman": "yon" },
+            { "en": "five", "bn": "五", "roman": "go" },
+            { "en": "six", "bn": "六", "roman": "roku" },
+            { "en": "seven", "bn": "七", "roman": "nana" },
+            { "en": "eight", "bn": "八", "roman": "hachi" },
+            { "en": "nine", "bn": "九", "roman": "kyu" },
+            { "en": "ten", "bn": "十", "roman": "ju" },
+            { "en": "eleven", "bn": "十一", "roman": "juichi" },
+            { "en": "twelve", "bn": "十二", "roman": "juni" },
+            { "en": "twenty", "bn": "二十", "roman": "niju" },
+            { "en": "thirty", "bn": "三十", "roman": "sanju" },
+            { "en": "forty", "bn": "四十", "roman": "yonju" },
+            { "en": "fifty", "bn": "五十", "roman": "goju" },
+            { "en": "hundred", "bn": "百", "roman": "hyaku" },
+            { "en": "thousand", "bn": "千", "roman": "sen" },
+            { "en": "first", "bn": "一番目", "roman": "ichibanme" },
+            { "en": "second", "bn": "二番目", "roman": "nibanme" },
+            { "en": "half", "bn": "半分", "roman": "hanbun" }
+          ]
+        },
+        {
+          "id": "family",
+          "title": "Family & Relatives",
+          "//": "Plain (humble) forms for one's own family. Add -san style politeness when talking about someone else's family.",
+          "entries": [
+            { "en": "mother", "bn": "母", "roman": "haha" },
+            { "en": "father", "bn": "父", "roman": "chichi" },
+            { "en": "older brother", "bn": "兄", "roman": "ani" },
+            { "en": "older sister", "bn": "姉", "roman": "ane" },
+            { "en": "younger brother", "bn": "弟", "roman": "ototo" },
+            { "en": "younger sister", "bn": "妹", "roman": "imoto" },
+            { "en": "grandfather", "bn": "祖父", "roman": "sofu" },
+            { "en": "grandmother", "bn": "祖母", "roman": "sobo" },
+            { "en": "uncle", "bn": "おじ", "roman": "oji" },
+            { "en": "aunt", "bn": "おば", "roman": "oba" },
+            { "en": "husband", "bn": "夫", "roman": "otto" },
+            { "en": "wife", "bn": "妻", "roman": "tsuma" },
+            { "en": "family", "bn": "家族", "roman": "kazoku" },
+            { "en": "relatives", "bn": "親戚", "roman": "shinseki" },
+            { "en": "son", "bn": "息子", "roman": "musuko" },
+            { "en": "daughter", "bn": "娘", "roman": "musume" },
+            { "en": "child", "bn": "子供", "roman": "kodomo" },
+            { "en": "parents", "bn": "両親", "roman": "ryoshin" },
+            { "en": "friend", "bn": "友達", "roman": "tomodachi" },
+            { "en": "guest", "bn": "お客さん", "roman": "okyakusan" }
+          ]
+        },
+        {
+          "id": "common_verbs",
+          "title": "Common Verbs",
+          "entries": [
+            { "en": "eat", "bn": "食べる", "roman": "taberu" },
+            { "en": "drink", "bn": "飲む", "roman": "nomu" },
+            { "en": "go", "bn": "行く", "roman": "iku" },
+            { "en": "come", "bn": "来る", "roman": "kuru" },
+            { "en": "see / watch", "bn": "見る", "roman": "miru" },
+            { "en": "speak / talk", "bn": "話す", "roman": "hanasu" },
+            { "en": "know", "bn": "知る", "roman": "shiru" },
+            { "en": "give", "bn": "あげる", "roman": "ageru" },
+            { "en": "take", "bn": "取る", "roman": "toru" },
+            { "en": "do", "bn": "する", "roman": "suru" },
+            { "en": "stay / be (living things)", "bn": "いる", "roman": "iru" },
+            { "en": "like", "bn": "好き", "roman": "suki" },
+            { "en": "need", "bn": "必要", "roman": "hitsuyo" },
+            { "en": "can / be able to", "bn": "できる", "roman": "dekiru" },
+            { "en": "read", "bn": "読む", "roman": "yomu" },
+            { "en": "write", "bn": "書く", "roman": "kaku" },
+            { "en": "sleep", "bn": "寝る", "roman": "neru" },
+            { "en": "work", "bn": "働く", "roman": "hataraku" },
+            { "en": "buy", "bn": "買う", "roman": "kau" },
+            { "en": "wait", "bn": "待つ", "roman": "matsu" }
+          ]
+        },
+        {
+          "id": "adjectives_descriptions",
+          "title": "Adjectives & Descriptions",
+          "entries": [
+            { "en": "big", "bn": "大きい", "roman": "okii" },
+            { "en": "small", "bn": "小さい", "roman": "chiisai" },
+            { "en": "good", "bn": "いい", "roman": "ii" },
+            { "en": "bad", "bn": "悪い", "roman": "warui" },
+            { "en": "new", "bn": "新しい", "roman": "atarashii" },
+            { "en": "old", "bn": "古い", "roman": "furui" },
+            { "en": "hot", "bn": "熱い", "roman": "atsui" },
+            { "en": "cold", "bn": "冷たい", "roman": "tsumetai" },
+            { "en": "easy", "bn": "簡単", "roman": "kantan" },
+            { "en": "difficult", "bn": "難しい", "roman": "muzukashii" },
+            { "en": "beautiful", "bn": "美しい", "roman": "utsukushii" },
+            { "en": "delicious", "bn": "おいしい", "roman": "oishii" },
+            { "en": "expensive", "bn": "高い", "roman": "takai" },
+            { "en": "cheap", "bn": "安い", "roman": "yasui" },
+            { "en": "busy", "bn": "忙しい", "roman": "isogashii" },
+            { "en": "free (not busy)", "bn": "暇", "roman": "hima" },
+            { "en": "fast", "bn": "速い", "roman": "hayai" },
+            { "en": "slow", "bn": "遅い", "roman": "osoi" },
+            { "en": "interesting", "bn": "面白い", "roman": "omoshiroi" },
+            { "en": "cute", "bn": "かわいい", "roman": "kawaii" }
+          ]
+        },
+        {
+          "id": "home_everyday",
+          "title": "Home & Everyday Things",
+          "entries": [
+            { "en": "house / home", "bn": "家", "roman": "ie" },
+            { "en": "door", "bn": "ドア", "roman": "doa" },
+            { "en": "window", "bn": "窓", "roman": "mado" },
+            { "en": "table", "bn": "テーブル", "roman": "teburu" },
+            { "en": "chair", "bn": "椅子", "roman": "isu" },
+            { "en": "bed", "bn": "ベッド", "roman": "beddo" },
+            { "en": "kitchen", "bn": "台所", "roman": "daidokoro" },
+            { "en": "toilet", "bn": "トイレ", "roman": "toire" },
+            { "en": "phone", "bn": "電話", "roman": "denwa" },
+            { "en": "car", "bn": "車", "roman": "kuruma" },
+            { "en": "key", "bn": "鍵", "roman": "kagi" },
+            { "en": "clothes", "bn": "服", "roman": "fuku" },
+            { "en": "shoes", "bn": "靴", "roman": "kutsu" },
+            { "en": "bag", "bn": "かばん", "roman": "kaban" },
+            { "en": "book", "bn": "本", "roman": "hon" },
+            { "en": "money", "bn": "お金", "roman": "okane" }
+          ]
+        },
+        {
+          "id": "days_week",
+          "title": "Days of the Week",
+          "entries": [
+            { "en": "Sunday", "bn": "日曜日", "roman": "nichiyobi" },
+            { "en": "Monday", "bn": "月曜日", "roman": "getsuyobi" },
+            { "en": "Tuesday", "bn": "火曜日", "roman": "kayobi" },
+            { "en": "Wednesday", "bn": "水曜日", "roman": "suiyobi" },
+            { "en": "Thursday", "bn": "木曜日", "roman": "mokuyobi" },
+            { "en": "Friday", "bn": "金曜日", "roman": "kinyobi" },
+            { "en": "Saturday", "bn": "土曜日", "roman": "doyobi" },
+            { "en": "week", "bn": "週", "roman": "shu" },
+            { "en": "weekend", "bn": "週末", "roman": "shumatsu" },
+            { "en": "this week", "bn": "今週", "roman": "konshu" },
+            { "en": "next week", "bn": "来週", "roman": "raishu" },
+            { "en": "last week", "bn": "先週", "roman": "senshu" },
+            { "en": "every day", "bn": "毎日", "roman": "mainichi" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "basic_sentences",
+      "title": "Basic Sentences",
+      "lessons": [
+        {
+          "id": "greetings_goodbyes",
+          "title": "Greetings & Goodbyes",
+          "entries": [
+            { "en": "Hello, how are you?", "bn": "こんにちは、お元気ですか？", "roman": "konnichiwa, ogenki desu ka?" },
+            { "en": "I am fine, thank you.", "bn": "元気です、ありがとう。", "roman": "genki desu, arigato." },
+            { "en": "What is your name?", "bn": "お名前は何ですか？", "roman": "onamae wa nan desu ka?" },
+            { "en": "My name is...", "bn": "私の名前は…です。", "roman": "watashi no namae wa ... desu." },
+            { "en": "Nice to meet you.", "bn": "はじめまして。", "roman": "hajimemashite." },
+            { "en": "Good morning.", "bn": "おはようございます。", "roman": "ohayo gozaimasu." },
+            { "en": "Good night.", "bn": "おやすみなさい。", "roman": "oyasuminasai." },
+            { "en": "Goodbye.", "bn": "さようなら。", "roman": "sayonara." },
+            { "en": "See you later.", "bn": "またあとで。", "roman": "mata ato de." },
+            { "en": "Take care.", "bn": "気をつけて。", "roman": "ki o tsukete." },
+            { "en": "Welcome.", "bn": "ようこそ。", "roman": "yokoso." },
+            { "en": "Long time no see.", "bn": "お久しぶりです。", "roman": "ohisashiburi desu." },
+            { "en": "Thank you very much.", "bn": "どうもありがとうございます。", "roman": "domo arigato gozaimasu." },
+            { "en": "You are welcome.", "bn": "どういたしまして。", "roman": "do itashimashite." },
+            { "en": "Excuse me.", "bn": "すみません。", "roman": "sumimasen." },
+            { "en": "I am sorry.", "bn": "ごめんなさい。", "roman": "gomen nasai." },
+            { "en": "Have a good day.", "bn": "よい一日を。", "roman": "yoi ichinichi o." },
+            { "en": "I have to go now.", "bn": "もう行かなければなりません。", "roman": "mo ikanakereba narimasen." },
+            { "en": "Thank you for everything.", "bn": "いろいろありがとうございました。", "roman": "iroiro arigato gozaimashita." },
+            { "en": "See you tomorrow.", "bn": "また明日。", "roman": "mata ashita." }
+          ]
+        },
+        {
+          "id": "travel",
+          "title": "Useful Travel Sentences",
+          "entries": [
+            { "en": "Where is the bathroom?", "bn": "トイレはどこですか？", "roman": "toire wa doko desu ka?" },
+            { "en": "How much is this?", "bn": "これはいくらですか？", "roman": "kore wa ikura desu ka?" },
+            { "en": "I want to go to...", "bn": "…に行きたいです。", "roman": "... ni ikitai desu." },
+            { "en": "Please stop here.", "bn": "ここで止めてください。", "roman": "koko de tomete kudasai." },
+            { "en": "I am lost.", "bn": "道に迷いました。", "roman": "michi ni mayoimashita." },
+            { "en": "Can you help me?", "bn": "手伝ってもらえますか？", "roman": "tetsudatte moraemasu ka?" },
+            { "en": "I don't understand.", "bn": "わかりません。", "roman": "wakarimasen." },
+            { "en": "Please speak slowly.", "bn": "ゆっくり話してください。", "roman": "yukkuri hanashite kudasai." },
+            { "en": "Do you speak English?", "bn": "英語を話せますか？", "roman": "eigo o hanasemasu ka?" },
+            { "en": "Where is the station?", "bn": "駅はどこですか？", "roman": "eki wa doko desu ka?" },
+            { "en": "How do I get there?", "bn": "そこへはどう行きますか？", "roman": "soko e wa do ikimasu ka?" },
+            { "en": "I need a taxi.", "bn": "タクシーが必要です。", "roman": "takushi ga hitsuyo desu." },
+            { "en": "Is it far from here?", "bn": "ここから遠いですか？", "roman": "koko kara toi desu ka?" },
+            { "en": "I am hungry.", "bn": "お腹がすきました。", "roman": "onaka ga sukimashita." },
+            { "en": "Water, please.", "bn": "お水をください。", "roman": "omizu o kudasai." },
+            { "en": "The food is delicious.", "bn": "料理はおいしいです。", "roman": "ryori wa oishii desu." },
+            { "en": "What time is it?", "bn": "今何時ですか？", "roman": "ima nanji desu ka?" },
+            { "en": "Please wait a moment.", "bn": "少し待ってください。", "roman": "sukoshi matte kudasai." },
+            { "en": "Where can I buy a ticket?", "bn": "どこで切符を買えますか？", "roman": "doko de kippu o kaemasu ka?" },
+            { "en": "How much is the ticket?", "bn": "切符はいくらですか？", "roman": "kippu wa ikura desu ka?" }
+          ]
+        },
+        {
+          "id": "table_manners",
+          "title": "Polite Table Phrases",
+          "//": "Everyday dining etiquette. 'itadakimasu' before eating and 'gochisosama' after are essential.",
+          "entries": [
+            { "en": "Thank you for the food (before eating).", "bn": "いただきます。", "roman": "itadakimasu." },
+            { "en": "Thank you for the meal (after eating).", "bn": "ごちそうさまでした。", "roman": "gochisosama deshita." },
+            { "en": "It is delicious.", "bn": "おいしいです。", "roman": "oishii desu." },
+            { "en": "I am full.", "bn": "お腹がいっぱいです。", "roman": "onaka ga ippai desu." },
+            { "en": "A little, please.", "bn": "少しお願いします。", "roman": "sukoshi onegai shimasu." },
+            { "en": "No more, thank you.", "bn": "もう十分です、ありがとう。", "roman": "mo jubun desu, arigato." },
+            { "en": "May I have some water?", "bn": "お水をもらえますか？", "roman": "omizu o moraemasu ka?" },
+            { "en": "Cheers!", "bn": "乾杯！", "roman": "kanpai!" },
+            { "en": "This is very tasty.", "bn": "とてもおいしいです。", "roman": "totemo oishii desu." },
+            { "en": "May I have a little more?", "bn": "もう少しもらえますか？", "roman": "mo sukoshi moraemasu ka?" },
+            { "en": "Thank you for cooking.", "bn": "作ってくれてありがとう。", "roman": "tsukutte kurete arigato." },
+            { "en": "It smells good.", "bn": "いいにおいですね。", "roman": "ii nioi desu ne." },
+            { "en": "I like Japanese food.", "bn": "日本料理が好きです。", "roman": "nihon ryori ga suki desu." },
+            { "en": "No thank you.", "bn": "いいえ、けっこうです。", "roman": "iie, kekko desu." },
+            { "en": "Please help yourself.", "bn": "どうぞ召し上がってください。", "roman": "dozo meshiagatte kudasai." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "core_grammar",
+      "title": "Core Grammar & Patterns",
+      "lessons": [
+        {
+          "id": "pronouns_and_respect",
+          "title": "Pronouns & Politeness",
+          "entries": [
+            { "en": "I", "bn": "私", "roman": "watashi" },
+            { "en": "I (casual, male)", "bn": "僕", "roman": "boku" },
+            { "en": "you", "bn": "あなた", "roman": "anata" },
+            { "en": "he", "bn": "彼", "roman": "kare" },
+            { "en": "she", "bn": "彼女", "roman": "kanojo" },
+            { "en": "we", "bn": "私たち", "roman": "watashitachi" },
+            { "en": "they", "bn": "彼ら", "roman": "karera" },
+            { "en": "my", "bn": "私の", "roman": "watashi no" },
+            { "en": "your", "bn": "あなたの", "roman": "anata no" },
+            { "en": "his", "bn": "彼の", "roman": "kare no" },
+            { "en": "her", "bn": "彼女の", "roman": "kanojo no" },
+            { "en": "our", "bn": "私たちの", "roman": "watashitachi no" },
+            { "en": "this", "bn": "これ", "roman": "kore" },
+            { "en": "that", "bn": "それ", "roman": "sore" },
+            { "en": "Mr. / Ms. (name suffix)", "bn": "…さん", "roman": "... san" }
+          ]
+        },
+        {
+          "id": "sentence_building",
+          "title": "Sentence Building",
+          "entries": [
+            { "en": "I eat rice.", "bn": "私はご飯を食べます。", "roman": "watashi wa gohan o tabemasu." },
+            { "en": "I am eating.", "bn": "食べています。", "roman": "tabete imasu." },
+            { "en": "I will eat.", "bn": "食べます。", "roman": "tabemasu." },
+            { "en": "I ate.", "bn": "食べました。", "roman": "tabemashita." },
+            { "en": "I want to eat.", "bn": "食べたいです。", "roman": "tabetai desu." },
+            { "en": "I can eat.", "bn": "食べられます。", "roman": "taberaremasu." },
+            { "en": "I like rice.", "bn": "ご飯が好きです。", "roman": "gohan ga suki desu." },
+            { "en": "I know.", "bn": "知っています。", "roman": "shitte imasu." },
+            { "en": "I don't know.", "bn": "知りません。", "roman": "shirimasen." },
+            { "en": "I understand.", "bn": "わかります。", "roman": "wakarimasu." },
+            { "en": "I don't understand.", "bn": "わかりません。", "roman": "wakarimasen." },
+            { "en": "I live in Tokyo.", "bn": "東京に住んでいます。", "roman": "tokyo ni sunde imasu." },
+            { "en": "I am going to school.", "bn": "学校に行きます。", "roman": "gakko ni ikimasu." },
+            { "en": "May I...?", "bn": "…てもいいですか？", "roman": "... te mo ii desu ka?" },
+            { "en": "Please give me this.", "bn": "これをください。", "roman": "kore o kudasai." },
+            { "en": "Let's go.", "bn": "行きましょう。", "roman": "ikimasho." }
+          ]
+        },
+        {
+          "id": "questions_negation",
+          "title": "Questions & Negation",
+          "entries": [
+            { "en": "What is this?", "bn": "これは何ですか？", "roman": "kore wa nan desu ka?" },
+            { "en": "Who is that?", "bn": "あれは誰ですか？", "roman": "are wa dare desu ka?" },
+            { "en": "Where is it?", "bn": "どこですか？", "roman": "doko desu ka?" },
+            { "en": "Why?", "bn": "どうして？", "roman": "doshite?" },
+            { "en": "When?", "bn": "いつ？", "roman": "itsu?" },
+            { "en": "How much?", "bn": "いくら？", "roman": "ikura?" },
+            { "en": "I don't want it.", "bn": "いりません。", "roman": "irimasen." },
+            { "en": "I can't.", "bn": "できません。", "roman": "dekimasen." },
+            { "en": "Not now.", "bn": "今はだめです。", "roman": "ima wa dame desu." },
+            { "en": "There is / it exists.", "bn": "あります。", "roman": "arimasu." },
+            { "en": "There isn't / none.", "bn": "ありません。", "roman": "arimasen." },
+            { "en": "Do you have...?", "bn": "…はありますか？", "roman": "... wa arimasu ka?" },
+            { "en": "I have...", "bn": "…があります。", "roman": "... ga arimasu." },
+            { "en": "It's okay.", "bn": "大丈夫です。", "roman": "daijobu desu." },
+            { "en": "No problem.", "bn": "問題ありません。", "roman": "mondai arimasen." }
+          ]
+        },
+        {
+          "id": "useful_verb_patterns",
+          "title": "Useful Verb Patterns",
+          "entries": [
+            { "en": "I am learning Japanese.", "bn": "日本語を勉強しています。", "roman": "nihongo o benkyo shite imasu." },
+            { "en": "I am trying my best.", "bn": "頑張っています。", "roman": "ganbatte imasu." },
+            { "en": "I want to learn.", "bn": "習いたいです。", "roman": "naraitai desu." },
+            { "en": "I can speak a little.", "bn": "少し話せます。", "roman": "sukoshi hanasemasu." },
+            { "en": "Please tell me.", "bn": "教えてください。", "roman": "oshiete kudasai." },
+            { "en": "Please show me.", "bn": "見せてください。", "roman": "misete kudasai." },
+            { "en": "Please give me...", "bn": "…をください。", "roman": "... o kudasai." },
+            { "en": "Please come.", "bn": "来てください。", "roman": "kite kudasai." },
+            { "en": "Please sit.", "bn": "座ってください。", "roman": "suwatte kudasai." },
+            { "en": "Please wait.", "bn": "待ってください。", "roman": "matte kudasai." },
+            { "en": "Let's go.", "bn": "行きましょう。", "roman": "ikimasho." },
+            { "en": "Let's eat.", "bn": "食べましょう。", "roman": "tabemasho." },
+            { "en": "One more time, please.", "bn": "もう一度お願いします。", "roman": "mo ichido onegai shimasu." },
+            { "en": "Please speak slowly.", "bn": "ゆっくり話してください。", "roman": "yukkuri hanashite kudasai." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "real_life",
+      "title": "Real-Life Conversations",
+      "lessons": [
+        {
+          "id": "introductions_smalltalk",
+          "title": "Introduce Yourself & Small Talk",
+          "entries": [
+            { "en": "I am from...", "bn": "…から来ました。", "roman": "... kara kimashita." },
+            { "en": "I live in...", "bn": "…に住んでいます。", "roman": "... ni sunde imasu." },
+            { "en": "I work as...", "bn": "…の仕事をしています。", "roman": "... no shigoto o shite imasu." },
+            { "en": "I am learning Japanese.", "bn": "日本語を勉強しています。", "roman": "nihongo o benkyo shite imasu." },
+            { "en": "I only know a little.", "bn": "少しだけ知っています。", "roman": "sukoshi dake shitte imasu." },
+            { "en": "Nice to meet you (please be kind).", "bn": "はじめまして、よろしくお願いします。", "roman": "hajimemashite, yoroshiku onegai shimasu." },
+            { "en": "How was your day?", "bn": "今日はどうでしたか？", "roman": "kyo wa do deshita ka?" },
+            { "en": "What do you do?", "bn": "お仕事は何ですか？", "roman": "oshigoto wa nan desu ka?" },
+            { "en": "Where do you live?", "bn": "どこに住んでいますか？", "roman": "doko ni sunde imasu ka?" },
+            { "en": "Really?", "bn": "本当ですか？", "roman": "honto desu ka?" },
+            { "en": "That's nice.", "bn": "いいですね。", "roman": "ii desu ne." },
+            { "en": "That sounds great.", "bn": "それはいいですね。", "roman": "sore wa ii desu ne." },
+            { "en": "I'm glad to hear that.", "bn": "それを聞いて嬉しいです。", "roman": "sore o kiite ureshii desu." },
+            { "en": "Me too.", "bn": "私もです。", "roman": "watashi mo desu." }
+          ]
+        },
+        {
+          "id": "shopping_money",
+          "title": "Shopping & Money",
+          "entries": [
+            { "en": "How much is this?", "bn": "これはいくらですか？", "roman": "kore wa ikura desu ka?" },
+            { "en": "That is expensive.", "bn": "高いです。", "roman": "takai desu." },
+            { "en": "Do you have a cheaper one?", "bn": "もっと安いのはありますか？", "roman": "motto yasui no wa arimasu ka?" },
+            { "en": "I'll take this.", "bn": "これをください。", "roman": "kore o kudasai." },
+            { "en": "I'm just looking.", "bn": "見ているだけです。", "roman": "mite iru dake desu." },
+            { "en": "Do you take cards?", "bn": "カードは使えますか？", "roman": "kado wa tsukaemasu ka?" },
+            { "en": "cash", "bn": "現金", "roman": "genkin" },
+            { "en": "money", "bn": "お金", "roman": "okane" },
+            { "en": "change", "bn": "おつり", "roman": "otsuri" },
+            { "en": "receipt", "bn": "レシート", "roman": "reshito" },
+            { "en": "Where is the cashier?", "bn": "レジはどこですか？", "roman": "reji wa doko desu ka?" },
+            { "en": "May I try this on?", "bn": "試着してもいいですか？", "roman": "shichaku shite mo ii desu ka?" },
+            { "en": "I'll think about it.", "bn": "考えます。", "roman": "kangaemasu." },
+            { "en": "That's all, thank you.", "bn": "以上です、ありがとう。", "roman": "ijo desu, arigato." }
+          ]
+        },
+        {
+          "id": "food_preferences",
+          "title": "Food Preferences & Eating",
+          "entries": [
+            { "en": "I like this.", "bn": "これが好きです。", "roman": "kore ga suki desu." },
+            { "en": "I really like this.", "bn": "これが大好きです。", "roman": "kore ga daisuki desu." },
+            { "en": "This is delicious.", "bn": "これはおいしいです。", "roman": "kore wa oishii desu." },
+            { "en": "It is a little spicy.", "bn": "少し辛いです。", "roman": "sukoshi karai desu." },
+            { "en": "It is very spicy.", "bn": "とても辛いです。", "roman": "totemo karai desu." },
+            { "en": "I don't eat meat.", "bn": "肉を食べません。", "roman": "niku o tabemasen." },
+            { "en": "I eat everything.", "bn": "何でも食べます。", "roman": "nandemo tabemasu." },
+            { "en": "A little, please.", "bn": "少しください。", "roman": "sukoshi kudasai." },
+            { "en": "A little more, please.", "bn": "もう少しください。", "roman": "mo sukoshi kudasai." },
+            { "en": "I am full.", "bn": "お腹がいっぱいです。", "roman": "onaka ga ippai desu." },
+            { "en": "May I have some water?", "bn": "お水をください。", "roman": "omizu o kudasai." },
+            { "en": "May I have some tea?", "bn": "お茶をください。", "roman": "ocha o kudasai." },
+            { "en": "It was delicious.", "bn": "おいしかったです。", "roman": "oishikatta desu." },
+            { "en": "Thank you for the meal.", "bn": "ごちそうさまでした。", "roman": "gochisosama deshita." }
+          ]
+        },
+        {
+          "id": "plans_future",
+          "title": "Plans & Future",
+          "entries": [
+            { "en": "I will come tomorrow.", "bn": "明日来ます。", "roman": "ashita kimasu." },
+            { "en": "See you later.", "bn": "またあとで。", "roman": "mata ato de." },
+            { "en": "What are you doing tomorrow?", "bn": "明日は何をしますか？", "roman": "ashita wa nani o shimasu ka?" },
+            { "en": "What time will you come?", "bn": "何時に来ますか？", "roman": "nanji ni kimasu ka?" },
+            { "en": "I'm going now.", "bn": "もう行きます。", "roman": "mo ikimasu." },
+            { "en": "I have to go.", "bn": "行かなければなりません。", "roman": "ikanakereba narimasen." },
+            { "en": "I'd like to come again.", "bn": "また来たいです。", "roman": "mata kitai desu." },
+            { "en": "See you tomorrow.", "bn": "また明日。", "roman": "mata ashita." },
+            { "en": "Maybe later.", "bn": "後でかもしれません。", "roman": "ato de kamoshiremasen." },
+            { "en": "Not today.", "bn": "今日は無理です。", "roman": "kyo wa muri desu." },
+            { "en": "I'll call you.", "bn": "電話します。", "roman": "denwa shimasu." },
+            { "en": "Please let me know.", "bn": "教えてください。", "roman": "oshiete kudasai." },
+            { "en": "I'm looking forward to it.", "bn": "楽しみにしています。", "roman": "tanoshimi ni shite imasu." },
+            { "en": "See you soon.", "bn": "またすぐ会いましょう。", "roman": "mata sugu aimasho." }
+          ]
+        }
+      ]
+    }
+  ]
+}

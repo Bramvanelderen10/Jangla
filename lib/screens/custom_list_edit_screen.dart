@@ -129,7 +129,7 @@ class _CustomListEditScreenState extends State<CustomListEditScreen> {
                       final entry = entries[i];
                       return ListTile(
                         title: Text(
-                          entry.bengali,
+                          entry.target,
                           style: const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.w600),
                         ),
@@ -140,7 +140,7 @@ class _CustomListEditScreenState extends State<CustomListEditScreen> {
                             IconButton(
                               icon: const Icon(Icons.volume_up),
                               tooltip: 'Listen',
-                              onPressed: () => widget.tts.speak(entry.bengali),
+                              onPressed: () => widget.tts.speak(entry.target),
                             ),
                             IconButton(
                               icon: const Icon(Icons.remove_circle_outline),

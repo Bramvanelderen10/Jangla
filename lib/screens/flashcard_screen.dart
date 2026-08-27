@@ -93,7 +93,7 @@ class _FlipCard extends StatefulWidget {
 }
 
 class _FlipCardState extends State<_FlipCard> {
-  bool _showBengali = false;
+  bool _showTarget = false;
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +101,7 @@ class _FlipCardState extends State<_FlipCard> {
     return Padding(
       padding: const EdgeInsets.all(20),
       child: GestureDetector(
-        onTap: () => setState(() => _showBengali = !_showBengali),
+        onTap: () => setState(() => _showTarget = !_showTarget),
         child: Card(
           elevation: 4,
           child: Center(
@@ -109,8 +109,8 @@ class _FlipCardState extends State<_FlipCard> {
               padding: const EdgeInsets.all(24),
               child: AnimatedSwitcher(
                 duration: const Duration(milliseconds: 200),
-                child: _showBengali
-                    ? _bengaliSide(entry)
+                child: _showTarget
+                    ? _targetSide(entry)
                     : _englishSide(entry),
               ),
             ),
@@ -134,24 +134,24 @@ class _FlipCardState extends State<_FlipCard> {
         const SizedBox(height: 20),
         IconButton.filledTonal(
           iconSize: 36,
-          onPressed: () => widget.tts.speak(entry.bengali),
+          onPressed: () => widget.tts.speak(entry.target),
           icon: const Icon(Icons.volume_up),
-          tooltip: 'Listen in Bengali',
+          tooltip: 'Listen in ${widget.tts.languageName}',
         ),
         const SizedBox(height: 12),
-        const Text('Tap to see Bengali',
-            style: TextStyle(color: Colors.grey)),
+        Text('Tap to see ${widget.tts.languageName}',
+            style: const TextStyle(color: Colors.grey)),
       ],
     );
   }
 
-  Widget _bengaliSide(Entry entry) {
+  Widget _targetSide(Entry entry) {
     return Column(
       key: const ValueKey('bn'),
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          entry.bengali,
+          entry.target,
           textAlign: TextAlign.center,
           style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
         ),
@@ -168,7 +168,7 @@ class _FlipCardState extends State<_FlipCard> {
         const SizedBox(height: 20),
         IconButton.filled(
           iconSize: 36,
-          onPressed: () => widget.tts.speak(entry.bengali),
+          onPressed: () => widget.tts.speak(entry.target),
           icon: const Icon(Icons.volume_up),
         ),
         const SizedBox(height: 12),

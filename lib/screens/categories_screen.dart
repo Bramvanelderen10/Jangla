@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import '../models/content_models.dart';
+import '../models/language.dart';
 import '../services/custom_list_service.dart';
 import '../services/quiz_stats_service.dart';
 import '../services/tts_service.dart';
@@ -14,6 +15,9 @@ class CategoriesScreen extends StatelessWidget {
   final TtsService tts;
   final QuizStatsService stats;
   final CustomListService customLists;
+  final LanguageOption language;
+  final List<LanguageOption> languages;
+  final ValueChanged<LanguageOption> onSelectLanguage;
 
   const CategoriesScreen({
     super.key,
@@ -21,14 +25,41 @@ class CategoriesScreen extends StatelessWidget {
     required this.tts,
     required this.stats,
     required this.customLists,
+    required this.language,
+    required this.languages,
+    required this.onSelectLanguage,
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Learn Bengali'),
+        title: Text('Learn ${language.name}'),
         actions: [
+          if (languages.length > 1)
+            PopupMenuButton<LanguageOption>(
+              icon: const Icon(Icons.language),
+              tooltip: 'Language',
+              onSelected: onSelectLanguage,
+              itemBuilder: (context) => [
+                for (final option in languages)
+                  PopupMenuItem(
+                    value: option,
+                    child: Row(
+                      children: [
+                        Icon(
+                          option.code == language.code
+                              ? Icons.check
+                              : null,
+                          size: 18,
+                        ),
+                        const SizedBox(width: 8),
+                        Text('${option.name} · ${option.nativeName}'),
+                      ],
+                    ),
+                  ),
+              ],
+            ),
           IconButton(
             icon: const Icon(Icons.collections_bookmark_outlined),
             tooltip: 'My Lists',
@@ -154,7 +185,7 @@ class PhraseOfTheDayCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  entry.bengali,
+                  entry.target,
                   style: const TextStyle(
                       fontSize: 20, fontWeight: FontWeight.bold),
                 ),
@@ -167,7 +198,7 @@ class PhraseOfTheDayCard extends StatelessWidget {
             ),
           ),
           IconButton(
-            onPressed: () => tts.speak(entry.bengali),
+            onPressed: () => tts.speak(entry.target),
             icon: const Icon(Icons.volume_up),
             color: theme.colorScheme.onPrimaryContainer,
             tooltip: 'Listen',

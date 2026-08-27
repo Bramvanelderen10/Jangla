@@ -1,47 +1,58 @@
 import 'package:flutter_tts/flutter_tts.dart';
 
-/// Thin wrapper around flutter_tts for speaking Bengali text.
+import '../models/language.dart';
+
+/// Thin wrapper around flutter_tts for speaking the target-language text of a
+/// selected [LanguageOption] (Bengali, Japanese, ...).
 ///
-/// The main pitfall this guards against: if the device has no Bengali voice,
-/// flutter_tts silently falls back to the default (usually English) engine,
-/// which then "spells out" the Bengali script with English phonetics. To avoid
-/// that garbage we only speak once we've confirmed a real Bengali voice is
-/// selected, and we pick the best available Bengali locale (preferring the
-/// West Bengal / Kolkata `bn-IN` variant the content is written in).
+/// The main pitfall this guards against: if the device has no voice for the
+/// target language, flutter_tts silently falls back to the default (usually
+/// English) engine, which then "spells out" the foreign script with English
+/// phonetics. To avoid that garbage we only speak once we've confirmed a real
+/// voice for the language is selected, picking the best available locale from
+/// the language's configured [LanguageOption.ttsLocales] (ordered by
+/// preference, best first).
 class TtsService {
+  TtsService(this.language);
+
+  final LanguageOption language;
   final FlutterTts _tts = FlutterTts();
   bool _ready = false;
-  bool _bengaliAvailable = false;
-  String? _language;
+  bool _voiceAvailable = false;
+  String? _resolvedLocale;
 
-  /// Whether a genuine Bengali voice was found and selected.
-  bool get bengaliAvailable => _bengaliAvailable;
+  /// English display name of the language being spoken (for UI labels).
+  String get languageName => language.name;
+
+  /// Whether a genuine voice for the language was found and selected.
+  bool get voiceAvailable => _voiceAvailable;
 
   Future<void> init() async {
     try {
-      final chosen = await _resolveBengaliLanguage();
+      final chosen = await _resolveLocale();
       if (chosen != null) {
         await _tts.setLanguage(chosen);
-        await _selectBengaliVoice(chosen);
-        _language = chosen;
-        _bengaliAvailable = true;
+        await _selectVoice(chosen);
+        _resolvedLocale = chosen;
+        _voiceAvailable = true;
       } else {
-        _bengaliAvailable = false;
+        _voiceAvailable = false;
       }
       await _tts.setSpeechRate(0.45);
       await _tts.setPitch(1.0);
       _ready = true;
     } catch (_) {
       _ready = false;
-      _bengaliAvailable = false;
+      _voiceAvailable = false;
     }
   }
 
-  /// Picks the best available Bengali locale as the engine reports it, so we use
-  /// whatever exact tag the device expects (Android may report `bn-IN`, `bn_IN`,
-  /// `ben-IND`, etc.). Prefers the India (Kolkata) variant the content uses,
-  /// then Bangladesh, then any Bengali. Returns null if none is installed.
-  Future<String?> _resolveBengaliLanguage() async {
+  /// Picks the best available locale for the language as the engine reports it,
+  /// so we use whatever exact tag the device expects (Android may report
+  /// `bn-IN`, `bn_IN`, `ja-JP`, `ja_JP`, etc.). Candidates in
+  /// [LanguageOption.ttsLocales] are tried in order of preference. Returns null
+  /// if none is installed.
+  Future<String?> _resolveLocale() async {
     List<String> langs = const [];
     try {
       final raw = await _tts.getLanguages;
@@ -52,21 +63,17 @@ class TtsService {
       // getLanguages unsupported; fall through to direct probing below.
     }
 
-    final bengali = langs.where(_isBengali).toList();
-    // Prefer India, then Bangladesh, then any Bengali variant.
-    for (final match in [
-      bengali.where(_isIndia),
-      bengali.where(_isBangladesh),
-      bengali,
-    ]) {
-      if (match.isNotEmpty) return match.first;
+    for (final preferred in language.ttsLocales) {
+      for (final available in langs) {
+        if (_localeMatches(available, preferred)) return available;
+      }
     }
 
-    // Fallback: probe common tags directly if the language list was empty.
-    for (final lang in const ['bn-IN', 'bn_IN', 'bn-BD', 'bn']) {
+    // Fallback: probe the preferred tags directly if the language list was empty.
+    for (final preferred in language.ttsLocales) {
       try {
-        final available = await _tts.isLanguageAvailable(lang);
-        if (available == true || available == 1) return lang;
+        final available = await _tts.isLanguageAvailable(preferred);
+        if (available == true || available == 1) return preferred;
       } catch (_) {
         // Try the next candidate.
       }
@@ -78,35 +85,31 @@ class TtsService {
   static List<String> _localeParts(String locale) =>
       locale.toLowerCase().split(RegExp('[-_]'));
 
-  static bool _isBengali(String locale) {
-    final lang = _localeParts(locale).first;
-    return lang == 'bn' || lang == 'ben';
+  /// True when [candidate] satisfies [preferred]: the language subtag must
+  /// match, and if [preferred] names a region that region must match too.
+  static bool _localeMatches(String candidate, String preferred) {
+    final c = _localeParts(candidate);
+    final p = _localeParts(preferred);
+    if (c.isEmpty || p.isEmpty || c.first != p.first) return false;
+    if (p.length < 2) return true; // language-only preference
+    return c.contains(p[1]);
   }
 
-  static bool _isIndia(String locale) {
-    final parts = _localeParts(locale);
-    return parts.contains('in') || parts.contains('ind');
-  }
-
-  static bool _isBangladesh(String locale) {
-    final parts = _localeParts(locale);
-    return parts.contains('bd') || parts.contains('bgd');
-  }
-
-  /// Explicitly bind a Bengali voice for the chosen language when one exists.
+  /// Explicitly bind a voice matching the chosen locale when one exists.
   /// setLanguage alone is sometimes not enough to override a default voice.
-  Future<void> _selectBengaliVoice(String language) async {
+  Future<void> _selectVoice(String locale) async {
     try {
       final voices = await _tts.getVoices;
       if (voices is! List) return;
-      final wantIndia = _isIndia(language);
+      final wanted = _localeParts(locale);
       Map? match;
       for (final v in voices) {
         if (v is Map) {
-          final locale = (v['locale'] ?? '').toString();
-          if (!_isBengali(locale)) continue;
-          // Exact preference: a Bengali-India voice when we chose India.
-          if (wantIndia && _isIndia(locale)) {
+          final voiceLocale = (v['locale'] ?? '').toString();
+          final parts = _localeParts(voiceLocale);
+          if (parts.isEmpty || parts.first != wanted.first) continue;
+          // Prefer a voice whose region also matches the chosen locale.
+          if (wanted.length > 1 && parts.contains(wanted[1])) {
             match = v;
             break;
           }
@@ -128,14 +131,14 @@ class TtsService {
     if (text.trim().isEmpty) return;
     try {
       if (!_ready) await init();
-      // No Bengali voice: speaking would spell the script in English. Skip it
+      // No matching voice: speaking would spell the script in English. Skip it
       // rather than produce garbage.
-      if (!_bengaliAvailable) return;
+      if (!_voiceAvailable) return;
       await _tts.stop();
-      if (_language != null) await _tts.setLanguage(_language!);
+      if (_resolvedLocale != null) await _tts.setLanguage(_resolvedLocale!);
       await _tts.speak(text);
     } catch (_) {
-      // Ignore playback errors (e.g. no Bengali voice installed).
+      // Ignore playback errors (e.g. no matching voice installed).
     }
   }
 

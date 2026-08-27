@@ -3,29 +3,31 @@ import 'dart:math';
 /// A single vocabulary/sentence item.
 class Entry {
   final String english;
-  final String bengali;
+
+  /// Target-language script (Bengali, Japanese, ...); JSON key stays `bn`.
+  final String target;
   final String roman;
 
   const Entry({
     required this.english,
-    required this.bengali,
+    required this.target,
     required this.roman,
   });
 
   factory Entry.fromJson(Map<String, dynamic> json) => Entry(
         english: json['en'] as String,
-        bengali: json['bn'] as String,
+        target: (json['target'] ?? json['bn']) as String,
         roman: (json['roman'] ?? '') as String,
       );
 
   Map<String, dynamic> toJson() => {
         'en': english,
-        'bn': bengali,
+        'bn': target,
         'roman': roman,
       };
 
   /// Stable string identity used to de-duplicate entries in custom lists.
-  String get key => '$english|$bengali|$roman';
+  String get key => '$english|$target|$roman';
 }
 
 /// A lesson: a pool of entries plus how many to show per randomized session.

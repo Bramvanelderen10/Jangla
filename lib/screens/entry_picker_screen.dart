@@ -50,7 +50,7 @@ class _EntryPickerScreenState extends State<EntryPickerScreen> {
         .where((e) =>
             e.english.toLowerCase().contains(q) ||
             e.roman.toLowerCase().contains(q) ||
-            e.bengali.contains(_query))
+            e.target.contains(_query))
         .toList();
   }
 
@@ -117,7 +117,7 @@ class _EntryPickerScreenState extends State<EntryPickerScreen> {
                             }
                           }),
                   title: Text(
-                    entry.bengali,
+                    entry.target,
                     style: const TextStyle(
                         fontSize: 18, fontWeight: FontWeight.w600),
                   ),
