@@ -153,15 +153,19 @@ class _QuizScreenState extends State<QuizScreen> {
     if (_answered) return;
     if (_typedController.text.trim().isEmpty) return;
 
-    _expectedTyped.split("/").forEach((expected) {
-      if (_normalize(_typedController.text) == _normalize(expected)) {
+    var splitted = _expectedTyped.split("/");
+
+    var answer = _normalize(_typedController.text);
+    for (var i = 0; i < splitted.length; i++) {
+      var element = _normalize(splitted[i]);
+      var isCorrect = answer == element;
+      if (isCorrect) {
         _answer(true);
         return;
       }
-    });
+    }
 
     _answer(false);
-    return;
   }
 
   void _next() {
