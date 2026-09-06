@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../models/content_models.dart';
-import '../services/tts_service.dart';
+import '../../models/content_models.dart';
+import '../../services/tts_service.dart';
 
 class FlashcardScreen extends StatefulWidget {
   final Lesson lesson;

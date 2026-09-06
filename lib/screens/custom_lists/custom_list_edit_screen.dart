@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../models/content_models.dart';
-import '../models/custom_list.dart';
-import '../services/custom_list_service.dart';
-import '../services/quiz_stats_service.dart';
-import '../services/tts_service.dart';
-import 'entry_picker_screen.dart';
-import 'flashcard_screen.dart';
-import 'learn_screen.dart';
-import 'quiz_screen.dart';
+import '../../models/content_models.dart';
+import '../../models/custom_list.dart';
+import '../../services/custom_list_service.dart';
+import '../../services/quiz_stats_service.dart';
+import '../../services/tts_service.dart';
+import '../entry_picker_screen.dart';
+import '../flashcards/flashcard_screen.dart';
+import '../learnings/learn_screen.dart';
+import '../quizes/quiz_screen.dart';
 
 /// View and edit a single custom list: add or remove entries and practise it.
 class CustomListEditScreen extends StatefulWidget {
@@ -122,9 +122,9 @@ class _CustomListEditScreenState extends State<CustomListEditScreen> {
             child: SizedBox(
               width: double.infinity,
               child: FilledButton.tonalIcon(
-               onPressed:
+                onPressed:
                     () => _practise(
-                     LearnScreen(
+                      LearnScreen(
                         lesson: _list.toLesson(),
                         tts: widget.tts,
                         stats: widget.stats,

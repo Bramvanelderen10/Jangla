@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'data/content_repository.dart';
 import 'models/content_models.dart';
 import 'models/language.dart';
-import 'screens/categories_screen.dart';
+import 'screens/categories/categories_screen.dart';
 import 'services/custom_list_service.dart';
 import 'services/quiz_stats_service.dart';
 import 'services/tts_service.dart';
@@ -61,7 +61,8 @@ class _HomeLoaderState extends State<HomeLoader> {
     final config = await _repo.loadConfig();
     _config = config;
     final savedCode = await _repo.loadSelectedLanguageCode();
-    final language = config.languageForCode(savedCode) ?? config.defaultLanguage;
+    final language =
+        config.languageForCode(savedCode) ?? config.defaultLanguage;
     return _selectAndLoad(language);
   }
 

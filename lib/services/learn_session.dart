@@ -294,7 +294,6 @@ class LearnSession {
     _validateWordIndex(wordIndex);
 
     final word = _words[wordIndex];
-
     final isCorrect = selected.key == word.entry.key;
 
     _totalQuizzes++;
@@ -409,7 +408,7 @@ class LearnSession {
           ..shuffle(_rng);
 
     for (final entry in pool) {
-      if (distractors.length >= 3) break;
+      if (distractors.length >= 5) break;
 
       if (usedKeys.add(entry.key)) {
         distractors.add(entry);

@@ -2,9 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import '../models/content_models.dart';
-import '../services/quiz_stats_service.dart';
-import '../services/tts_service.dart';
+import '../../models/content_models.dart';
+import '../../services/quiz_stats_service.dart';
+import '../../services/tts_service.dart';
 
 /// How the quiz picks its questions.
 enum QuizMode {

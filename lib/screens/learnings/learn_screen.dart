@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../models/content_models.dart';
-import '../services/learn_session.dart';
-import '../services/quiz_stats_service.dart';
-import '../services/tts_service.dart';
+import '../../models/content_models.dart';
+import '../../services/learn_session.dart';
+import '../../services/quiz_stats_service.dart';
+import '../../services/tts_service.dart';
 
 class LearnScreen extends StatefulWidget {
   final Lesson lesson;
@@ -53,10 +53,16 @@ class _LearnScreenState extends State<LearnScreen> {
 
   void _onAnswer(Entry selected) {
     if (_answered) return;
+
     final quiz = _action as ShowQuiz;
+    widget.tts.speak(quiz.entry.target, pronunciation: quiz.entry.ttsText);
+
     final outcome = _session.answerQuiz(quiz.wordIndex, selected);
-    widget.stats.record(widget.lesson.id, quiz.entry,
-        outcome == QuizOutcome.correct);
+    widget.stats.record(
+      widget.lesson.id,
+      quiz.entry,
+      outcome == QuizOutcome.correct,
+    );
     setState(() {
       _answered = true;
       _wasCorrect = outcome == QuizOutcome.correct;
@@ -73,8 +79,7 @@ class _LearnScreenState extends State<LearnScreen> {
   @override
   Widget build(BuildContext context) {
     if (_action == null) {
-      return const Scaffold(
-          body: Center(child: CircularProgressIndicator()));
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
     if (_action is SessionComplete) {
       return _buildCompleteScreen(_action as SessionComplete);
@@ -85,15 +90,17 @@ class _LearnScreenState extends State<LearnScreen> {
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(6),
           child: LinearProgressIndicator(
-            value: _session.totalWords == 0
-                ? 0
-                : _session.learnedCount / _session.totalWords,
+            value:
+                _session.totalWords == 0
+                    ? 0
+                    : _session.learnedCount / _session.totalWords,
           ),
         ),
       ),
-      body: _action is ShowIntroduction
-          ? _buildIntroduction(_action as ShowIntroduction)
-          : _buildQuiz(_action as ShowQuiz),
+      body:
+          _action is ShowIntroduction
+              ? _buildIntroduction(_action as ShowIntroduction)
+              : _buildQuiz(_action as ShowQuiz),
     );
   }
 
@@ -101,6 +108,7 @@ class _LearnScreenState extends State<LearnScreen> {
 
   Widget _buildIntroduction(ShowIntroduction action) {
     final entry = action.entry;
+    widget.tts.speak(entry.target, pronunciation: entry.ttsText);
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () => setState(() => _flipped = !_flipped),
@@ -122,10 +130,7 @@ class _LearnScreenState extends State<LearnScreen> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 200),
-                  child: _flipped ? _targetSide(entry) : _englishSide(entry),
-                ),
+                _englishSide(entry),
                 const SizedBox(height: 32),
                 FilledButton.icon(
                   onPressed: _onIntroductionDone,
@@ -145,63 +150,75 @@ class _LearnScreenState extends State<LearnScreen> {
       key: const ValueKey('en'),
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          entry.english,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-              fontSize: 28, fontWeight: FontWeight.w600),
-        ),
-        const SizedBox(height: 20),
-        IconButton.filledTonal(
-          iconSize: 36,
-          onPressed: () => widget.tts.speak(
-              entry.target, pronunciation: entry.ttsText),
-          icon: const Icon(Icons.volume_up),
-          tooltip: 'Listen in ${widget.tts.languageName}',
-        ),
-        const SizedBox(height: 12),
-        Text(
-          'Tap to see ${widget.tts.languageName}',
-          style: const TextStyle(color: Colors.grey),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      entry.english,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      entry.target,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      entry.roman,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontStyle: FontStyle.italic,
+                        color: Colors.teal,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Column(
+              children: [
+                IconButton.filledTonal(
+                  iconSize: 26,
+                  onPressed:
+                      () => widget.tts.speak(
+                        entry.target,
+                        pronunciation: entry.ttsText,
+                      ),
+                  icon: const Icon(Icons.volume_up),
+                  tooltip: 'Listen in ${widget.tts.languageName}',
+                ),
+              ],
+            ),
+          ],
         ),
       ],
     );
   }
 
-  Widget _targetSide(Entry entry) {
-    return Column(
-      key: const ValueKey('target'),
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          entry.target,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-              fontSize: 32, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 12),
-        Text(
-          entry.roman,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-              fontSize: 20,
-              fontStyle: FontStyle.italic,
-              color: Colors.teal),
-        ),
-        const SizedBox(height: 20),
-        IconButton.filled(
-          iconSize: 36,
-          onPressed: () => widget.tts.speak(
-              entry.target, pronunciation: entry.ttsText),
-          icon: const Icon(Icons.volume_up),
-        ),
-        const SizedBox(height: 12),
-        const Text('Tap to see English',
-            style: TextStyle(color: Colors.grey)),
-      ],
-    );
-  }
-// ---- quiz ----
+  // ---- quiz ----
 
   Widget _buildQuiz(ShowQuiz quiz) {
     return SingleChildScrollView(
@@ -212,10 +229,9 @@ class _LearnScreenState extends State<LearnScreen> {
           Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: Theme.of(context)
-                  .colorScheme
-                  .primaryContainer
-                  .withAlpha(80),
+              color: Theme.of(
+                context,
+              ).colorScheme.primaryContainer.withAlpha(80),
               borderRadius: BorderRadius.circular(16),
             ),
             child: Column(
@@ -226,27 +242,35 @@ class _LearnScreenState extends State<LearnScreen> {
                     quiz.entry.target,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
-                        fontSize: 30, fontWeight: FontWeight.bold),
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     quiz.entry.roman,
                     style: const TextStyle(
-                        fontStyle: FontStyle.italic,
-                        color: Colors.teal),
+                      fontStyle: FontStyle.italic,
+                      color: Colors.teal,
+                    ),
                   ),
                 ] else
                   Text(
                     quiz.entry.english,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
-                        fontSize: 26, fontWeight: FontWeight.w600),
+                      fontSize: 26,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 const SizedBox(height: 8),
                 IconButton.filledTonal(
                   iconSize: 28,
-                  onPressed: () => widget.tts.speak(quiz.entry.target,
-                      pronunciation: quiz.entry.ttsText),
+                  onPressed:
+                      () => widget.tts.speak(
+                        quiz.entry.target,
+                        pronunciation: quiz.entry.ttsText,
+                      ),
                   icon: const Icon(Icons.volume_up),
                   tooltip: 'Listen',
                 ),
@@ -265,8 +289,9 @@ class _LearnScreenState extends State<LearnScreen> {
                       Expanded(
                         child: Padding(
                           padding: EdgeInsets.only(
-                              left: col == 0 ? 0 : 5,
-                              right: col == 0 ? 5 : 0),
+                            left: col == 0 ? 0 : 5,
+                            right: col == 0 ? 5 : 0,
+                          ),
                           child: _optionButton(
                             quiz.options[row * 2 + col],
                             row * 2 + col,
@@ -286,9 +311,8 @@ class _LearnScreenState extends State<LearnScreen> {
               width: double.infinity,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: _wasCorrect
-                    ? Colors.green.shade100
-                    : Colors.red.shade100,
+                color:
+                    _wasCorrect ? Colors.green.shade100 : Colors.red.shade100,
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Column(
@@ -315,10 +339,7 @@ class _LearnScreenState extends State<LearnScreen> {
                 label: const Text('Skip'),
               ),
               if (_answered)
-                FilledButton(
-                  onPressed: _advance,
-                  child: const Text('Next'),
-                ),
+                FilledButton(onPressed: _advance, child: const Text('Next')),
             ],
           ),
         ],
@@ -345,8 +366,7 @@ class _LearnScreenState extends State<LearnScreen> {
         backgroundColor: bg,
         foregroundColor: fg,
         minimumSize: const Size(double.infinity, 64),
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -368,8 +388,7 @@ class _LearnScreenState extends State<LearnScreen> {
               style: TextStyle(
                 fontSize: 14,
                 fontStyle: FontStyle.italic,
-                color:
-                    fadedColor ? Colors.grey[500] : Colors.teal.shade700,
+                color: fadedColor ? Colors.grey[500] : Colors.teal.shade700,
               ),
             ),
           ],
@@ -396,8 +415,7 @@ class _LearnScreenState extends State<LearnScreen> {
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
               const SizedBox(height: 24),
-              _statRow('Words learned',
-                  '$learned / ${done.results.length}'),
+              _statRow('Words learned', '$learned / ${done.results.length}'),
               _statRow('Introductions', '${done.totalIntroductions}'),
               _statRow('Quizzes answered', '${done.totalQuizzes}'),
               _statRow('Mistakes', '${done.totalWrong}'),
@@ -431,9 +449,10 @@ class _LearnScreenState extends State<LearnScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(label, style: const TextStyle(fontSize: 16)),
-          Text(value,
-              style: const TextStyle(
-                  fontSize: 16, fontWeight: FontWeight.w600)),
+          Text(
+            value,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+          ),
         ],
       ),
     );

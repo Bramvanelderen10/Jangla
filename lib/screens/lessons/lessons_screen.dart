@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../models/content_models.dart';
-import '../services/quiz_stats_service.dart';
-import '../services/tts_service.dart';
-import 'flashcard_screen.dart';
-import 'learn_screen.dart';
-import 'quiz_screen.dart';
+import '../../models/content_models.dart';
+import '../../services/quiz_stats_service.dart';
+import '../../services/tts_service.dart';
+import '../flashcards/flashcard_screen.dart';
+import '../learnings/learn_screen.dart';
+import '../quizes/quiz_screen.dart';
 
 class LessonsScreen extends StatelessWidget {
   final Category category;
@@ -39,7 +39,9 @@ class LessonsScreen extends StatelessWidget {
                   Text(
                     lesson.title,
                     style: const TextStyle(
-                        fontSize: 17, fontWeight: FontWeight.w600),
+                      fontSize: 17,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Text(
@@ -51,13 +53,17 @@ class LessonsScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         child: FilledButton.icon(
-                          onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) =>
-                                  FlashcardScreen(lesson: lesson, tts: tts),
-                            ),
-                          ),
+                          onPressed:
+                              () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder:
+                                      (_) => FlashcardScreen(
+                                        lesson: lesson,
+                                        tts: tts,
+                                      ),
+                                ),
+                              ),
                           icon: const Icon(Icons.style),
                           label: const Text('Flashcards'),
                         ),
@@ -65,16 +71,18 @@ class LessonsScreen extends StatelessWidget {
                       const SizedBox(width: 10),
                       Expanded(
                         child: OutlinedButton.icon(
-                          onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => QuizScreen(
-                                lesson: lesson,
-                                tts: tts,
-                                stats: stats,
+                          onPressed:
+                              () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder:
+                                      (_) => QuizScreen(
+                                        lesson: lesson,
+                                        tts: tts,
+                                        stats: stats,
+                                      ),
+                                ),
                               ),
-                            ),
-                          ),
                           icon: const Icon(Icons.quiz),
                           label: const Text('Quiz'),
                         ),
@@ -85,16 +93,18 @@ class LessonsScreen extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: FilledButton.tonalIcon(
-                      onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => LearnScreen(
-                            lesson: lesson,
-                            tts: tts,
-                            stats: stats,
+                      onPressed:
+                          () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder:
+                                  (_) => LearnScreen(
+                                    lesson: lesson,
+                                    tts: tts,
+                                    stats: stats,
+                                  ),
+                            ),
                           ),
-                        ),
-                      ),
                       icon: const Icon(Icons.school),
                       label: const Text('Learn'),
                     ),
@@ -103,17 +113,19 @@ class LessonsScreen extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: TextButton.icon(
-                      onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => QuizScreen(
-                            lesson: lesson,
-                            tts: tts,
-                            stats: stats,
-                            mode: QuizMode.reviewMistakes,
+                      onPressed:
+                          () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder:
+                                  (_) => QuizScreen(
+                                    lesson: lesson,
+                                    tts: tts,
+                                    stats: stats,
+                                    mode: QuizMode.reviewMistakes,
+                                  ),
+                            ),
                           ),
-                        ),
-                      ),
                       icon: const Icon(Icons.trending_up),
                       label: Text(
                         weak > 0

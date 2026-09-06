@@ -2,13 +2,13 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import '../models/content_models.dart';
-import '../models/language.dart';
-import '../services/custom_list_service.dart';
-import '../services/quiz_stats_service.dart';
-import '../services/tts_service.dart';
-import 'custom_lists_screen.dart';
-import 'lessons_screen.dart';
+import '../../models/content_models.dart';
+import '../../models/language.dart';
+import '../../services/custom_list_service.dart';
+import '../../services/quiz_stats_service.dart';
+import '../../services/tts_service.dart';
+import '../custom_lists/custom_lists_screen.dart';
+import '../lessons/lessons_screen.dart';
 
 class CategoriesScreen extends StatelessWidget {
   final AppContent content;

@@ -47,16 +47,19 @@ class _EntryPickerScreenState extends State<EntryPickerScreen> {
     if (_query.isEmpty) return _all;
     final q = _query.toLowerCase();
     return _all
-        .where((e) =>
-            e.english.toLowerCase().contains(q) ||
-            e.roman.toLowerCase().contains(q) ||
-            e.target.contains(_query))
+        .where(
+          (e) =>
+              e.english.toLowerCase().contains(q) ||
+              e.roman.toLowerCase().contains(q) ||
+              e.target.contains(_query),
+        )
         .toList();
   }
 
   void _done() {
-    final picked =
-        _all.where((e) => _selected.contains(e.key)).toList(growable: false);
+    final picked = _all
+        .where((e) => _selected.contains(e.key))
+        .toList(growable: false);
     Navigator.pop(context, picked);
   }
 
@@ -65,9 +68,9 @@ class _EntryPickerScreenState extends State<EntryPickerScreen> {
     final filtered = _filtered;
     return Scaffold(
       appBar: AppBar(
-        title: Text(_selected.isEmpty
-            ? 'Add words'
-            : 'Add words (${_selected.length})'),
+        title: Text(
+          _selected.isEmpty ? 'Add words' : 'Add words (${_selected.length})',
+        ),
         actions: [
           TextButton(
             onPressed: _selected.isEmpty ? null : _done,
@@ -86,15 +89,16 @@ class _EntryPickerScreenState extends State<EntryPickerScreen> {
                 prefixIcon: const Icon(Icons.search),
                 hintText: 'Search words or sentences',
                 border: const OutlineInputBorder(),
-                suffixIcon: _query.isEmpty
-                    ? null
-                    : IconButton(
-                        icon: const Icon(Icons.clear),
-                        onPressed: () {
-                          _searchController.clear();
-                          setState(() => _query = '');
-                        },
-                      ),
+                suffixIcon:
+                    _query.isEmpty
+                        ? null
+                        : IconButton(
+                          icon: const Icon(Icons.clear),
+                          onPressed: () {
+                            _searchController.clear();
+                            setState(() => _query = '');
+                          },
+                        ),
               ),
             ),
           ),
@@ -107,9 +111,10 @@ class _EntryPickerScreenState extends State<EntryPickerScreen> {
                 final checked = _selected.contains(entry.key);
                 return CheckboxListTile(
                   value: added || checked,
-                  onChanged: added
-                      ? null
-                      : (v) => setState(() {
+                  onChanged:
+                      added
+                          ? null
+                          : (v) => setState(() {
                             if (v ?? false) {
                               _selected.add(entry.key);
                             } else {
@@ -119,7 +124,9 @@ class _EntryPickerScreenState extends State<EntryPickerScreen> {
                   title: Text(
                     entry.target,
                     style: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.w600),
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                   subtitle: Text(
                     added
