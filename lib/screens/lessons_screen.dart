@@ -4,6 +4,7 @@ import '../models/content_models.dart';
 import '../services/quiz_stats_service.dart';
 import '../services/tts_service.dart';
 import 'flashcard_screen.dart';
+import 'learn_screen.dart';
 import 'quiz_screen.dart';
 
 class LessonsScreen extends StatelessWidget {
@@ -79,6 +80,24 @@ class LessonsScreen extends StatelessWidget {
                         ),
                       ),
                     ],
+                  ),
+                  const SizedBox(height: 8),
+                  SizedBox(
+                    width: double.infinity,
+                    child: FilledButton.tonalIcon(
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => LearnScreen(
+                            lesson: lesson,
+                            tts: tts,
+                            stats: stats,
+                          ),
+                        ),
+                      ),
+                      icon: const Icon(Icons.school),
+                      label: const Text('Learn'),
+                    ),
                   ),
                   const SizedBox(height: 8),
                   SizedBox(

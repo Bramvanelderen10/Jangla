@@ -7,6 +7,7 @@ import '../services/quiz_stats_service.dart';
 import '../services/tts_service.dart';
 import 'entry_picker_screen.dart';
 import 'flashcard_screen.dart';
+import 'learn_screen.dart';
 import 'quiz_screen.dart';
 
 /// View and edit a single custom list: add or remove entries and practise it.
@@ -114,6 +115,24 @@ class _CustomListEditScreenState extends State<CustomListEditScreen> {
                   ),
                 ),
               ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: SizedBox(
+              width: double.infinity,
+              child: FilledButton.tonalIcon(
+               onPressed:
+                    () => _practise(
+                     LearnScreen(
+                        lesson: _list.toLesson(),
+                        tts: widget.tts,
+                        stats: widget.stats,
+                      ),
+                    ),
+                icon: const Icon(Icons.school),
+                label: const Text('Learn'),
+              ),
             ),
           ),
           Expanded(
