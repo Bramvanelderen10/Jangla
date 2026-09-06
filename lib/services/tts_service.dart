@@ -127,8 +127,10 @@ class TtsService {
     }
   }
 
-  Future<void> speak(String text) async {
-    if (text.trim().isEmpty) return;
+  Future<void> speak(String text, {String? pronunciation}) async {
+    final speechText =
+        pronunciation?.trim().isNotEmpty == true ? pronunciation!.trim() : text;
+    if (speechText.trim().isEmpty) return;
     try {
       if (!_ready) await init();
       // No matching voice: speaking would spell the script in English. Skip it
@@ -136,7 +138,7 @@ class TtsService {
       if (!_voiceAvailable) return;
       await _tts.stop();
       if (_resolvedLocale != null) await _tts.setLanguage(_resolvedLocale!);
-      await _tts.speak(text);
+      await _tts.speak(speechText);
     } catch (_) {
       // Ignore playback errors (e.g. no matching voice installed).
     }

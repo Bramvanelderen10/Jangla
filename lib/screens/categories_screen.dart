@@ -41,39 +41,40 @@ class CategoriesScreen extends StatelessWidget {
               icon: const Icon(Icons.language),
               tooltip: 'Language',
               onSelected: onSelectLanguage,
-              itemBuilder: (context) => [
-                for (final option in languages)
-                  PopupMenuItem(
-                    value: option,
-                    child: Row(
-                      children: [
-                        Icon(
-                          option.code == language.code
-                              ? Icons.check
-                              : null,
-                          size: 18,
+              itemBuilder:
+                  (context) => [
+                    for (final option in languages)
+                      PopupMenuItem(
+                        value: option,
+                        child: Row(
+                          children: [
+                            Icon(
+                              option.code == language.code ? Icons.check : null,
+                              size: 18,
+                            ),
+                            const SizedBox(width: 8),
+                            Text('${option.name} · ${option.nativeName}'),
+                          ],
                         ),
-                        const SizedBox(width: 8),
-                        Text('${option.name} · ${option.nativeName}'),
-                      ],
-                    ),
-                  ),
-              ],
+                      ),
+                  ],
             ),
           IconButton(
             icon: const Icon(Icons.collections_bookmark_outlined),
             tooltip: 'My Lists',
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => CustomListsScreen(
-                  content: content,
-                  service: customLists,
-                  tts: tts,
-                  stats: stats,
+            onPressed:
+                () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder:
+                        (_) => CustomListsScreen(
+                          content: content,
+                          service: customLists,
+                          tts: tts,
+                          stats: stats,
+                        ),
+                  ),
                 ),
-              ),
-            ),
           ),
         ],
       ),
@@ -88,26 +89,32 @@ class CategoriesScreen extends StatelessWidget {
           final category = content.categories[i - 1];
           return Card(
             child: ListTile(
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 8,
+              ),
               leading: CircleAvatar(child: Text('$i')),
               title: Text(
                 category.title,
                 style: const TextStyle(
-                    fontSize: 18, fontWeight: FontWeight.w600),
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
               subtitle: Text('${category.lessons.length} lessons'),
               trailing: const Icon(Icons.chevron_right),
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => LessonsScreen(
-                    category: category,
-                    tts: tts,
-                    stats: stats,
+              onTap:
+                  () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder:
+                          (_) => LessonsScreen(
+                            category: category,
+                            tts: tts,
+                            stats: stats,
+                          ),
+                    ),
                   ),
-                ),
-              ),
             ),
           );
         },
@@ -152,8 +159,10 @@ class PhraseOfTheDayCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                Icon(Icons.wb_sunny_outlined,
-                    color: theme.colorScheme.onPrimaryContainer),
+                Icon(
+                  Icons.wb_sunny_outlined,
+                  color: theme.colorScheme.onPrimaryContainer,
+                ),
                 const SizedBox(width: 8),
                 Text(
                   "Today's phrases",
@@ -187,18 +196,23 @@ class PhraseOfTheDayCard extends StatelessWidget {
                 Text(
                   entry.target,
                   style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.bold),
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Text(
                   '${entry.roman} · ${entry.english}',
                   style: const TextStyle(
-                      fontStyle: FontStyle.italic, color: Colors.teal),
+                    fontStyle: FontStyle.italic,
+                    color: Colors.teal,
+                  ),
                 ),
               ],
             ),
           ),
           IconButton(
-            onPressed: () => tts.speak(entry.target),
+            onPressed:
+                () => tts.speak(entry.target, pronunciation: entry.ttsText),
             icon: const Icon(Icons.volume_up),
             color: theme.colorScheme.onPrimaryContainer,
             tooltip: 'Listen',

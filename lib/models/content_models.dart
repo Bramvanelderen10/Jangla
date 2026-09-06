@@ -7,24 +7,28 @@ class Entry {
   /// Target-language script (Bengali, Japanese, ...); JSON key stays `bn`.
   final String target;
   final String roman;
+  final String? ttsText;
 
   const Entry({
     required this.english,
     required this.target,
     required this.roman,
+    this.ttsText,
   });
 
   factory Entry.fromJson(Map<String, dynamic> json) => Entry(
-        english: json['en'] as String,
-        target: (json['target'] ?? json['bn']) as String,
-        roman: (json['roman'] ?? '') as String,
-      );
+    english: json['en'] as String,
+    target: (json['target'] ?? json['bn']) as String,
+    roman: (json['roman'] ?? '') as String,
+    ttsText: json['tts'] as String?,
+  );
 
   Map<String, dynamic> toJson() => {
-        'en': english,
-        'bn': target,
-        'roman': roman,
-      };
+    'en': english,
+    'bn': target,
+    'roman': roman,
+    if (ttsText != null) 'tts': ttsText,
+  };
 
   /// Stable string identity used to de-duplicate entries in custom lists.
   String get key => '$english|$target|$roman';
@@ -50,9 +54,10 @@ class Lesson {
         title: json['title'] as String,
         entriesPerSession:
             (json['entriesPerSession'] as int?) ?? defaultPerSession,
-        entries: (json['entries'] as List)
-            .map((e) => Entry.fromJson(e as Map<String, dynamic>))
-            .toList(),
+        entries:
+            (json['entries'] as List)
+                .map((e) => Entry.fromJson(e as Map<String, dynamic>))
+                .toList(),
       );
 
   /// Returns a shuffled subset of entries for one practice session.
@@ -61,7 +66,9 @@ class Lesson {
     final rng = random ?? Random();
     final pool = List<Entry>.from(entries)..shuffle(rng);
     final count =
-        entriesPerSession <= 0 ? pool.length : min(entriesPerSession, pool.length);
+        entriesPerSession <= 0
+            ? pool.length
+            : min(entriesPerSession, pool.length);
     return pool.take(count).toList();
   }
 }
@@ -82,9 +89,15 @@ class Category {
       Category(
         id: json['id'] as String,
         title: json['title'] as String,
-        lessons: (json['lessons'] as List)
-            .map((l) => Lesson.fromJson(l as Map<String, dynamic>, defaultPerSession))
-            .toList(),
+        lessons:
+            (json['lessons'] as List)
+                .map(
+                  (l) => Lesson.fromJson(
+                    l as Map<String, dynamic>,
+                    defaultPerSession,
+                  ),
+                )
+                .toList(),
       );
 }
 
@@ -99,17 +112,25 @@ class AppContent {
   });
 
   /// Every entry across all categories and lessons.
-  List<Entry> get allEntries =>
-      [for (final c in categories) for (final l in c.lessons) ...l.entries];
+  List<Entry> get allEntries => [
+    for (final c in categories)
+      for (final l in c.lessons) ...l.entries,
+  ];
 
   factory AppContent.fromJson(Map<String, dynamic> json) {
     final defaults = (json['defaults'] as Map<String, dynamic>?) ?? const {};
     final defaultPerSession = (defaults['entriesPerSession'] as int?) ?? 20;
     return AppContent(
       defaultEntriesPerSession: defaultPerSession,
-      categories: (json['categories'] as List)
-          .map((c) => Category.fromJson(c as Map<String, dynamic>, defaultPerSession))
-          .toList(),
+      categories:
+          (json['categories'] as List)
+              .map(
+                (c) => Category.fromJson(
+                  c as Map<String, dynamic>,
+                  defaultPerSession,
+                ),
+              )
+              .toList(),
     );
   }
 }

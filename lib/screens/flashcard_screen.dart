@@ -7,11 +7,7 @@ class FlashcardScreen extends StatefulWidget {
   final Lesson lesson;
   final TtsService tts;
 
-  const FlashcardScreen({
-    super.key,
-    required this.lesson,
-    required this.tts,
-  });
+  const FlashcardScreen({super.key, required this.lesson, required this.tts});
 
   @override
   State<FlashcardScreen> createState() => _FlashcardScreenState();
@@ -68,8 +64,9 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
               controller: _controller,
               itemCount: _entries.length,
               onPageChanged: (i) => setState(() => _index = i),
-              itemBuilder: (context, i) =>
-                  _FlipCard(entry: _entries[i], tts: widget.tts),
+              itemBuilder:
+                  (context, i) =>
+                      _FlipCard(entry: _entries[i], tts: widget.tts),
             ),
           ),
           Padding(
@@ -109,9 +106,7 @@ class _FlipCardState extends State<_FlipCard> {
               padding: const EdgeInsets.all(24),
               child: AnimatedSwitcher(
                 duration: const Duration(milliseconds: 200),
-                child: _showTarget
-                    ? _targetSide(entry)
-                    : _englishSide(entry),
+                child: _showTarget ? _targetSide(entry) : _englishSide(entry),
               ),
             ),
           ),
@@ -128,19 +123,22 @@ class _FlipCardState extends State<_FlipCard> {
         Text(
           entry.english,
           textAlign: TextAlign.center,
-          style:
-              const TextStyle(fontSize: 28, fontWeight: FontWeight.w600),
+          style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w600),
         ),
         const SizedBox(height: 20),
         IconButton.filledTonal(
           iconSize: 36,
-          onPressed: () => widget.tts.speak(entry.target),
+          onPressed:
+              () =>
+                  widget.tts.speak(entry.target, pronunciation: entry.ttsText),
           icon: const Icon(Icons.volume_up),
           tooltip: 'Listen in ${widget.tts.languageName}',
         ),
         const SizedBox(height: 12),
-        Text('Tap to see ${widget.tts.languageName}',
-            style: const TextStyle(color: Colors.grey)),
+        Text(
+          'Tap to see ${widget.tts.languageName}',
+          style: const TextStyle(color: Colors.grey),
+        ),
       ],
     );
   }
@@ -168,12 +166,13 @@ class _FlipCardState extends State<_FlipCard> {
         const SizedBox(height: 20),
         IconButton.filled(
           iconSize: 36,
-          onPressed: () => widget.tts.speak(entry.target),
+          onPressed:
+              () =>
+                  widget.tts.speak(entry.target, pronunciation: entry.ttsText),
           icon: const Icon(Icons.volume_up),
         ),
         const SizedBox(height: 12),
-        const Text('Tap to see English',
-            style: TextStyle(color: Colors.grey)),
+        const Text('Tap to see English', style: TextStyle(color: Colors.grey)),
       ],
     );
   }

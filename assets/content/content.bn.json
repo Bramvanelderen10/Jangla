@@ -376,6 +376,36 @@
             { "en": "What time is it?", "bn": "এখন কয়টা বাজে?", "roman": "ekhon koyta baje?" }
           ]
         },
+{
+          "id": "transportation",
+          "title": "Transportation",
+          "entries": [
+            { "en": "bus", "bn": "বাস", "roman": "bas" },
+            { "en": "train", "bn": "ট্রেন", "roman": "tren" },
+            { "en": "rickshaw", "bn": "রিকশা", "roman": "riksha" },
+            { "en": "auto / CNG", "bn": "সিএনজি", "roman": "CNG" },
+            { "en": "taxi", "bn": "ট্যাক্সি", "roman": "taxi" },
+            { "en": "boat / ferry", "bn": "নৌকা / লঞ্চ", "roman": "nouka / launch" },
+            { "en": "airplane", "bn": "বিমান", "roman": "biman" },
+            { "en": "station", "bn": "স্টেশন", "roman": "steshon" },
+            { "en": "bus stop", "bn": "বাস স্ট্যান্ড", "roman": "bas stand" },
+            { "en": "airport", "bn": "বিমানবন্দর", "roman": "bimanbondor" },
+            { "en": "ticket", "bn": "টিকিট", "roman": "tikit" },
+            { "en": "platform", "bn": "প্ল্যাটফর্ম", "roman": "platform" },
+            { "en": "Where is the bus station?", "bn": "বাস স্ট্যান্ড কোথায়?", "roman": "bas stand kothay?" },
+            { "en": "Where is the train station?", "bn": "ট্রেন স্টেশন কোথায়?", "roman": "tren steshon kothay?" },
+            { "en": "I need a ticket to...", "bn": "আমার ... যাওয়ার টিকিট দরকার।", "roman": "amar ... jawar tikit dorkar." },
+            { "en": "When does the train depart?", "bn": "ট্রেন কখন ছাড়ে?", "roman": "tren kokhon chhare?" },
+            { "en": "How long does it take?", "bn": "কত সময় লাগবে?", "roman": "koto shomoy lagbe?" },
+            { "en": "Where do I get off?", "bn": "আমি কোথায় নামব?", "roman": "ami kothay nambo?" },
+            { "en": "Can you take me here? (show map)", "bn": "আমাকে এখানে নিয়ে যাবেন?", "roman": "amake ekhane niye jaben?" },
+            { "en": "One way", "bn": "একদিকে যাওয়া", "roman": "ekdike jaowa" },
+            { "en": "Round trip", "bn": "আসা-যাওয়া", "roman": "asha-jaowa" },
+            { "en": "This bus goes to...?", "bn": "এই বাস কি ... যায়?", "roman": "ei bas ki ... jay?" },
+            { "en": "Where does this bus go?", "bn": "এই বাস কোথায় যায়?", "roman": "ei bas kothay jay?" },
+            { "en": "Please call me a rickshaw.", "bn": "দয়া করে আমাকে একটা রিকশা ডেকে দিন।", "roman": "doya kore amake ekta riksha ḍeke din." }
+          ]
+        },
         {
           "id": "table_manners",
           "title": "Polite Table Phrases",

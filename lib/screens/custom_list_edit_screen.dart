@@ -37,10 +37,11 @@ class _CustomListEditScreenState extends State<CustomListEditScreen> {
     final picked = await Navigator.push<List<Entry>>(
       context,
       MaterialPageRoute(
-        builder: (_) => EntryPickerScreen(
-          content: widget.content,
-          alreadyAdded: _list.entries.map((e) => e.key).toSet(),
-        ),
+        builder:
+            (_) => EntryPickerScreen(
+              content: widget.content,
+              alreadyAdded: _list.entries.map((e) => e.key).toSet(),
+            ),
       ),
     );
     if (picked != null && picked.isNotEmpty) {
@@ -56,9 +57,9 @@ class _CustomListEditScreenState extends State<CustomListEditScreen> {
 
   void _practise(Widget screen) {
     if (_list.entries.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Add some words first.')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Add some words first.')));
       return;
     }
     Navigator.push(context, MaterialPageRoute(builder: (_) => screen));
@@ -86,9 +87,13 @@ class _CustomListEditScreenState extends State<CustomListEditScreen> {
               children: [
                 Expanded(
                   child: FilledButton.icon(
-                    onPressed: () => _practise(
-                      FlashcardScreen(lesson: _list.toLesson(), tts: widget.tts),
-                    ),
+                    onPressed:
+                        () => _practise(
+                          FlashcardScreen(
+                            lesson: _list.toLesson(),
+                            tts: widget.tts,
+                          ),
+                        ),
                     icon: const Icon(Icons.style),
                     label: const Text('Flashcards'),
                   ),
@@ -96,13 +101,14 @@ class _CustomListEditScreenState extends State<CustomListEditScreen> {
                 const SizedBox(width: 10),
                 Expanded(
                   child: OutlinedButton.icon(
-                    onPressed: () => _practise(
-                      QuizScreen(
-                        lesson: _list.toLesson(),
-                        tts: widget.tts,
-                        stats: widget.stats,
-                      ),
-                    ),
+                    onPressed:
+                        () => _practise(
+                          QuizScreen(
+                            lesson: _list.toLesson(),
+                            tts: widget.tts,
+                            stats: widget.stats,
+                          ),
+                        ),
                     icon: const Icon(Icons.quiz),
                     label: const Text('Quiz'),
                   ),
@@ -111,47 +117,54 @@ class _CustomListEditScreenState extends State<CustomListEditScreen> {
             ),
           ),
           Expanded(
-            child: entries.isEmpty
-                ? const Center(
-                    child: Padding(
-                      padding: EdgeInsets.all(32),
-                      child: Text(
-                        'No words yet.\nTap + to add words from the lessons.',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.grey),
+            child:
+                entries.isEmpty
+                    ? const Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(32),
+                        child: Text(
+                          'No words yet.\nTap + to add words from the lessons.',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.grey),
+                        ),
                       ),
+                    )
+                    : ListView.separated(
+                      itemCount: entries.length,
+                      separatorBuilder: (_, __) => const Divider(height: 1),
+                      itemBuilder: (context, i) {
+                        final entry = entries[i];
+                        return ListTile(
+                          title: Text(
+                            entry.target,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          subtitle: Text('${entry.roman} · ${entry.english}'),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                icon: const Icon(Icons.volume_up),
+                                tooltip: 'Listen',
+                                onPressed:
+                                    () => widget.tts.speak(
+                                      entry.target,
+                                      pronunciation: entry.ttsText,
+                                    ),
+                              ),
+                              IconButton(
+                                icon: const Icon(Icons.remove_circle_outline),
+                                tooltip: 'Remove',
+                                onPressed: () => _remove(entry),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
                     ),
-                  )
-                : ListView.separated(
-                    itemCount: entries.length,
-                    separatorBuilder: (_, __) => const Divider(height: 1),
-                    itemBuilder: (context, i) {
-                      final entry = entries[i];
-                      return ListTile(
-                        title: Text(
-                          entry.target,
-                          style: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w600),
-                        ),
-                        subtitle: Text('${entry.roman} · ${entry.english}'),
-                        trailing: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            IconButton(
-                              icon: const Icon(Icons.volume_up),
-                              tooltip: 'Listen',
-                              onPressed: () => widget.tts.speak(entry.target),
-                            ),
-                            IconButton(
-                              icon: const Icon(Icons.remove_circle_outline),
-                              tooltip: 'Remove',
-                              onPressed: () => _remove(entry),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
           ),
         ],
       ),

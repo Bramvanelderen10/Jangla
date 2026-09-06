@@ -101,7 +101,9 @@ class _QuizScreenState extends State<QuizScreen> {
     final kind =
         _random.nextBool() ? QuestionKind.multipleChoice : QuestionKind.typing;
     final direction =
-        _random.nextBool() ? QuizDirection.enToTarget : QuizDirection.targetToEn;
+        _random.nextBool()
+            ? QuizDirection.enToTarget
+            : QuizDirection.targetToEn;
 
     final distractors =
         List<Entry>.from(widget.lesson.entries)
@@ -141,7 +143,10 @@ class _QuizScreenState extends State<QuizScreen> {
       if (correct) _score++;
     });
     widget.stats.record(widget.lesson.id, _current.entry, correct);
-    widget.tts.speak(_current.entry.target);
+    widget.tts.speak(
+      _current.entry.target,
+      pronunciation: _current.entry.ttsText,
+    );
   }
 
   void _choose(Entry option) {
@@ -340,7 +345,11 @@ class _QuizScreenState extends State<QuizScreen> {
                   ),
                   const SizedBox(width: 8),
                   IconButton.filledTonal(
-                    onPressed: () => widget.tts.speak(entry.target),
+                    onPressed:
+                        () => widget.tts.speak(
+                          entry.target,
+                          pronunciation: entry.ttsText,
+                        ),
                     icon: const Icon(Icons.volume_up),
                     tooltip: 'Listen',
                   ),
