@@ -12,8 +12,8 @@ class CustomList {
     required this.entries,
   });
 
-  /// Presents the list as a [Lesson] so the flashcard and quiz screens can use
-  /// it unchanged. Uses the whole pool each session (entriesPerSession = 0).
+  /// Presents the list as a [Lesson] so the Learn and quiz screens can use it
+  /// unchanged. Uses the whole pool each session (entriesPerSession = 0).
   Lesson toLesson() => Lesson(
         id: id,
         title: name,

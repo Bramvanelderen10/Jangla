@@ -11,8 +11,9 @@ Every lesson picks a **random set** of entries each time you open it.
 ## Features
 
 - Categories → Lessons → practice modes
-- **Flashcards**: tap a card to flip between English and the target language (with pronunciation)
-- **Quiz**: multiple-choice, pick the correct translation
+- **Learn**: interleaved introduce → quiz → retry with in-session spaced review — the main way to study a lesson
+- **Quiz**: shuffled multiple-choice and typed answers, in both directions
+- **Daily Review**: a spaced-repetition queue of everything due today, across every lesson you've already started
 - **Text-to-speech** playback of the target language (uses the device's `bn-BD` / `ja-JP` voice)
 - Lessons are **randomized** and show a configurable number of entries per session
 

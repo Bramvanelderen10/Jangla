@@ -6,15 +6,6 @@ import '../../models/content_models.dart';
 import '../../services/quiz_stats_service.dart';
 import '../../services/tts_service.dart';
 
-/// How the quiz picks its questions.
-enum QuizMode {
-  /// Random subset of the lesson.
-  random,
-
-  /// Weighted toward the words answered wrong most often.
-  reviewMistakes,
-}
-
 /// Which way the question is asked.
 enum QuizDirection {
   /// Prompt in English, answer in the target language (typed answer is roman).
@@ -47,14 +38,12 @@ class QuizScreen extends StatefulWidget {
   final Lesson lesson;
   final TtsService tts;
   final QuizStatsService stats;
-  final QuizMode mode;
 
   const QuizScreen({
     super.key,
     required this.lesson,
     required this.tts,
     required this.stats,
-    this.mode = QuizMode.random,
   });
 
   @override
@@ -67,7 +56,6 @@ class _QuizScreenState extends State<QuizScreen> {
   final Random _random = Random();
   final TextEditingController _typedController = TextEditingController();
 
-  late QuizMode _mode;
   late List<_Question> _questions;
   int _index = 0;
   int _score = 0;
@@ -79,7 +67,6 @@ class _QuizScreenState extends State<QuizScreen> {
   @override
   void initState() {
     super.initState();
-    _mode = widget.mode;
     _questions = _buildQuestions();
   }
 
@@ -90,10 +77,7 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 
   List<_Question> _buildQuestions() {
-    final entries =
-        _mode == QuizMode.reviewMistakes
-            ? widget.stats.reviewEntries(widget.lesson, _random)
-            : widget.lesson.sessionEntries(_random);
+    final entries = widget.lesson.sessionEntries(_random);
     return entries.map(_makeQuestion).toList();
   }
 
@@ -199,12 +183,6 @@ class _QuizScreenState extends State<QuizScreen> {
     });
   }
 
-  void _setMode(QuizMode mode) {
-    if (mode == _mode) return;
-    setState(() => _mode = mode);
-    _restart();
-  }
-
   void _showResult() {
     showDialog<void>(
       context: context,
@@ -235,28 +213,7 @@ class _QuizScreenState extends State<QuizScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('${widget.lesson.title} · Quiz'),
-        actions: [
-          PopupMenuButton<QuizMode>(
-            icon: const Icon(Icons.tune),
-            tooltip: 'Quiz mode',
-            initialValue: _mode,
-            onSelected: _setMode,
-            itemBuilder:
-                (context) => const [
-                  PopupMenuItem(
-                    value: QuizMode.random,
-                    child: Text('Random words'),
-                  ),
-                  PopupMenuItem(
-                    value: QuizMode.reviewMistakes,
-                    child: Text('Review my mistakes'),
-                  ),
-                ],
-          ),
-        ],
-      ),
+      appBar: AppBar(title: Text('${widget.lesson.title} · Quiz')),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -273,9 +230,7 @@ class _QuizScreenState extends State<QuizScreen> {
                     style: const TextStyle(fontWeight: FontWeight.w600),
                   ),
                   Text(
-                    _mode == QuizMode.reviewMistakes
-                        ? 'Reviewing mistakes'
-                        : 'Random words',
+                    'Shuffled',
                     style: TextStyle(color: Colors.grey[600]),
                   ),
                 ],

@@ -24,30 +24,37 @@ never hardcodes vocabulary.
   it exposes `languageName` for UI labels and fails silently if no matching
   voice is installed.
 - [`lib/services/quiz_stats_service.dart`](../lib/services/quiz_stats_service.dart)
-  persists per-entry right/wrong tallies via `shared_preferences` (keyed by
-  `lessonId::english`) and provides `reviewEntries()` — a session weighted toward
-  the words failed most (score `wrong*2 - correct`).
+  persists per-entry right/wrong tallies **and the spaced-repetition schedule**
+  via `shared_preferences` (key `quiz_stats_v2`, keyed
+  `<language>::<lessonId>::<english>`; v1 data is ignored). A correct answer
+  moves an entry up a Leitner box (intervals 1/3/7/16/35 days); a wrong answer
+  drops it to box 0 and leaves it due. `dueEntries()` / `dueCount()` return what
+  is due across a set of lessons.
 - [`lib/services/custom_list_service.dart`](../lib/services/custom_list_service.dart)
   persists user-made practice lists (`CustomList`, defined in
   [`lib/models/custom_list.dart`](../lib/models/custom_list.dart)) via
   `shared_preferences` (key `custom_lists_v1`). Lists are built from existing
   content `Entry`s; `CustomList.toLesson()` adapts a list to a `Lesson` (id =
-  list id, `entriesPerSession` 0 = whole pool) so the flashcard/quiz screens
-  work unchanged. Entries are de-duplicated by `Entry.key` (`en|bn|roman`).
+  list id, `entriesPerSession` 0 = whole pool) so the screens work unchanged.
+  Entries are de-duplicated by `Entry.key` (`en|bn|roman`).
 - Screens in [`lib/screens/`](../lib/screens): `categories_screen` →
-  `lessons_screen` → `flashcard_screen` (tap-to-flip PageView) and
-  `quiz_screen`. Each quiz question is randomly one of two kinds
+  `lessons_screen` → `learn_screen` (the interleaved introduce → quiz → retry
+  loop, driven by [`lib/services/learn_session.dart`](../lib/services/learn_session.dart))
+  and `quiz_screen`. Each quiz question is randomly one of two kinds
   (`QuestionKind.multipleChoice` with 5 options, or `typing`) in one of two
-  directions (`QuizDirection.enToBn` / `bnToEn`); typed answers are normalized
-  (lowercase, punctuation/whitespace stripped) before comparison. `QuizMode`
-  (`random` or `reviewMistakes`) controls which entries are drawn.
-- `categories_screen` also hosts `PhraseOfTheDayCard` (3 entries seeded by the
-  calendar day via `AppContent.allEntries`) and an AppBar action to **My Lists**
+  directions (`QuizDirection.enToTarget` / `targetToEn`); typed answers are
+  normalized (lowercase, punctuation/whitespace stripped) before comparison.
+- `categories_screen` hosts `DailyReviewCard` (opens
+  `review/daily_review_screen`, which reviews everything due across
+  `AppContent.allLessons` by reusing `LearnScreen` with a synthetic lesson plus
+  `lessonIdFor`, so results are recorded against each entry's original lesson)
+  and `PhraseOfTheDayCard` (3 entries seeded by the calendar day via
+  `AppContent.allEntries`), plus an AppBar action to **My Lists**
   (`custom_lists_screen` → `custom_list_edit_screen`, which adds entries through
   the searchable `entry_picker_screen`).
-- Bengali audio (🔊) buttons appear on the flashcard front, the `bnToEn` quiz
-  prompt, the phrase-of-the-day card, and custom-list rows — all call
-  `TtsService.speak(entry.bengali)`.
+- Target-language audio (🔊) buttons appear on the Learn card, the `targetToEn`
+  quiz prompt, the phrase-of-the-day card, and custom-list rows — all call
+  `TtsService.speak(entry.target)`.
 
 ## Data model & config
 

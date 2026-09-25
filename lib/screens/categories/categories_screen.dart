@@ -9,6 +9,7 @@ import '../../services/quiz_stats_service.dart';
 import '../../services/tts_service.dart';
 import '../custom_lists/custom_lists_screen.dart';
 import '../lessons/lessons_screen.dart';
+import '../review/daily_review_screen.dart';
 
 class CategoriesScreen extends StatelessWidget {
   final AppContent content;
@@ -80,13 +81,16 @@ class CategoriesScreen extends StatelessWidget {
       ),
       body: ListView.separated(
         padding: const EdgeInsets.all(16),
-        itemCount: content.categories.length + 1,
+        itemCount: content.categories.length + 2,
         separatorBuilder: (_, __) => const SizedBox(height: 12),
         itemBuilder: (context, i) {
           if (i == 0) {
+            return DailyReviewCard(content: content, tts: tts, stats: stats);
+          }
+          if (i == 1) {
             return PhraseOfTheDayCard(content: content, tts: tts);
           }
-          final category = content.categories[i - 1];
+          final category = content.categories[i - 2];
           return Card(
             child: ListTile(
               contentPadding: const EdgeInsets.symmetric(
@@ -222,3 +226,99 @@ class PhraseOfTheDayCard extends StatelessWidget {
     );
   }
 }
+
+/// Spaced-repetition entry point: reviews whatever is due across the lessons
+/// the learner has already started. The count refreshes after each session.
+class DailyReviewCard extends StatefulWidget {
+  final AppContent content;
+  final TtsService tts;
+  final QuizStatsService stats;
+
+  const DailyReviewCard({
+    super.key,
+    required this.content,
+    required this.tts,
+    required this.stats,
+  });
+
+  @override
+  State<DailyReviewCard> createState() => _DailyReviewCardState();
+}
+
+class _DailyReviewCardState extends State<DailyReviewCard> {
+  int _due = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _refresh();
+  }
+
+  void _refresh() {
+    _due = widget.stats.dueCount(widget.content.allLessons);
+  }
+
+  Future<void> _start() async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder:
+            (_) => DailyReviewScreen(
+              lessons: widget.content.allLessons,
+              tts: widget.tts,
+              stats: widget.stats,
+            ),
+      ),
+    );
+    if (mounted) setState(_refresh);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final caughtUp = _due == 0;
+
+    return Card(
+      color: theme.colorScheme.secondaryContainer,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          children: [
+            Icon(
+              caughtUp ? Icons.check_circle_outline : Icons.today,
+              color: theme.colorScheme.onSecondaryContainer,
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Daily Review',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: theme.colorScheme.onSecondaryContainer,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    caughtUp
+                        ? 'All caught up for today'
+                        : '$_due ${_due == 1 ? 'word' : 'words'} due',
+                    style: TextStyle(
+                      color: theme.colorScheme.onSecondaryContainer,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            if (!caughtUp)
+              FilledButton(onPressed: _start, child: const Text('Start')),
+          ],
+        ),
+      ),
+    );
+  }
+}
+

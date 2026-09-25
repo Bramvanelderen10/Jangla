@@ -69,6 +69,9 @@ class _HomeLoaderState extends State<HomeLoader> {
   /// Points the app at [language]: reconfigures TTS and loads its content.
   Future<AppContent> _selectAndLoad(LanguageOption language) async {
     _language = language;
+    // Stats are language-scoped, so switch the namespace before any content
+    // (and therefore any lesson id) is used.
+    _stats.setLanguageScope(language.code);
     await _tts?.stop();
     final tts = TtsService(language);
     _tts = tts;

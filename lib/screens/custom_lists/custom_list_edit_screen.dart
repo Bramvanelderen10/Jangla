@@ -6,7 +6,6 @@ import '../../services/custom_list_service.dart';
 import '../../services/quiz_stats_service.dart';
 import '../../services/tts_service.dart';
 import '../entry_picker_screen.dart';
-import '../flashcards/flashcard_screen.dart';
 import '../learnings/learn_screen.dart';
 import '../quizes/quiz_screen.dart';
 
@@ -84,23 +83,26 @@ class _CustomListEditScreenState extends State<CustomListEditScreen> {
         children: [
           Padding(
             padding: const EdgeInsets.all(12),
-            child: Row(
+            child: Column(
               children: [
-                Expanded(
+                SizedBox(
+                  width: double.infinity,
                   child: FilledButton.icon(
                     onPressed:
                         () => _practise(
-                          FlashcardScreen(
+                          LearnScreen(
                             lesson: _list.toLesson(),
                             tts: widget.tts,
+                            stats: widget.stats,
                           ),
                         ),
-                    icon: const Icon(Icons.style),
-                    label: const Text('Flashcards'),
+                    icon: const Icon(Icons.school),
+                    label: const Text('Learn'),
                   ),
                 ),
-                const SizedBox(width: 10),
-                Expanded(
+                const SizedBox(height: 8),
+                SizedBox(
+                  width: double.infinity,
                   child: OutlinedButton.icon(
                     onPressed:
                         () => _practise(
@@ -115,24 +117,6 @@ class _CustomListEditScreenState extends State<CustomListEditScreen> {
                   ),
                 ),
               ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: SizedBox(
-              width: double.infinity,
-              child: FilledButton.tonalIcon(
-                onPressed:
-                    () => _practise(
-                      LearnScreen(
-                        lesson: _list.toLesson(),
-                        tts: widget.tts,
-                        stats: widget.stats,
-                      ),
-                    ),
-                icon: const Icon(Icons.school),
-                label: const Text('Learn'),
-              ),
             ),
           ),
           Expanded(

@@ -117,6 +117,11 @@ class AppContent {
       for (final l in c.lessons) ...l.entries,
   ];
 
+  /// Every lesson across all categories.
+  List<Lesson> get allLessons => [
+    for (final c in categories) ...c.lessons,
+  ];
+
   factory AppContent.fromJson(Map<String, dynamic> json) {
     final defaults = (json['defaults'] as Map<String, dynamic>?) ?? const {};
     final defaultPerSession = (defaults['entriesPerSession'] as int?) ?? 20;

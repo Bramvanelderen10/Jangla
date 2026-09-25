@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../models/content_models.dart';
 import '../../services/quiz_stats_service.dart';
 import '../../services/tts_service.dart';
-import '../flashcards/flashcard_screen.dart';
 import '../learnings/learn_screen.dart';
 import '../quizes/quiz_screen.dart';
 
@@ -45,54 +44,15 @@ class LessonsScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    '${lesson.entries.length} entries · ${lesson.entriesPerSession} per session',
+                    '${lesson.entries.length} entries · '
+                    '${lesson.entriesPerSession} per session'
+                    '${weak > 0 ? ' · $weak to practise' : ''}',
                     style: TextStyle(color: Colors.grey[600]),
                   ),
                   const SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: FilledButton.icon(
-                          onPressed:
-                              () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder:
-                                      (_) => FlashcardScreen(
-                                        lesson: lesson,
-                                        tts: tts,
-                                      ),
-                                ),
-                              ),
-                          icon: const Icon(Icons.style),
-                          label: const Text('Flashcards'),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: OutlinedButton.icon(
-                          onPressed:
-                              () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder:
-                                      (_) => QuizScreen(
-                                        lesson: lesson,
-                                        tts: tts,
-                                        stats: stats,
-                                      ),
-                                ),
-                              ),
-                          icon: const Icon(Icons.quiz),
-                          label: const Text('Quiz'),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 8),
                   SizedBox(
                     width: double.infinity,
-                    child: FilledButton.tonalIcon(
+                    child: FilledButton.icon(
                       onPressed:
                           () => Navigator.push(
                             context,
@@ -112,7 +72,7 @@ class LessonsScreen extends StatelessWidget {
                   const SizedBox(height: 8),
                   SizedBox(
                     width: double.infinity,
-                    child: TextButton.icon(
+                    child: OutlinedButton.icon(
                       onPressed:
                           () => Navigator.push(
                             context,
@@ -122,16 +82,11 @@ class LessonsScreen extends StatelessWidget {
                                     lesson: lesson,
                                     tts: tts,
                                     stats: stats,
-                                    mode: QuizMode.reviewMistakes,
                                   ),
                             ),
                           ),
-                      icon: const Icon(Icons.trending_up),
-                      label: Text(
-                        weak > 0
-                            ? 'Review mistakes ($weak to practice)'
-                            : 'Review mistakes',
-                      ),
+                      icon: const Icon(Icons.quiz),
+                      label: const Text('Quiz'),
                     ),
                   ),
                 ],

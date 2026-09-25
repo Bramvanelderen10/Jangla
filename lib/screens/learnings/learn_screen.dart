@@ -10,11 +10,17 @@ class LearnScreen extends StatefulWidget {
   final TtsService tts;
   final QuizStatsService stats;
 
+  /// Maps an entry back to the lesson it came from. Defaults to [lesson]'s id;
+  /// Daily Review uses it so a mixed session still records results (and thus
+  /// the review schedule) against each entry's original lesson.
+  final String? Function(Entry entry)? lessonIdFor;
+
   const LearnScreen({
     super.key,
     required this.lesson,
     required this.tts,
     required this.stats,
+    this.lessonIdFor,
   });
 
   @override
@@ -59,7 +65,7 @@ class _LearnScreenState extends State<LearnScreen> {
 
     final outcome = _session.answerQuiz(quiz.wordIndex, selected);
     widget.stats.record(
-      widget.lesson.id,
+      widget.lessonIdFor?.call(quiz.entry) ?? widget.lesson.id,
       quiz.entry,
       outcome == QuizOutcome.correct,
     );
@@ -104,7 +110,7 @@ class _LearnScreenState extends State<LearnScreen> {
     );
   }
 
-  // ---- introduction (flashcard) ----
+  // ---- introduction (tap-to-flip card) ----
 
   Widget _buildIntroduction(ShowIntroduction action) {
     final entry = action.entry;
