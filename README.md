@@ -13,7 +13,7 @@ Every lesson picks a **random set** of entries each time you open it.
 - Categories → Lessons → practice modes
 - **Learn**: interleaved introduce → quiz → retry with in-session spaced review — the main way to study a lesson
 - **Quiz**: shuffled multiple-choice and typed answers, in both directions
-- **Listening cards**: some quiz cards play the audio only ("What did you hear?") and ask for the meaning or the written form — switched on automatically when a target-language voice is installed
+- **Listening cards**: some quiz cards play the audio only ("What did you hear?") and ask for the meaning — switched on automatically when a target-language voice is installed
 - **Daily Review**: a spaced-repetition queue of everything due today, across every lesson you've already started
 - **Progress**: every lesson shows a mastery bar (learned / total) and how many of its entries are due today
 - **Text-to-speech** playback of the target language (uses the device's `bn-BD` / `ja-JP` voice)

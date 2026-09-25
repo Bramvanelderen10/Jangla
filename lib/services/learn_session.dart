@@ -414,10 +414,7 @@ class LearnSession {
     final pool = <QuizDirection>[
       QuizDirection.enToTarget,
       QuizDirection.targetToEn,
-      if (_allowAudio) ...[
-        QuizDirection.audioToEn,
-        QuizDirection.audioToTarget,
-      ],
+      if (_allowAudio) QuizDirection.audioToEn,
     ];
     return pool[_rng.nextInt(pool.length)];
   }

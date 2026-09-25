@@ -87,10 +87,7 @@ class _QuizScreenState extends State<QuizScreen> {
     final pool = <QuizDirection>[
       QuizDirection.enToTarget,
       QuizDirection.targetToEn,
-      if (widget.tts.voiceAvailable) ...[
-        QuizDirection.audioToEn,
-        QuizDirection.audioToTarget,
-      ],
+      if (widget.tts.voiceAvailable) QuizDirection.audioToEn,
     ];
     return pool[_random.nextInt(pool.length)];
   }

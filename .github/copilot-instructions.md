@@ -44,8 +44,8 @@ never hardcodes vocabulary.
   loop, driven by [`lib/services/learn_session.dart`](../lib/services/learn_session.dart))
   and `quiz_screen`. Question shapes are described by the shared
   [`lib/models/quiz_models.dart`](../lib/models/quiz_models.dart) `QuizDirection`
-  (`enToTarget`, `targetToEn`, plus the audio prompts `audioToEn` /
-  `audioToTarget`); `LearnSession` only uses the audio directions when
+  (`enToTarget`, `targetToEn`, plus the audio prompt `audioToEn`);
+  `LearnSession` only uses the audio direction when
   constructed with `allowAudio: true` (set from `TtsService.voiceAvailable`).
   Quiz questions are randomly one of two kinds (`QuestionKind.multipleChoice`
   with 5 options, or `typing`) in one of those directions — audio prompts are

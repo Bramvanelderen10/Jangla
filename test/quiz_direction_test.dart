@@ -48,23 +48,22 @@ void main() {
     }
   });
 
-  test('both audio directions appear when audio is allowed', () {
+  test('the audio direction appears when audio is allowed', () {
     final seen = <QuizDirection>{};
     for (var seed = 0; seed < 40; seed++) {
       seen.addAll(directionsFor(allowAudio: true, seed: seed));
     }
     expect(seen.contains(QuizDirection.audioToEn), isTrue);
-    expect(seen.contains(QuizDirection.audioToTarget), isTrue);
   });
 
   test('direction helpers describe the prompt and answer sides', () {
     expect(QuizDirection.audioToEn.isAudio, isTrue);
-    expect(QuizDirection.audioToTarget.isAudio, isTrue);
     expect(QuizDirection.enToTarget.isAudio, isFalse);
     expect(QuizDirection.targetToEn.isAudio, isFalse);
 
+    // Only enToTarget answers in the target language, so it is the only
+    // direction where the romanization belongs on the options.
     expect(QuizDirection.audioToEn.answerInTarget, isFalse);
-    expect(QuizDirection.audioToTarget.answerInTarget, isTrue);
     expect(QuizDirection.enToTarget.answerInTarget, isTrue);
     expect(QuizDirection.targetToEn.answerInTarget, isFalse);
   });
