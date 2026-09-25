@@ -71,6 +71,68 @@ flutter run
 `flutter create` only adds the missing Android scaffolding; it does not overwrite
 `lib/`, `assets/`, or `pubspec.yaml`.
 
+## Installing Android updates
+
+Android only updates an installed app when the new APK has the **same
+application id** and is signed with the **same key**. If the key differs, the
+installer refuses with a signature error and the only way forward is to
+uninstall (losing app data) and reinstall.
+
+The application id is fixed (`com.bramve.jangla`), and the build script now
+**refuses to produce a release APK without a configured keystore** — so you
+never accidentally ship an APK that can't update an existing install. The only
+setup needed is creating one keystore and using it everywhere.
+
+### One-time setup
+
+```sh
+keytool -genkey -v \
+  -keystore ~/jangla-upload.jks \
+  -keyalg RSA -keysize 2048 -validity 10000 \
+  -alias upload
+```
+
+Then copy `android/key.properties.example` to `android/key.properties`
+(gitignored — never commit it) and fill it in:
+
+```properties
+storePassword=…
+keyPassword=…
+keyAlias=upload
+storeFile=/absolute/path/to/jangla-upload.jks
+```
+
+CI reads the same values from the repository secrets
+`ANDROID_KEYSTORE_BASE64`, `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS` and
+`ANDROID_KEY_PASSWORD` (base64 the `.jks` for the first one). The workflow fails
+loudly if any are missing.
+
+> **Back the keystore up.** If you lose it you can never update an installed
+> copy again — only uninstall and reinstall.
+
+### Building and installing an update
+
+1. Bump the build number in `pubspec.yaml` (`version: 1.0.0+2`, `+3`, …). A
+   higher `versionCode` is what Android treats as an upgrade. Installing the
+   same number also works, but never go backwards.
+2. Build: `flutter build apk --release`
+3. Install over the existing app:
+
+```sh
+adb install -r build/app/outputs/flutter-apk/app-release.apk
+```
+
+Or copy the APK to the phone and tap it — Android offers to update in place and
+your app data is kept.
+
+### Troubleshooting
+
+- *"App not installed" / signature mismatch* — the APK was signed with a
+  different key than the installed app. Uninstall once, then always build with
+  the keystore above.
+- *`flutter run`* uses the debug key, so it cannot replace a release-signed
+  install on your phone. Use release APKs for the copy you carry around.
+
 ## Test
 
 ```sh

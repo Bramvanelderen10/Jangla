@@ -91,12 +91,22 @@ jobs:
         shell: bash
         env:
           ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: |
           set -euo pipefail
 
-          if [ -z "${ANDROID_KEYSTORE_BASE64:-}" ]; then
-            echo "No ANDROID_KEYSTORE_BASE64 secret configured; using debug signing."
-            exit 0
+          missing=""
+          for name in ANDROID_KEYSTORE_BASE64 ANDROID_KEYSTORE_PASSWORD ANDROID_KEY_ALIAS ANDROID_KEY_PASSWORD; do
+            if [ -z "$(printenv "${name}" || true)" ]; then
+              missing="${missing} ${name}"
+            fi
+          done
+
+          if [ -n "${missing}" ]; then
+            echo "::error::Missing signing secret(s):${missing}. A release APK must be signed with the same key as previous installs, otherwise Android forces an uninstall/reinstall. Add the keystore secrets (see README.md: Installing Android updates)."
+            exit 1
           fi
 
           mkdir -p android/app

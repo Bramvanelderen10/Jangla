@@ -1,0 +1,12 @@
+# Copy this file to android/key.properties (gitignored) and fill in your values.
+#
+# Use ONE keystore for every build (local and CI) so Android can update an
+# installed copy in place. Losing the keystore means you can never update an
+# installed copy again and will have to uninstall/reinstall. See README.md
+# ("Installing Android updates").
+#
+# storeFile: absolute path to the keystore, or a path relative to android/app.
+storePassword=your-store-password
+keyPassword=your-key-password
+keyAlias=upload
+storeFile=/absolute/path/to/jangla-upload.jks

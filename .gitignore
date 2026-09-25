@@ -38,3 +38,8 @@ pubspec.lock
 /macos/
 /windows/
 /web/
+
+# Signing material — never commit these
+key.properties
+*.jks
+*.keystore
