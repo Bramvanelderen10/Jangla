@@ -1,4 +1,4 @@
-# Copilot instructions — Bangla Learn
+# Copilot instructions — Jangla
 
 A Flutter (Dart) Android app for learning basic vocabulary and sentences in a
 chosen language (Bengali and Japanese ship in the box). Content is data-driven
@@ -7,7 +7,7 @@ never hardcodes vocabulary.
 
 ## Architecture
 
-- Entry point [`lib/main.dart`](../lib/main.dart): `BanglaLearnApp` → `HomeLoader`
+- Entry point [`lib/main.dart`](../lib/main.dart): `JanglaApp` → `HomeLoader`
   loads `config.json`, resolves the selected/default language, then loads that
   language's content via a `FutureBuilder` and shows `CategoriesScreen`. Picking
   a different language re-runs the future and rebuilds `TtsService`.
@@ -88,7 +88,7 @@ never hardcodes vocabulary.
 ## Workflows
 
 - The Android platform folder (`android/`) IS committed (app id
-  `com.bramve.banglalearn`, label "Learn Bengali"). Other platform folders are
+  `com.bramve.jangla`, label "Jangla"). Other platform folders are
   generated on demand: `flutter create --platforms=<platform> .`
 - Run: `flutter pub get` then `flutter run`. Test: `flutter test`.
 - CI: [`.github/workflows/build-and-publish.yml`](../.github/workflows/build-and-publish.yml)

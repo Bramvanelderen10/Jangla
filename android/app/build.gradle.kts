@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.bramve.banglalearn"
+    namespace = "com.bramve.jangla"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -30,7 +30,7 @@ android {
     // NOTE: Using Kotlin compilerOptions DSL instead of deprecated kotlinOptions.jvmTarget.
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.bramve.banglalearn"
+        applicationId = "com.bramve.jangla"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion

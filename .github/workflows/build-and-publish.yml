@@ -124,7 +124,7 @@ jobs:
             exit 1
           fi
 
-          apk_name="BanglaLearn-${{ steps.vars.outputs.tag }}-android.apk"
+          apk_name="Jangla-${{ steps.vars.outputs.tag }}-android.apk"
           apk_out="${{ env.APP_DIR }}/build/$apk_name"
           cp "$apk_src" "$apk_out"
 

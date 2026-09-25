@@ -1,4 +1,4 @@
-# Bangla Learn
+# Jangla
 
 A simple Flutter app to learn basic vocabulary and phrases in a target language.
 It started with Bengali (Bangla) — enough to chat with your girlfriend's family —

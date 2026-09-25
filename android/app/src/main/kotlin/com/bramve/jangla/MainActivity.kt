@@ -1,4 +1,4 @@
-package com.bramve.bangla_learn
+package com.bramve.jangla
 
 import io.flutter.embedding.android.FlutterActivity
 

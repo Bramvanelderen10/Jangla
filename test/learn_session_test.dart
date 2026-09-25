@@ -1,5 +1,5 @@
-import 'package:bangla_learn/models/content_models.dart';
-import 'package:bangla_learn/services/learn_session.dart';
+import 'package:jangla/models/content_models.dart';
+import 'package:jangla/services/learn_session.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 List<Entry> _makeEntries(int n) => List.generate(

@@ -1,4 +1,4 @@
-import 'package:bangla_learn/models/content_models.dart';
+import 'package:jangla/models/content_models.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
