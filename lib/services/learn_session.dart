@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import '../models/content_models.dart';
+import '../models/quiz_models.dart';
 
 enum WordPhase { new_, introduced, needsRetry, learned, deferred }
 
@@ -81,13 +82,13 @@ class ShowQuiz extends LearnAction {
   const ShowQuiz({
     required this.entry,
     required this.wordIndex,
-    required this.showTarget,
+    required this.direction,
     required this.options,
   });
 
   final Entry entry;
   final int wordIndex;
-  final bool showTarget;
+  final QuizDirection direction;
   final List<Entry> options;
 }
 
@@ -112,7 +113,12 @@ class SessionComplete extends LearnAction {
 // ---------------------------------------------------------------------------
 
 class LearnSession {
-  LearnSession(this.lesson, {Random? random}) : _rng = random ?? Random() {
+  LearnSession(
+    this.lesson, {
+    Random? random,
+    bool allowAudio = false,
+  }) : _rng = random ?? Random(),
+       _allowAudio = allowAudio {
     _words =
         lesson
             .sessionEntries(_rng)
@@ -129,6 +135,10 @@ class LearnSession {
 
   final Lesson lesson;
   final Random _rng;
+
+  /// When false (e.g. no target-language voice is installed), audio-prompt
+  /// questions are never generated because they would be silent.
+  final bool _allowAudio;
 
   late final List<LearnWord> _words;
 
@@ -393,9 +403,23 @@ class LearnSession {
     return ShowQuiz(
       entry: correct,
       wordIndex: wordIndex,
-      showTarget: _rng.nextBool(),
+      direction: _pickDirection(),
       options: options,
     );
+  }
+
+  /// Picks how the question is asked. Audio prompts are only used when the
+  /// caller allows them, because without a real voice they would be silent.
+  QuizDirection _pickDirection() {
+    final pool = <QuizDirection>[
+      QuizDirection.enToTarget,
+      QuizDirection.targetToEn,
+      if (_allowAudio) ...[
+        QuizDirection.audioToEn,
+        QuizDirection.audioToTarget,
+      ],
+    ];
+    return pool[_rng.nextInt(pool.length)];
   }
 
   List<Entry> _buildDistractors(Entry correct) {

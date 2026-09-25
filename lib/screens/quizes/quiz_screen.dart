@@ -3,17 +3,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import '../../models/content_models.dart';
+import '../../models/quiz_models.dart';
 import '../../services/quiz_stats_service.dart';
 import '../../services/tts_service.dart';
-
-/// Which way the question is asked.
-enum QuizDirection {
-  /// Prompt in English, answer in the target language (typed answer is roman).
-  enToTarget,
-
-  /// Prompt in the target language, answer in English.
-  targetToEn,
-}
 
 /// The two question formats.
 enum QuestionKind { multipleChoice, typing }
@@ -68,6 +60,39 @@ class _QuizScreenState extends State<QuizScreen> {
   void initState() {
     super.initState();
     _questions = _buildQuestions();
+    _schedulePromptAudio();
+  }
+
+  /// Plays the prompt for audio questions, after the frame, so `TtsService` is
+  /// never called during build.
+  void _schedulePromptAudio() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _playPrompt();
+    });
+  }
+
+  void _playPrompt() {
+    if (_questions.isEmpty) return;
+    if (!_current.direction.isAudio) return;
+    if (!widget.tts.voiceAvailable) return;
+    widget.tts.speak(
+      _current.entry.target,
+      pronunciation: _current.entry.ttsText,
+    );
+  }
+
+  /// Picks how the question is asked. Audio prompts are only used when a real
+  /// voice for the language is installed, otherwise the card would be silent.
+  QuizDirection _pickDirection() {
+    final pool = <QuizDirection>[
+      QuizDirection.enToTarget,
+      QuizDirection.targetToEn,
+      if (widget.tts.voiceAvailable) ...[
+        QuizDirection.audioToEn,
+        QuizDirection.audioToTarget,
+      ],
+    ];
+    return pool[_random.nextInt(pool.length)];
   }
 
   @override
@@ -82,12 +107,13 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 
   _Question _makeQuestion(Entry entry) {
+    final direction = _pickDirection();
+    // Audio prompts stay multiple choice: writing the roman for something you
+    // only heard is a far harder task than recognising it.
     final kind =
-        _random.nextBool() ? QuestionKind.multipleChoice : QuestionKind.typing;
-    final direction =
-        _random.nextBool()
-            ? QuizDirection.enToTarget
-            : QuizDirection.targetToEn;
+        direction.isAudio || _random.nextBool()
+            ? QuestionKind.multipleChoice
+            : QuestionKind.typing;
 
     final distractors =
         List<Entry>.from(widget.lesson.entries)
@@ -166,6 +192,7 @@ class _QuizScreenState extends State<QuizScreen> {
         _selectedOption = null;
         _typedController.clear();
       });
+      _schedulePromptAudio();
     } else {
       _showResult();
     }
@@ -181,6 +208,7 @@ class _QuizScreenState extends State<QuizScreen> {
       _selectedOption = null;
       _typedController.clear();
     });
+    _schedulePromptAudio();
   }
 
   void _showResult() {
@@ -262,8 +290,11 @@ class _QuizScreenState extends State<QuizScreen> {
   Widget _prompt() {
     final entry = _current.entry;
     final isTyping = _current.kind == QuestionKind.typing;
+    final direction = _current.direction;
     final String instruction;
-    if (_current.direction == QuizDirection.enToTarget) {
+    if (direction.isAudio) {
+      instruction = 'What did you hear?';
+    } else if (direction == QuizDirection.enToTarget) {
       instruction =
           isTyping
               ? 'Type the pronunciation (roman) for:'
@@ -278,7 +309,9 @@ class _QuizScreenState extends State<QuizScreen> {
       children: [
         Text(instruction, style: TextStyle(color: Colors.grey[600])),
         const SizedBox(height: 8),
-        if (_current.direction == QuizDirection.enToTarget)
+        if (direction.isAudio)
+          _audioPrompt()
+        else if (direction == QuizDirection.enToTarget)
           Text(
             entry.english,
             style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
@@ -324,6 +357,23 @@ class _QuizScreenState extends State<QuizScreen> {
     );
   }
 
+  /// Prompt for an audio-only question: no text, just a large replay button.
+  /// The audio is auto-played when the card appears.
+  Widget _audioPrompt() {
+    return Row(
+      children: [
+        IconButton.filled(
+          iconSize: 40,
+          onPressed: _playPrompt,
+          icon: const Icon(Icons.volume_up),
+          tooltip: 'Play again',
+        ),
+        const SizedBox(width: 12),
+        Text('Play again', style: TextStyle(color: Colors.grey[600])),
+      ],
+    );
+  }
+
   Widget _optionTile(Entry option) {
     final isAnswer = option == _current.entry;
     Color? color;
@@ -335,7 +385,7 @@ class _QuizScreenState extends State<QuizScreen> {
       }
     }
 
-    final showTarget = _current.direction == QuizDirection.enToTarget;
+    final showTarget = _current.direction.answerInTarget;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: Material(

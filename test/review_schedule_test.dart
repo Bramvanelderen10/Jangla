@@ -110,4 +110,52 @@ void main() {
       expect(stats.isDue('greetings', e, now: day2), isTrue);
     });
   });
+
+  group('mastery', () {
+    test('an unanswered lesson has no progress', () {
+      final stats = QuizStatsService()..setLanguageScope('ja');
+      final m = stats.mastery(
+        lesson('l', [entry('a'), entry('b')]),
+        now: day1,
+      );
+
+      expect(m.total, 2);
+      expect(m.learned, 0);
+      expect(m.unseen, 2);
+      expect(m.progress, 0.0);
+      expect(m.isComplete, isFalse);
+      expect(m.isStarted, isFalse);
+    });
+
+    test('three correct answers mark an entry learned', () async {
+      final stats = QuizStatsService()..setLanguageScope('ja');
+      final e = entry('a');
+      final chapter = lesson('l', [e]);
+
+      await stats.record('l', e, true, now: day1); // box 1
+      await stats.record('l', e, true, now: day2); // box 2
+      expect(stats.mastery(chapter, now: day2).learned, 0);
+      expect(stats.mastery(chapter, now: day2).learning, 1);
+
+      await stats.record('l', e, true, now: day3); // box 3 -> learned
+      final m = stats.mastery(chapter, now: day3);
+      expect(m.learned, 1);
+      expect(m.progress, 1.0);
+      expect(m.isComplete, isTrue);
+    });
+
+    test('a wrong answer keeps the entry in the learning bucket and due',
+        () async {
+      final stats = QuizStatsService()..setLanguageScope('ja');
+      final e = entry('a');
+      await stats.record('l', e, false, now: day1);
+
+      final m = stats.mastery(lesson('l', [e]), now: day1);
+      expect(m.learned, 0);
+      expect(m.learning, 1);
+      expect(m.unseen, 0);
+      expect(m.due, 1);
+      expect(m.isStarted, isTrue);
+    });
+  });
 }

@@ -13,7 +13,9 @@ Every lesson picks a **random set** of entries each time you open it.
 - Categories → Lessons → practice modes
 - **Learn**: interleaved introduce → quiz → retry with in-session spaced review — the main way to study a lesson
 - **Quiz**: shuffled multiple-choice and typed answers, in both directions
+- **Listening cards**: some quiz cards play the audio only ("What did you hear?") and ask for the meaning or the written form — switched on automatically when a target-language voice is installed
 - **Daily Review**: a spaced-repetition queue of everything due today, across every lesson you've already started
+- **Progress**: every lesson shows a mastery bar (learned / total) and how many of its entries are due today
 - **Text-to-speech** playback of the target language (uses the device's `bn-BD` / `ja-JP` voice)
 - Lessons are **randomized** and show a configurable number of entries per session
 
@@ -71,6 +73,27 @@ flutter run
 
 `flutter create` only adds the missing Android scaffolding; it does not overwrite
 `lib/`, `assets/`, or `pubspec.yaml`.
+
+## App icon
+
+The launcher icon is generated, not hand-edited:
+
+- [`tool/generate_icon.py`](tool/generate_icon.py) draws the source PNGs into
+  `assets/icon/` (`app_icon.png`, `app_icon_foreground.png`,
+  `app_icon_monochrome.png`) with Pillow.
+- `flutter_launcher_icons` (configured in `pubspec.yaml`) turns those into the
+  Android mipmaps + adaptive icon, the iOS `AppIcon` set, and the web icons.
+
+Regenerate after changing the script, or after dropping in real artwork:
+
+```sh
+python3 tool/generate_icon.py
+dart run flutter_launcher_icons
+```
+
+The background colour (`#00695C`) matches `colorSchemeSeed` in `lib/main.dart`.
+The iOS/web/desktop platform folders are gitignored, so only the Android icons
+are tracked.
 
 ## Installing Android updates
 

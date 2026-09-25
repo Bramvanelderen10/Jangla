@@ -59,6 +59,39 @@ class ReviewItem {
   const ReviewItem({required this.lessonId, required this.entry});
 }
 
+/// Progress through a lesson, derived from the review schedule.
+class LessonMastery {
+  /// Total entries in the lesson.
+  final int total;
+
+  /// Entries on a long review interval — the ones that have stuck.
+  final int learned;
+
+  /// Entries that have been practised but are not yet [learned].
+  final int learning;
+
+  /// Entries that have never been answered.
+  final int unseen;
+
+  /// Entries due for review today.
+  final int due;
+
+  const LessonMastery({
+    required this.total,
+    required this.learned,
+    required this.learning,
+    required this.unseen,
+    required this.due,
+  });
+
+  /// Fraction of the lesson learned (0..1).
+  double get progress => total == 0 ? 0 : learned / total;
+
+  bool get isComplete => total > 0 && learned == total;
+
+  bool get isStarted => learned > 0 || learning > 0;
+}
+
 /// Persists per-entry results and the spaced-repetition schedule, and answers
 /// "what is due today?" across every lesson the learner has started.
 ///
@@ -71,6 +104,9 @@ class QuizStatsService {
 
   /// Days until the next review for each Leitner box.
   static const List<int> _intervalDays = [0, 1, 3, 7, 16, 35];
+
+  /// Box at which an entry counts as learned (a 7-day-or-longer interval).
+  static const int masteredBox = 3;
 
   final Map<String, EntryStat> _stats = {};
   SharedPreferences? _prefs;
@@ -133,12 +169,37 @@ class QuizStatsService {
     await _persist();
   }
 
-  /// Number of entries in the lesson the user has answered wrong at least
-  /// as often as right (i.e. still worth reviewing).
-  int weakCount(Lesson lesson) => lesson.entries
-      .where((e) => statFor(lesson.id, e).wrong > 0 &&
-          statFor(lesson.id, e).wrong >= statFor(lesson.id, e).correct)
-      .length;
+  /// Progress through [lesson] based on the review schedule: how much of it has
+  /// stuck ([LessonMastery.learned]) and how much is due today.
+  LessonMastery mastery(Lesson lesson, {DateTime? now}) {
+    final today = dayOf(now ?? DateTime.now());
+    var learned = 0;
+    var learning = 0;
+    var unseen = 0;
+    var due = 0;
+
+    for (final entry in lesson.entries) {
+      final stat = _stats[_keyFor(lesson.id, entry)];
+      if (stat == null || !stat.isScheduled) {
+        unseen++;
+        continue;
+      }
+      if (stat.dueDay <= today) due++;
+      if (stat.box >= masteredBox) {
+        learned++;
+      } else {
+        learning++;
+      }
+    }
+
+    return LessonMastery(
+      total: lesson.entries.length,
+      learned: learned,
+      learning: learning,
+      unseen: unseen,
+      due: due,
+    );
+  }
 
   /// True when the entry has been scheduled and is due on or before [now].
   bool isDue(String lessonId, Entry entry, {DateTime? now}) {

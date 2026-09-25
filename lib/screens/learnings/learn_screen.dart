@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../models/content_models.dart';
+import '../../models/quiz_models.dart';
 import '../../services/learn_session.dart';
 import '../../services/quiz_stats_service.dart';
 import '../../services/tts_service.dart';
@@ -38,7 +39,10 @@ class _LearnScreenState extends State<LearnScreen> {
   @override
   void initState() {
     super.initState();
-    _session = LearnSession(widget.lesson);
+    _session = LearnSession(
+      widget.lesson,
+      allowAudio: widget.tts.voiceAvailable,
+    );
     _advance();
   }
 
@@ -49,6 +53,20 @@ class _LearnScreenState extends State<LearnScreen> {
       _wasCorrect = false;
       _selectedOption = null;
       _flipped = false;
+    });
+    _speakIfAudioPrompt();
+  }
+
+  /// Audio-prompt questions play automatically (the card shows no text),
+  /// deferred to after the frame so `TtsService` is not called during build.
+  void _speakIfAudioPrompt() {
+    final action = _action;
+    if (action is! ShowQuiz || !action.direction.isAudio) return;
+    if (!widget.tts.voiceAvailable) return;
+    final entry = action.entry;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      widget.tts.speak(entry.target, pronunciation: entry.ttsText);
     });
   }
 
@@ -243,43 +261,62 @@ class _LearnScreenState extends State<LearnScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                if (quiz.showTarget) ...[
+                if (quiz.direction.isAudio) ...[
                   Text(
-                    quiz.entry.target,
+                    'What did you hear?',
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(color: Colors.grey[700]),
                   ),
-                  const SizedBox(height: 4),
-                  Text(
-                    quiz.entry.roman,
-                    style: const TextStyle(
-                      fontStyle: FontStyle.italic,
-                      color: Colors.teal,
-                    ),
+                  const SizedBox(height: 8),
+                  IconButton.filled(
+                    iconSize: 40,
+                    onPressed:
+                        () => widget.tts.speak(
+                          quiz.entry.target,
+                          pronunciation: quiz.entry.ttsText,
+                        ),
+                    icon: const Icon(Icons.volume_up),
+                    tooltip: 'Play again',
                   ),
-                ] else
-                  Text(
-                    quiz.entry.english,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                const SizedBox(height: 8),
-                IconButton.filledTonal(
-                  iconSize: 28,
-                  onPressed:
-                      () => widget.tts.speak(
-                        quiz.entry.target,
-                        pronunciation: quiz.entry.ttsText,
+                ] else ...[
+                  if (quiz.direction == QuizDirection.targetToEn) ...[
+                    Text(
+                      quiz.entry.target,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
                       ),
-                  icon: const Icon(Icons.volume_up),
-                  tooltip: 'Listen',
-                ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      quiz.entry.roman,
+                      style: const TextStyle(
+                        fontStyle: FontStyle.italic,
+                        color: Colors.teal,
+                      ),
+                    ),
+                  ] else
+                    Text(
+                      quiz.entry.english,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  const SizedBox(height: 8),
+                  IconButton.filledTonal(
+                    iconSize: 28,
+                    onPressed:
+                        () => widget.tts.speak(
+                          quiz.entry.target,
+                          pronunciation: quiz.entry.ttsText,
+                        ),
+                    icon: const Icon(Icons.volume_up),
+                    tooltip: 'Listen',
+                  ),
+                ],
               ],
             ),
           ),
@@ -378,7 +415,7 @@ class _LearnScreenState extends State<LearnScreen> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            quiz.showTarget ? option.english : option.target,
+            quiz.direction.answerInTarget ? option.target : option.english,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 18,
@@ -386,7 +423,7 @@ class _LearnScreenState extends State<LearnScreen> {
               color: fadedColor ? Colors.grey[600] : null,
             ),
           ),
-          if (!quiz.showTarget) ...[
+          if (quiz.direction.answerInTarget) ...[
             const SizedBox(height: 2),
             Text(
               option.roman,
@@ -429,7 +466,10 @@ class _LearnScreenState extends State<LearnScreen> {
               FilledButton.icon(
                 onPressed: () {
                   setState(() {
-                    _session = LearnSession(widget.lesson);
+                    _session = LearnSession(
+                      widget.lesson,
+                      allowAudio: widget.tts.voiceAvailable,
+                    );
                     _advance();
                   });
                 },

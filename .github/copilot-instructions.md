@@ -29,7 +29,9 @@ never hardcodes vocabulary.
   `<language>::<lessonId>::<english>`; v1 data is ignored). A correct answer
   moves an entry up a Leitner box (intervals 1/3/7/16/35 days); a wrong answer
   drops it to box 0 and leaves it due. `dueEntries()` / `dueCount()` return what
-  is due across a set of lessons.
+  is due across a set of lessons, and `mastery(lesson)` returns a
+  `LessonMastery` (learned / learning / unseen / due) that drives the per-lesson
+  mastery bar in `lessons_screen` (`masteredBox` = 3).
 - [`lib/services/custom_list_service.dart`](../lib/services/custom_list_service.dart)
   persists user-made practice lists (`CustomList`, defined in
   [`lib/models/custom_list.dart`](../lib/models/custom_list.dart)) via
@@ -40,10 +42,15 @@ never hardcodes vocabulary.
 - Screens in [`lib/screens/`](../lib/screens): `categories_screen` →
   `lessons_screen` → `learn_screen` (the interleaved introduce → quiz → retry
   loop, driven by [`lib/services/learn_session.dart`](../lib/services/learn_session.dart))
-  and `quiz_screen`. Each quiz question is randomly one of two kinds
-  (`QuestionKind.multipleChoice` with 5 options, or `typing`) in one of two
-  directions (`QuizDirection.enToTarget` / `targetToEn`); typed answers are
-  normalized (lowercase, punctuation/whitespace stripped) before comparison.
+  and `quiz_screen`. Question shapes are described by the shared
+  [`lib/models/quiz_models.dart`](../lib/models/quiz_models.dart) `QuizDirection`
+  (`enToTarget`, `targetToEn`, plus the audio prompts `audioToEn` /
+  `audioToTarget`); `LearnSession` only uses the audio directions when
+  constructed with `allowAudio: true` (set from `TtsService.voiceAvailable`).
+  Quiz questions are randomly one of two kinds (`QuestionKind.multipleChoice`
+  with 5 options, or `typing`) in one of those directions — audio prompts are
+  always multiple choice. Typed answers are normalized (lowercase,
+  punctuation/whitespace stripped) before comparison.
 - `categories_screen` hosts `DailyReviewCard` (opens
   `review/daily_review_screen`, which reviews everything due across
   `AppContent.allLessons` by reusing `LearnScreen` with a synthetic lesson plus
