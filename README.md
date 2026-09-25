@@ -1,34 +1,46 @@
 # Bangla Learn
 
-A simple Flutter app to learn basic Bengali (Bangla) words and sentences —
-built to help you pick up enough to chat with your girlfriend's family.
+A simple Flutter app to learn basic vocabulary and phrases in a target language.
+It started with Bengali (Bangla) — enough to chat with your girlfriend's family —
+and now also ships a Japanese course aimed at a two-week trip.
 
-Each word/sentence shows the **Bengali script**, a **romanized pronunciation**,
-and can be **spoken aloud** (text-to-speech). Every lesson picks a **random set**
-of entries each time you open it.
+Each word/sentence shows the **target-language script** (Bengali, Japanese, …),
+a **romanized pronunciation**, and can be **spoken aloud** (text-to-speech).
+Every lesson picks a **random set** of entries each time you open it.
 
 ## Features
 
 - Categories → Lessons → practice modes
-- **Flashcards**: tap a card to flip between English and Bengali (with pronunciation)
-- **Quiz**: multiple-choice, pick the correct Bengali translation
-- **Text-to-speech** playback of Bengali (uses the device's `bn-BD` voice)
+- **Flashcards**: tap a card to flip between English and the target language (with pronunciation)
+- **Quiz**: multiple-choice, pick the correct translation
+- **Text-to-speech** playback of the target language (uses the device's `bn-BD` / `ja-JP` voice)
 - Lessons are **randomized** and show a configurable number of entries per session
 
 ## Content
 
-| Category | Lessons |
+| Category | Lessons (in recommended order) |
 | --- | --- |
-| Basic Words | Food Names · Places & Locations · Greetings & Direction Words · Counting & Numbers |
-| Basic Sentences | Greetings & Goodbyes · Useful Travel Sentences · Impress Her Family |
+| Survival Phrases | Greetings & Goodbyes · Emergency & Health · Useful Travel Sentences · Transport: Places & Vehicles · Transport: Tickets & Asking · Transport: Troubleshooting · Money & IC Cards · Hotel & Accommodation · Directions: Words · Directions: Phrases · Shopping & Money |
+| Food & Dining | Food: Basics · Food & Drink: More · Dining: Manners · Ordering Food · Food Preferences · Dietary Needs · Convenience Store & Basics |
+| Essential Words | Numbers 0-10 · Numbers 11-100 · Numbers: Big & Counters · Time Words · Calendar Words · Months · Pronouns & Question Words · Common Verbs (polite) · Adjectives: Basics · Adjectives: More · Places & Locations · Days & Time Words · Home & Everyday Things · Common Actions & Feelings · Family & Relatives |
+| Conversation & Patterns | Introduce Yourself & Small Talk · Sentence Building · Questions & Negation · Useful Verb Patterns · Pronouns & Politeness · Plans & Future |
+
+Lessons are **scaffolded**: each tier stays at one level of complexity so the
+learner moves words → simple frames → longer sentences, e.g. *Transport: Places
+& Vehicles* (nouns) → *Transport: Tickets & Asking* (frames) → *Transport:
+Troubleshooting* (full sentences).
 
 ## Easy config
 
-All content lives in one file: [`assets/content/content.json`](assets/content/content.json).
+All content lives in per-language files — [`content.ja.json`](assets/content/content.ja.json)
+(Japanese) and [`content.bn.json`](assets/content/content.bn.json) (Bengali) —
+listed in [`config.json`](assets/content/config.json).
 
 - `defaults.entriesPerSession` — how many random entries each lesson shows
   (set `0` to use every entry in the lesson).
-- Each lesson can override this with its own `entriesPerSession`.
+- Each lesson can override this with its own `entriesPerSession`. Kanji- and
+  grammar-heavy lessons are deliberately capped at **5–8** items per session to
+  keep cognitive load low; plain word lists use higher caps.
 - Add a new entry:
 
   ```json
@@ -42,8 +54,9 @@ No code changes are needed — just edit the JSON and re-run the app.
 ## Requirements
 
 - Flutter SDK (stable), Dart `^3.7.0`
-- An Android device/emulator with a Bengali TTS voice installed for audio
-  (Android: *Settings → System → Languages → Text-to-speech output*)
+- An Android device/emulator with a TTS voice for the target language installed
+  (e.g. Bengali `bn-BD`, Japanese `ja-JP`; Android: *Settings → System →
+  Languages → Text-to-speech output*)
 
 ## Run locally
 
