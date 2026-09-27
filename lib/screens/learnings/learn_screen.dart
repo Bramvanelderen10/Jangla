@@ -255,16 +255,18 @@ class _LearnScreenState extends State<LearnScreen> {
           textAlign: TextAlign.center,
           style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: 8),
-        Text(
-          entry.roman,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontSize: 20,
-            fontStyle: FontStyle.italic,
-            color: Colors.teal,
+        if (entry.hasRoman) ...[
+          const SizedBox(height: 8),
+          Text(
+            entry.roman,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 20,
+              fontStyle: FontStyle.italic,
+              color: Colors.teal,
+            ),
           ),
-        ),
+        ],
         const SizedBox(height: 12),
         IconButton.filledTonal(
           iconSize: 26,
@@ -334,14 +336,16 @@ class _LearnScreenState extends State<LearnScreen> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 4),
-                    Text(
-                      quiz.entry.roman,
-                      style: const TextStyle(
-                        fontStyle: FontStyle.italic,
-                        color: Colors.teal,
+                    if (quiz.entry.hasRoman) ...[
+                      const SizedBox(height: 4),
+                      Text(
+                        quiz.entry.roman,
+                        style: const TextStyle(
+                          fontStyle: FontStyle.italic,
+                          color: Colors.teal,
+                        ),
                       ),
-                    ),
+                    ],
                   ] else
                     Text(
                       quiz.entry.english,
@@ -469,7 +473,7 @@ class _LearnScreenState extends State<LearnScreen> {
               color: fadedColor ? Colors.grey[600] : null,
             ),
           ),
-          if (quiz.direction.answerInTarget) ...[
+          if (quiz.direction.answerInTarget && option.hasRoman) ...[
             const SizedBox(height: 2),
             Text(
               option.roman,

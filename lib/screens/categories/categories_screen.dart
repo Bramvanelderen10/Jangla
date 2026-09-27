@@ -235,7 +235,9 @@ class PhraseOfTheDayCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '${entry.roman} · ${entry.english}',
+                  entry.hasRoman
+                      ? '${entry.roman} · ${entry.english}'
+                      : entry.english,
                   style: const TextStyle(
                     fontStyle: FontStyle.italic,
                     color: Colors.teal,

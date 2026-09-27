@@ -104,7 +104,7 @@ void main() {
       expect(result.errors.join(' '), contains('categories'));
     });
 
-    test('rejects an entry missing en/bn/roman', () {
+    test('rejects an entry missing en or bn', () {
       final result = LanguageImport.parse(
         encode(
           courseJson(
@@ -117,7 +117,7 @@ void main() {
                     'id': 'l',
                     'title': 'L',
                     'entries': [
-                      {'en': '', 'bn': 'x', 'roman': 'x'},
+                      {'en': 'Hello.', 'bn': ''},
                     ],
                   },
                 ],
@@ -129,7 +129,35 @@ void main() {
       );
 
       expect(result.ok, isFalse);
-      expect(result.errors.join(' '), contains('roman'));
+      expect(result.errors.join(' '), contains('bn'));
+    });
+
+    test('romanization is optional (Latin-script languages)', () {
+      final result = LanguageImport.parse(
+        encode(
+          courseJson(
+            categories: [
+              {
+                'id': 'c',
+                'title': 'C',
+                'lessons': [
+                  {
+                    'id': 'l',
+                    'title': 'L',
+                    'entries': [
+                      {'en': 'Hello.', 'bn': 'Hola.'},
+                    ],
+                  },
+                ],
+              },
+            ],
+          ),
+        ),
+        source: LanguageSource.imported,
+      );
+
+      expect(result.ok, isTrue, reason: result.errors.join(', '));
+      expect(result.course, isNotNull);
     });
 
     test('reports a duplicate course id', () {

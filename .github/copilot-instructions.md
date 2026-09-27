@@ -30,7 +30,8 @@ hardcodes vocabulary.
 - [`lib/services/language_import.dart`](../lib/services/language_import.dart) is
   the single parse/validate pipeline shared by bundled files and user uploads.
   It checks the `name` and `language` block and walks categories → lessons →
-  entries (every entry needs non-empty `en`, `bn`, `roman`), derives
+  entries (every entry needs non-empty `en` and `bn`; `roman` is optional),
+  derives
   `nativeName`/`ttsLocales` fallbacks, enforces a size cap and rejects duplicate
   course ids.
 - [`lib/services/imported_course_service.dart`](../lib/services/imported_course_service.dart)
@@ -113,11 +114,13 @@ hardcodes vocabulary.
 - The per-entry `bn` JSON key holds the target-language script regardless of
   language (kept as `bn` for backward compatibility); `Entry.target` mirrors it.
 - Entry shape: `{ "en": <english>, "bn": <target script>, "roman": <pronunciation> }`.
-  Always provide all three. Two optional keys: `tts` supplies a kana reading when
-  the script is ambiguous for text-to-speech, and `note` is a short usage hint
-  (register/etiquette) shown under the word on the Learn card. `Entry` also has
-  `toJson()` and a `key` getter (`en|bn|roman`) used to persist and de-duplicate
-  custom-list entries.
+  `en` and `bn` are required; `roman` is optional — Latin-script languages
+  (Spanish) leave it out and the app hides the romanization (`Entry.hasRoman`)
+  and expects the target text for typed answers. Two more optional keys: `tts`
+  supplies a kana reading when the script is ambiguous for text-to-speech, and
+  `note` is a short usage hint (register/etiquette) shown under the word on the
+  Learn card. `Entry` also has `toJson()` and a `key` getter (`en|bn|roman`) used
+  to persist and de-duplicate custom-list entries.
 - `defaults.entriesPerSession` sets how many random entries a lesson shows;
   `0` means use the whole pool. A lesson may override with its own
   `entriesPerSession`.

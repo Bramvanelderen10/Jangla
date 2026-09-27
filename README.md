@@ -4,11 +4,11 @@ A simple Flutter app to learn basic vocabulary and phrases in a target language.
 It started with Bengali (Bangla) — enough to chat with your girlfriend's family —
 and now also ships Japanese (a two-week trip) and Spanish courses.
 
-Each word/sentence shows the **target-language script** (Bengali, Japanese, …),
-a **romanized pronunciation**, and can be **spoken aloud** (text-to-speech). For
-languages written in the Latin alphabet (Spanish) the romanization simply mirrors
-the target text, so typed answers still work. Every lesson picks a **random set**
-of entries each time you open it.
+Each word/sentence shows the **target-language script** (Bengali, Japanese, …)
+and a **romanized pronunciation**, and can be **spoken aloud** (text-to-speech).
+The romanization is optional: languages written in the Latin alphabet (Spanish)
+leave it out, and the app simply shows the target text on its own. Every lesson
+picks a **random set** of entries each time you open it.
 
 ## Features
 
@@ -79,7 +79,9 @@ folder adds a language with no code changes.
   { "en": "friend", "bn": "বন্ধু", "roman": "bondhu" }
   ```
 
-  Two optional keys: `"tts"` gives a kana reading when the script would be
+  `"roman"` is the pronunciation; leave it out for languages written in the
+  Latin alphabet (e.g. Spanish), where the target text is readable as-is. Two
+  more optional keys: `"tts"` gives a kana reading when the script would be
   ambiguous for speech, and `"note"` is a short usage hint shown under the word
   while learning:
 

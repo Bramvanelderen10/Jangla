@@ -6,6 +6,8 @@ class Entry {
 
   /// Target-language script (Bengali, Japanese, ...); JSON key stays `bn`.
   final String target;
+  /// Romanized pronunciation. Optional (empty) for languages written in the
+  /// Latin alphabet, where the target text is already readable.
   final String roman;
   final String? ttsText;
 
@@ -36,6 +38,10 @@ class Entry {
     if (ttsText != null) 'tts': ttsText,
     if (note != null) 'note': note,
   };
+
+  /// True when this entry has a romanization worth showing. Latin-script
+  /// languages leave `roman` out, so the target text is shown on its own.
+  bool get hasRoman => roman.trim().isNotEmpty;
 
   /// Stable string identity used to de-duplicate entries in custom lists.
   String get key => '$english|$target|$roman';

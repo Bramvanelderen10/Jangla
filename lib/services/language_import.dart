@@ -183,10 +183,10 @@ class LanguageImport {
           final target =
               ((entry['target'] ?? entry['bn']) as Object?)?.toString().trim() ??
               '';
-          final roman = (entry['roman'] as Object?)?.toString().trim() ?? '';
-          if (en.isEmpty || target.isEmpty || roman.isEmpty) {
+          // `roman` is optional: Latin-script languages leave it out.
+          if (en.isEmpty || target.isEmpty) {
             addError(
-              'Every entry needs "en", "bn" and "roman" '
+              'Every entry needs "en" and "bn" '
               '(lesson "$lessonLabel", entry ${ei + 1}).',
             );
           }

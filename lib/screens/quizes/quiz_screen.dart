@@ -129,9 +129,13 @@ class _QuizScreenState extends State<QuizScreen> {
   _Question get _current => _questions[_index];
 
   /// The text a typed answer is compared against for the current direction.
+  /// Without a romanization (Latin-script languages) the target text is what
+  /// has to be typed.
   String get _expectedTyped =>
       _current.direction == QuizDirection.enToTarget
-          ? _current.entry.roman
+          ? (_current.entry.hasRoman
+                ? _current.entry.roman
+                : _current.entry.target)
           : _current.entry.english;
 
   void _answer(bool correct, {Entry? selected}) {
@@ -274,7 +278,9 @@ class _QuizScreenState extends State<QuizScreen> {
     } else if (direction == QuizDirection.enToTarget) {
       instruction =
           isTyping
-              ? 'Type the pronunciation (roman) for:'
+              ? (entry.hasRoman
+                    ? 'Type the pronunciation (roman) for:'
+                    : 'Type the ${widget.tts.languageName} for:')
               : 'What is the ${widget.tts.languageName} for:';
     } else {
       instruction =
@@ -320,14 +326,15 @@ class _QuizScreenState extends State<QuizScreen> {
                   ),
                 ],
               ),
-              Text(
-                entry.roman,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontStyle: FontStyle.italic,
-                  color: Colors.teal,
+              if (entry.hasRoman)
+                Text(
+                  entry.roman,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontStyle: FontStyle.italic,
+                    color: Colors.teal,
+                  ),
                 ),
-              ),
             ],
           ),
       ],
@@ -385,13 +392,14 @@ class _QuizScreenState extends State<QuizScreen> {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        Text(
-                          option.roman,
-                          style: const TextStyle(
-                            fontStyle: FontStyle.italic,
-                            color: Colors.teal,
+                        if (option.hasRoman)
+                          Text(
+                            option.roman,
+                            style: const TextStyle(
+                              fontStyle: FontStyle.italic,
+                              color: Colors.teal,
+                            ),
                           ),
-                        ),
                       ],
                     )
                     : Text(
@@ -445,7 +453,9 @@ class _QuizScreenState extends State<QuizScreen> {
                   style: const TextStyle(fontSize: 18),
                 ),
                 Text(
-                  '${_current.entry.target} · ${_current.entry.roman}',
+                  _current.entry.hasRoman
+                      ? '${_current.entry.target} · ${_current.entry.roman}'
+                      : _current.entry.target,
                   style: const TextStyle(
                     fontStyle: FontStyle.italic,
                     color: Colors.teal,

@@ -87,4 +87,17 @@ void main() {
     expect(entry.toJson().containsKey('note'), isFalse);
     expect(Entry.fromJson(entry.toJson()).note, isNull);
   });
+
+  test('roman is optional and hasRoman reflects that', () {
+    final withRoman = Entry.fromJson({
+      'en': 'one',
+      'bn': 'এক',
+      'roman': 'ek',
+    });
+    final withoutRoman = Entry.fromJson({'en': 'Hello.', 'bn': 'Hola.'});
+
+    expect(withRoman.hasRoman, isTrue);
+    expect(withoutRoman.roman, '');
+    expect(withoutRoman.hasRoman, isFalse);
+  });
 }

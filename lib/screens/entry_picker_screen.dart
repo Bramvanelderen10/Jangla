@@ -109,6 +109,10 @@ class _EntryPickerScreenState extends State<EntryPickerScreen> {
                 final entry = filtered[i];
                 final added = widget.alreadyAdded.contains(entry.key);
                 final checked = _selected.contains(entry.key);
+                final label =
+                    entry.hasRoman
+                        ? '${entry.roman} · ${entry.english}'
+                        : entry.english;
                 return CheckboxListTile(
                   value: added || checked,
                   onChanged:
@@ -128,11 +132,7 @@ class _EntryPickerScreenState extends State<EntryPickerScreen> {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  subtitle: Text(
-                    added
-                        ? '${entry.roman} · ${entry.english}  (already added)'
-                        : '${entry.roman} · ${entry.english}',
-                  ),
+                  subtitle: Text(added ? '$label  (already added)' : label),
                 );
               },
             ),

@@ -148,7 +148,11 @@ class _CustomListEditScreenState extends State<CustomListEditScreen> {
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                          subtitle: Text('${entry.roman} · ${entry.english}'),
+                          subtitle: Text(
+                            entry.hasRoman
+                                ? '${entry.roman} · ${entry.english}'
+                                : entry.english,
+                          ),
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
