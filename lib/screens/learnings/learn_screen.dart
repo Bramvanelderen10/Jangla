@@ -29,7 +29,8 @@ class LearnScreen extends StatefulWidget {
 }
 
 class _LearnScreenState extends State<LearnScreen> {
-  late final LearnSession _session;
+  // Not final: "Restart" builds a fresh session.
+  late LearnSession _session;
   LearnAction? _action;
   bool _answered = false;
   bool _wasCorrect = false;
@@ -39,11 +40,23 @@ class _LearnScreenState extends State<LearnScreen> {
   @override
   void initState() {
     super.initState();
+    _startSession();
+    _advance();
+  }
+
+  /// Builds the next session from the lesson. Entries that have not been
+  /// learned yet are always included (plus learned ones to fill the session),
+  /// so the last few words are never left to chance.
+  void _startSession() {
     _session = LearnSession(
-      widget.lesson,
+      Lesson(
+        id: widget.lesson.id,
+        title: widget.lesson.title,
+        entriesPerSession: 0,
+        entries: widget.stats.studyEntries(widget.lesson),
+      ),
       allowAudio: widget.tts.voiceAvailable,
     );
-    _advance();
   }
 
   void _advance() {
@@ -466,10 +479,7 @@ class _LearnScreenState extends State<LearnScreen> {
               FilledButton.icon(
                 onPressed: () {
                   setState(() {
-                    _session = LearnSession(
-                      widget.lesson,
-                      allowAudio: widget.tts.voiceAvailable,
-                    );
+                    _startSession();
                     _advance();
                   });
                 },

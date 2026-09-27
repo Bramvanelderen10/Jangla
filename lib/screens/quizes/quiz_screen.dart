@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../models/content_models.dart';
 import '../../models/quiz_models.dart';
+import '../../services/answer_matching.dart';
 import '../../services/quiz_stats_service.dart';
 import '../../services/tts_service.dart';
 
@@ -43,8 +44,6 @@ class QuizScreen extends StatefulWidget {
 }
 
 class _QuizScreenState extends State<QuizScreen> {
-  static const int _optionCount = 5;
-
   final Random _random = Random();
   final TextEditingController _typedController = TextEditingController();
 
@@ -116,7 +115,7 @@ class _QuizScreenState extends State<QuizScreen> {
         List<Entry>.from(widget.lesson.entries)
           ..remove(entry)
           ..shuffle(_random);
-    final options = [entry, ...distractors.take(_optionCount - 1)]
+    final options = [entry, ...distractors.take(quizOptionCount - 1)]
       ..shuffle(_random);
 
     return _Question(
@@ -134,13 +133,6 @@ class _QuizScreenState extends State<QuizScreen> {
       _current.direction == QuizDirection.enToTarget
           ? _current.entry.roman
           : _current.entry.english;
-
-  String _normalize(String value) =>
-      value
-          .toLowerCase()
-          .replaceAll(RegExp(r'[^a-z0-9\s]'), '')
-          .replaceAll(RegExp(r'\s+'), ' ')
-          .trim();
 
   void _answer(bool correct, {Entry? selected}) {
     setState(() {
@@ -165,19 +157,7 @@ class _QuizScreenState extends State<QuizScreen> {
     if (_answered) return;
     if (_typedController.text.trim().isEmpty) return;
 
-    var splitted = _expectedTyped.split("/");
-
-    var answer = _normalize(_typedController.text);
-    for (var i = 0; i < splitted.length; i++) {
-      var element = _normalize(splitted[i]);
-      var isCorrect = answer == element;
-      if (isCorrect) {
-        _answer(true);
-        return;
-      }
-    }
-
-    _answer(false);
+    _answer(isTypedAnswerCorrect(_typedController.text, _expectedTyped));
   }
 
   void _next() {

@@ -429,7 +429,7 @@ class LearnSession {
           ..shuffle(_rng);
 
     for (final entry in pool) {
-      if (distractors.length >= 5) break;
+      if (distractors.length >= quizOptionCount - 1) break;
 
       if (usedKeys.add(entry.key)) {
         distractors.add(entry);

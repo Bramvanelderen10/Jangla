@@ -1,3 +1,8 @@
+/// Options per multiple-choice question, including the correct one. Shared by
+/// the Learn engine and the quiz screen so the two cannot drift apart; a
+/// lesson whose pool is smaller simply produces fewer options.
+const int quizOptionCount = 6;
+
 /// Which side a question is asked from: what the learner is given, and what
 /// they have to produce.
 enum QuizDirection {

@@ -1,4 +1,5 @@
 import 'package:jangla/models/content_models.dart';
+import 'package:jangla/models/quiz_models.dart';
 import 'package:jangla/services/learn_session.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -61,14 +62,14 @@ void main() {
     expect(session.words[quiz.wordIndex].phase, WordPhase.learned);
   });
 
-  test('quiz has 4 options with exactly 1 correct', () {
+  test('quiz offers the shared option count with exactly 1 correct', () {
     final session = LearnSession(_makeLesson(totalEntries: 10));
     session.nextAction();
     session.completeIntroduction();
     session.nextAction();
     session.completeIntroduction();
     final quiz = session.nextAction() as ShowQuiz;
-    expect(quiz.options.length, 4);
+    expect(quiz.options.length, quizOptionCount);
     final correctCount =
         quiz.options.where((e) => e.key == quiz.entry.key).length;
     expect(correctCount, 1);
@@ -114,9 +115,10 @@ void main() {
     final quiz = session.nextAction() as ShowQuiz;
     final wordIdx = quiz.wordIndex;
     session.skipQuiz(wordIdx);
-    // Word is now deferred (phase = learned with review = 2), so the
-    // engine continues with other words instead of looping.
-    expect(session.words[wordIdx].phase, WordPhase.learned);
+    // Word is now deferred with a review scheduled, so the engine continues
+    // with other words instead of looping.
+    expect(session.words[wordIdx].phase, WordPhase.deferred);
+    expect(session.words[wordIdx].hasScheduledReview, isTrue);
     // Next action should NOT be a retry introduction — it should
     // introduce a new word or continue the session.
     final action = session.nextAction();

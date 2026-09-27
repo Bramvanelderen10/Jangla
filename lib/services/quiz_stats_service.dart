@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -247,6 +248,42 @@ class QuizStatsService {
 
     return items;
   }
+
+  /// Entries to study in the next session.
+  ///
+  /// Everything that has not been learned yet comes first, so a lesson keeps
+  /// making progress instead of leaving the last few words to chance; learned
+  /// entries (most overdue first) fill whatever room is left. The lesson's
+  /// `entriesPerSession` caps the result, where `0` means the whole pool.
+  List<Entry> studyEntries(Lesson lesson, {Random? random}) {
+    final rng = random ?? Random();
+
+    final unlearned = <Entry>[];
+    final learned = <Entry>[];
+
+    for (final entry in lesson.entries) {
+      final stat = _stats[_keyFor(lesson.id, entry)];
+      if (stat != null && stat.isScheduled && stat.box >= masteredBox) {
+        learned.add(entry);
+      } else {
+        unlearned.add(entry);
+      }
+    }
+
+    unlearned.shuffle(rng);
+    learned.sort(
+      (a, b) => _dueDayFor(lesson.id, a).compareTo(_dueDayFor(lesson.id, b)),
+    );
+
+    final pool = [...unlearned, ...learned];
+    final cap = lesson.entriesPerSession <= 0
+        ? pool.length
+        : min(lesson.entriesPerSession, pool.length);
+    return pool.take(cap).toList();
+  }
+
+  int _dueDayFor(String lessonId, Entry entry) =>
+      _stats[_keyFor(lessonId, entry)]?.dueDay ?? 0;
 
   Future<void> _persist() async {
     try {

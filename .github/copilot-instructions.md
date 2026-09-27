@@ -31,7 +31,10 @@ never hardcodes vocabulary.
   drops it to box 0 and leaves it due. `dueEntries()` / `dueCount()` return what
   is due across a set of lessons, and `mastery(lesson)` returns a
   `LessonMastery` (learned / learning / unseen / due) that drives the per-lesson
-  mastery bar in `lessons_screen` (`masteredBox` = 3).
+  mastery bar in `lessons_screen` (`masteredBox` = 3). `studyEntries(lesson)`
+  picks a session's entries — everything not yet learned first, learned ones
+  (most overdue first) filling the rest — and is what `learn_screen` feeds to
+  `LearnSession`.
 - [`lib/services/custom_list_service.dart`](../lib/services/custom_list_service.dart)
   persists user-made practice lists (`CustomList`, defined in
   [`lib/models/custom_list.dart`](../lib/models/custom_list.dart)) via
@@ -48,9 +51,12 @@ never hardcodes vocabulary.
   `LearnSession` only uses the audio direction when
   constructed with `allowAudio: true` (set from `TtsService.voiceAvailable`).
   Quiz questions are randomly one of two kinds (`QuestionKind.multipleChoice`
-  with 5 options, or `typing`) in one of those directions — audio prompts are
-  always multiple choice. Typed answers are normalized (lowercase,
-  punctuation/whitespace stripped) before comparison.
+  with `quizOptionCount` (6) options, or `typing`) in one of those directions — audio prompts are
+  always multiple choice. Typed answers are compared with
+  [`lib/services/answer_matching.dart`](../lib/services/answer_matching.dart),
+  which folds accents and special characters (`ō` -> `o`, `ḍ` -> `d`), drops
+  bracketed asides (`rice (cooked)` -> `rice`) and accepts `/`-separated
+  synonyms on either side.
 - `categories_screen` hosts `DailyReviewCard` (opens
   `review/daily_review_screen`, which reviews everything due across
   `AppContent.allLessons` by reusing `LearnScreen` with a synthetic lesson plus
