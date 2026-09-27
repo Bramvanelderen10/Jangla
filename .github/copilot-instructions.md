@@ -105,6 +105,9 @@ hardcodes vocabulary.
   `nativeName`/`ttsLocales` fall back to the course name and the language code.
 - The bundled folder is discovered via the asset manifest, so adding a `*.json`
   file there is enough — no `pubspec.yaml` or `config.json` change.
+- The full course-file format (fields, rules, and an AI prompt template) is
+  documented in [`COURSE_FORMAT.md`](../COURSE_FORMAT.md); its JSON examples are
+  validated by [`test/course_format_doc_test.dart`](../test/course_format_doc_test.dart).
 - Users can import a course at runtime: `languages_screen` →
   `import_language_screen` picks a `.json` file (`file_picker`), validates it
   (`LanguageImport`) and stores it via `ImportedCourseService`. Imported courses

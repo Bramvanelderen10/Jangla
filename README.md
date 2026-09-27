@@ -46,6 +46,10 @@ its own `name` and `language` metadata, so there is no separate `config.json`;
 the bundled files are discovered automatically, so dropping a new file into the
 folder adds a language with no code changes.
 
+See [`COURSE_FORMAT.md`](COURSE_FORMAT.md) for the complete field-by-field
+reference, the validation rules, and a ready-made prompt for generating a course
+with an AI.
+
 ```json
 {
   "name": "Japanese",
