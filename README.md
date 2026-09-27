@@ -2,11 +2,13 @@
 
 A simple Flutter app to learn basic vocabulary and phrases in a target language.
 It started with Bengali (Bangla) — enough to chat with your girlfriend's family —
-and now also ships a Japanese course aimed at a two-week trip.
+and now also ships Japanese (a two-week trip) and Spanish courses.
 
 Each word/sentence shows the **target-language script** (Bengali, Japanese, …),
-a **romanized pronunciation**, and can be **spoken aloud** (text-to-speech).
-Every lesson picks a **random set** of entries each time you open it.
+a **romanized pronunciation**, and can be **spoken aloud** (text-to-speech). For
+languages written in the Latin alphabet (Spanish) the romanization simply mirrors
+the target text, so typed answers still work. Every lesson picks a **random set**
+of entries each time you open it.
 
 ## Features
 
@@ -16,7 +18,7 @@ Every lesson picks a **random set** of entries each time you open it.
 - **Listening cards**: some quiz cards play the audio only ("What did you hear?") and ask for the meaning — switched on automatically when a target-language voice is installed
 - **Daily Review**: a spaced-repetition queue of everything due today, across every lesson you've already started
 - **Progress**: every lesson shows a mastery bar (learned / total) and how many of its entries are due today
-- **Text-to-speech** playback of the target language (uses the device's `bn-BD` / `ja-JP` voice)
+- **Text-to-speech** playback of the target language (uses the device's `bn-BD` / `ja-JP` / `es-ES` voice)
 - Lessons are **randomized** and show a configurable number of entries per session
 
 ## Content
@@ -36,8 +38,10 @@ Troubleshooting* (full sentences).
 ## Easy config
 
 All content lives in per-language files — [`content.ja.json`](assets/content/content.ja.json)
-(Japanese) and [`content.bn.json`](assets/content/content.bn.json) (Bengali) —
-listed in [`config.json`](assets/content/config.json).
+(Japanese), [`content.es.json`](assets/content/content.es.json) (Spanish) and
+[`content.bn.json`](assets/content/content.bn.json) (Bengali) — listed in
+[`config.json`](assets/content/config.json). The Spanish course mirrors the
+Japanese lesson structure (same categories, lessons and sizes).
 
 - `defaults.entriesPerSession` — how many random entries each lesson shows
   (set `0` to use every entry in the lesson).

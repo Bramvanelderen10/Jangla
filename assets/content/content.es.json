@@ -1,0 +1,3462 @@
+{
+  "//": "EASY CONFIG (Spanish). Same lesson structure as the Japanese course.",
+  "defaults": {
+    "entriesPerSession": 10
+  },
+  "categories": [
+    {
+      "id": "survival",
+      "title": "Survival Phrases",
+      "lessons": [
+        {
+          "id": "greetings_goodbyes",
+          "title": "Greetings & Goodbyes",
+          "entriesPerSession": 8,
+          "entries": [
+            {
+              "en": "Hello.",
+              "bn": "Hola.",
+              "roman": "Hola."
+            },
+            {
+              "en": "Good morning.",
+              "bn": "Buenos días.",
+              "roman": "Buenos días."
+            },
+            {
+              "en": "Good evening.",
+              "bn": "Buenas tardes.",
+              "roman": "Buenas tardes."
+            },
+            {
+              "en": "Good night.",
+              "bn": "Buenas noches.",
+              "roman": "Buenas noches."
+            },
+            {
+              "en": "Hello, how are you?",
+              "bn": "Hola, ¿cómo estás?",
+              "roman": "Hola, ¿cómo estás?"
+            },
+            {
+              "en": "I am fine, thank you.",
+              "bn": "Estoy bien, gracias.",
+              "roman": "Estoy bien, gracias."
+            },
+            {
+              "en": "What is your name?",
+              "bn": "¿Cómo te llamas?",
+              "roman": "¿Cómo te llamas?"
+            },
+            {
+              "en": "My name is...",
+              "bn": "Me llamo...",
+              "roman": "Me llamo..."
+            },
+            {
+              "en": "Nice to meet you.",
+              "bn": "Mucho gusto.",
+              "roman": "Mucho gusto."
+            },
+            {
+              "en": "Goodbye. (said when leaving)",
+              "bn": "Adiós.",
+              "roman": "Adiós."
+            },
+            {
+              "en": "See you later.",
+              "bn": "Hasta luego.",
+              "roman": "Hasta luego."
+            },
+            {
+              "en": "See you tomorrow.",
+              "bn": "Hasta mañana.",
+              "roman": "Hasta mañana."
+            },
+            {
+              "en": "Take care.",
+              "bn": "Cuídate.",
+              "roman": "Cuídate."
+            }
+          ]
+        },
+        {
+          "id": "social_essentials",
+          "title": "Thanks, Sorry & Please",
+          "entriesPerSession": 6,
+          "entries": [
+            {
+              "en": "Thanks. (casual)",
+              "bn": "Gracias.",
+              "roman": "Gracias.",
+              "note": "Informal. Gracias works everywhere; this is just the short form."
+            },
+            {
+              "en": "Thank you. (polite)",
+              "bn": "Muchas gracias.",
+              "roman": "Muchas gracias.",
+              "note": "The safe default with anyone - staff, hosts and strangers."
+            },
+            {
+              "en": "Thank you very much.",
+              "bn": "Muchísimas gracias.",
+              "roman": "Muchísimas gracias.",
+              "note": "Warmer and more emphatic than a plain gracias."
+            },
+            {
+              "en": "Thank you (for what you did).",
+              "bn": "Gracias por todo.",
+              "roman": "Gracias por todo.",
+              "note": "Say it when leaving a shop, restaurant or hotel."
+            },
+            {
+              "en": "You are welcome.",
+              "bn": "De nada.",
+              "roman": "De nada.",
+              "note": "The reply when someone thanks you."
+            },
+            {
+              "en": "Please. / Here you go.",
+              "bn": "Aquí tiene.",
+              "roman": "Aquí tiene.",
+              "note": "Handing something over, or inviting someone to go first."
+            },
+            {
+              "en": "Please. (asking a favour)",
+              "bn": "Por favor.",
+              "roman": "Por favor.",
+              "note": "The all-purpose please - also how you get a waiter's attention."
+            },
+            {
+              "en": "Excuse me. / Sorry.",
+              "bn": "Perdón.",
+              "roman": "Perdón.",
+              "note": "Multi-purpose: excuse me, sorry, and thanks for the trouble."
+            },
+            {
+              "en": "Sorry. (to a friend)",
+              "bn": "Lo siento.",
+              "roman": "Lo siento.",
+              "note": "A softer apology - perdon is the everyday one."
+            },
+            {
+              "en": "Yes.",
+              "bn": "Sí.",
+              "roman": "Sí."
+            },
+            {
+              "en": "No.",
+              "bn": "No.",
+              "roman": "No."
+            }
+          ]
+        },
+        {
+          "id": "travel",
+          "title": "Useful Travel Sentences",
+          "entriesPerSession": 8,
+          "entries": [
+            {
+              "en": "Where is the bathroom?",
+              "bn": "¿Dónde está el baño?",
+              "roman": "¿Dónde está el baño?"
+            },
+            {
+              "en": "I want to go to...",
+              "bn": "Quiero ir a...",
+              "roman": "Quiero ir a..."
+            },
+            {
+              "en": "Please stop here.",
+              "bn": "Pare aquí, por favor.",
+              "roman": "Pare aquí, por favor."
+            },
+            {
+              "en": "I am lost.",
+              "bn": "Estoy perdido.",
+              "roman": "Estoy perdido."
+            },
+            {
+              "en": "Can you help me?",
+              "bn": "¿Puede ayudarme?",
+              "roman": "¿Puede ayudarme?"
+            },
+            {
+              "en": "I don't understand.",
+              "bn": "No entiendo.",
+              "roman": "No entiendo."
+            },
+            {
+              "en": "Do you speak English?",
+              "bn": "¿Habla inglés?",
+              "roman": "¿Habla inglés?"
+            },
+            {
+              "en": "I need a taxi.",
+              "bn": "Necesito un taxi.",
+              "roman": "Necesito un taxi."
+            },
+            {
+              "en": "Is it far from here?",
+              "bn": "¿Está lejos de aquí?",
+              "roman": "¿Está lejos de aquí?"
+            },
+            {
+              "en": "I am hungry.",
+              "bn": "Tengo hambre.",
+              "roman": "Tengo hambre."
+            },
+            {
+              "en": "Water, please.",
+              "bn": "Agua, por favor.",
+              "roman": "Agua, por favor."
+            },
+            {
+              "en": "The food is delicious.",
+              "bn": "La comida está deliciosa.",
+              "roman": "La comida está deliciosa."
+            },
+            {
+              "en": "What time is it?",
+              "bn": "¿Qué hora es?",
+              "roman": "¿Qué hora es?"
+            },
+            {
+              "en": "Please wait a moment.",
+              "bn": "Espere un momento, por favor.",
+              "roman": "Espere un momento, por favor."
+            },
+            {
+              "en": "Can I take a photo?",
+              "bn": "¿Puedo hacer una foto?",
+              "roman": "¿Puedo hacer una foto?"
+            },
+            {
+              "en": "I don't understand. Please write it down.",
+              "bn": "No entiendo. Escríbalo, por favor.",
+              "roman": "No entiendo. Escríbalo, por favor."
+            }
+          ]
+        },
+        {
+          "id": "emergency_health",
+          "title": "Emergency & Health",
+          "entriesPerSession": 6,
+          "entries": [
+            {
+              "en": "Please help me.",
+              "bn": "Ayúdeme, por favor.",
+              "roman": "Ayúdeme, por favor."
+            },
+            {
+              "en": "police",
+              "bn": "policía",
+              "roman": "policía"
+            },
+            {
+              "en": "police box",
+              "bn": "comisaría",
+              "roman": "comisaría"
+            },
+            {
+              "en": "ambulance",
+              "bn": "ambulancia",
+              "roman": "ambulancia"
+            },
+            {
+              "en": "Call an ambulance.",
+              "bn": "Llame a una ambulancia.",
+              "roman": "Llame a una ambulancia."
+            },
+            {
+              "en": "Call the police.",
+              "bn": "Llame a la policía.",
+              "roman": "Llame a la policía."
+            },
+            {
+              "en": "I am sick.",
+              "bn": "Estoy enfermo.",
+              "roman": "Estoy enfermo."
+            },
+            {
+              "en": "I don't feel well.",
+              "bn": "No me siento bien.",
+              "roman": "No me siento bien."
+            },
+            {
+              "en": "I feel dizzy.",
+              "bn": "Me mareo.",
+              "roman": "Me mareo."
+            },
+            {
+              "en": "I am injured.",
+              "bn": "Estoy herido.",
+              "roman": "Estoy herido."
+            },
+            {
+              "en": "I need a doctor.",
+              "bn": "Necesito un médico.",
+              "roman": "Necesito un médico."
+            },
+            {
+              "en": "Where is the hospital?",
+              "bn": "¿Dónde está el hospital?",
+              "roman": "¿Dónde está el hospital?"
+            },
+            {
+              "en": "Please take me to the hospital.",
+              "bn": "Lléveme al hospital, por favor.",
+              "roman": "Lléveme al hospital, por favor."
+            },
+            {
+              "en": "I lost my passport.",
+              "bn": "He perdido mi pasaporte.",
+              "roman": "He perdido mi pasaporte."
+            },
+            {
+              "en": "I lost my wallet.",
+              "bn": "He perdido mi cartera.",
+              "roman": "He perdido mi cartera."
+            },
+            {
+              "en": "Thief!",
+              "bn": "¡Ladrón!",
+              "roman": "¡Ladrón!"
+            },
+            {
+              "en": "It is an emergency.",
+              "bn": "Es una emergencia.",
+              "roman": "Es una emergencia."
+            },
+            {
+              "en": "Where is the police box?",
+              "bn": "¿Dónde está la comisaría?",
+              "roman": "¿Dónde está la comisaría?"
+            },
+            {
+              "en": "Please call someone who speaks English.",
+              "bn": "Llame a alguien que hable inglés, por favor.",
+              "roman": "Llame a alguien que hable inglés, por favor."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "core_patterns",
+      "title": "Core Sentence Patterns",
+      "lessons": [
+        {
+          "id": "sentence_building",
+          "title": "Core Sentence Building",
+          "entriesPerSession": 5,
+          "entries": [
+            {
+              "en": "I eat rice.",
+              "bn": "Yo como arroz.",
+              "roman": "Yo como arroz."
+            },
+            {
+              "en": "I am eating.",
+              "bn": "Estoy comiendo.",
+              "roman": "Estoy comiendo."
+            },
+            {
+              "en": "I will eat.",
+              "bn": "Comeré.",
+              "roman": "Comeré."
+            },
+            {
+              "en": "I ate.",
+              "bn": "Comí.",
+              "roman": "Comí."
+            },
+            {
+              "en": "I want to eat.",
+              "bn": "Quiero comer.",
+              "roman": "Quiero comer."
+            },
+            {
+              "en": "I can eat.",
+              "bn": "Puedo comer.",
+              "roman": "Puedo comer."
+            },
+            {
+              "en": "I like rice.",
+              "bn": "Me gusta el arroz.",
+              "roman": "Me gusta el arroz."
+            },
+            {
+              "en": "I know.",
+              "bn": "Lo sé.",
+              "roman": "Lo sé."
+            },
+            {
+              "en": "I don't know.",
+              "bn": "No lo sé.",
+              "roman": "No lo sé."
+            },
+            {
+              "en": "I understand.",
+              "bn": "Entiendo.",
+              "roman": "Entiendo."
+            },
+            {
+              "en": "I am going to Tokyo.",
+              "bn": "Voy a Madrid.",
+              "roman": "Voy a Madrid."
+            },
+            {
+              "en": "I live in Tokyo.",
+              "bn": "Vivo en Madrid.",
+              "roman": "Vivo en Madrid."
+            },
+            {
+              "en": "I am going to school.",
+              "bn": "Voy a la escuela.",
+              "roman": "Voy a la escuela."
+            },
+            {
+              "en": "May I...?",
+              "bn": "¿Puedo...?",
+              "roman": "¿Puedo...?"
+            },
+            {
+              "en": "Please do it.",
+              "bn": "Hágalo, por favor.",
+              "roman": "Hágalo, por favor."
+            },
+            {
+              "en": "Is it okay?",
+              "bn": "¿Está bien?",
+              "roman": "¿Está bien?"
+            },
+            {
+              "en": "It's not okay.",
+              "bn": "No está bien.",
+              "roman": "No está bien."
+            },
+            {
+              "en": "I have a question.",
+              "bn": "Tengo una pregunta.",
+              "roman": "Tengo una pregunta."
+            }
+          ]
+        },
+        {
+          "id": "questions_negation",
+          "title": "Questions & Negation",
+          "entriesPerSession": 5,
+          "entries": [
+            {
+              "en": "What is this?",
+              "bn": "¿Qué es esto?",
+              "roman": "¿Qué es esto?"
+            },
+            {
+              "en": "Who is that?",
+              "bn": "¿Quién es ese?",
+              "roman": "¿Quién es ese?"
+            },
+            {
+              "en": "What time?",
+              "bn": "¿A qué hora?",
+              "roman": "¿A qué hora?"
+            },
+            {
+              "en": "Why?",
+              "bn": "¿Por qué?",
+              "roman": "¿Por qué?"
+            },
+            {
+              "en": "When?",
+              "bn": "¿Cuándo?",
+              "roman": "¿Cuándo?"
+            },
+            {
+              "en": "How long?",
+              "bn": "¿Cuánto tiempo?",
+              "roman": "¿Cuánto tiempo?"
+            },
+            {
+              "en": "I don't want it.",
+              "bn": "No lo quiero.",
+              "roman": "No lo quiero."
+            },
+            {
+              "en": "I can't.",
+              "bn": "No puedo.",
+              "roman": "No puedo."
+            },
+            {
+              "en": "Not now.",
+              "bn": "Ahora no.",
+              "roman": "Ahora no."
+            },
+            {
+              "en": "There is / it exists.",
+              "bn": "Hay.",
+              "roman": "Hay."
+            },
+            {
+              "en": "There isn't / none.",
+              "bn": "No hay.",
+              "roman": "No hay."
+            },
+            {
+              "en": "Do you have...?",
+              "bn": "¿Tiene...?",
+              "roman": "¿Tiene...?"
+            },
+            {
+              "en": "I have...",
+              "bn": "Tengo...",
+              "roman": "Tengo..."
+            },
+            {
+              "en": "It's okay.",
+              "bn": "Está bien.",
+              "roman": "Está bien."
+            },
+            {
+              "en": "No problem.",
+              "bn": "No hay problema.",
+              "roman": "No hay problema."
+            }
+          ]
+        },
+        {
+          "id": "useful_verb_patterns",
+          "title": "Useful Verb Patterns",
+          "entriesPerSession": 5,
+          "entries": [
+            {
+              "en": "I am studying.",
+              "bn": "Estoy estudiando.",
+              "roman": "Estoy estudiando."
+            },
+            {
+              "en": "I am trying my best.",
+              "bn": "Estoy haciendo lo posible.",
+              "roman": "Estoy haciendo lo posible."
+            },
+            {
+              "en": "I want to learn.",
+              "bn": "Quiero aprender.",
+              "roman": "Quiero aprender."
+            },
+            {
+              "en": "I can speak a little.",
+              "bn": "Hablo un poco.",
+              "roman": "Hablo un poco."
+            },
+            {
+              "en": "Please tell me.",
+              "bn": "Dígame, por favor.",
+              "roman": "Dígame, por favor."
+            },
+            {
+              "en": "Please show me.",
+              "bn": "Muéstreme, por favor.",
+              "roman": "Muéstreme, por favor."
+            },
+            {
+              "en": "Please give me...",
+              "bn": "Deme..., por favor.",
+              "roman": "Deme..., por favor."
+            },
+            {
+              "en": "Please come.",
+              "bn": "Venga, por favor.",
+              "roman": "Venga, por favor."
+            },
+            {
+              "en": "Please sit.",
+              "bn": "Siéntese, por favor.",
+              "roman": "Siéntese, por favor."
+            },
+            {
+              "en": "Please wait.",
+              "bn": "Espere, por favor.",
+              "roman": "Espere, por favor."
+            },
+            {
+              "en": "Let's go.",
+              "bn": "Vamos.",
+              "roman": "Vamos."
+            },
+            {
+              "en": "Let's eat.",
+              "bn": "Comamos.",
+              "roman": "Comamos."
+            },
+            {
+              "en": "One more time, please.",
+              "bn": "Otra vez, por favor.",
+              "roman": "Otra vez, por favor."
+            },
+            {
+              "en": "Please speak slowly.",
+              "bn": "Hable despacio, por favor.",
+              "roman": "Hable despacio, por favor."
+            },
+            {
+              "en": "Please write it down.",
+              "bn": "Escríbalo, por favor.",
+              "roman": "Escríbalo, por favor."
+            },
+            {
+              "en": "Please take a photo.",
+              "bn": "Haga una foto, por favor.",
+              "roman": "Haga una foto, por favor."
+            },
+            {
+              "en": "Please say it again.",
+              "bn": "Dígalo otra vez, por favor.",
+              "roman": "Dígalo otra vez, por favor."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "food_dining",
+      "title": "Food & Dining",
+      "lessons": [
+        {
+          "id": "food_basic",
+          "title": "Food: Basics",
+          "entriesPerSession": 8,
+          "entries": [
+            {
+              "en": "rice (cooked)",
+              "bn": "arroz",
+              "roman": "arroz"
+            },
+            {
+              "en": "water",
+              "bn": "agua",
+              "roman": "agua"
+            },
+            {
+              "en": "fish",
+              "bn": "pescado",
+              "roman": "pescado"
+            },
+            {
+              "en": "meat",
+              "bn": "carne",
+              "roman": "carne"
+            },
+            {
+              "en": "egg",
+              "bn": "huevo",
+              "roman": "huevo"
+            },
+            {
+              "en": "milk",
+              "bn": "leche",
+              "roman": "leche"
+            },
+            {
+              "en": "bread",
+              "bn": "pan",
+              "roman": "pan"
+            },
+            {
+              "en": "vegetable",
+              "bn": "verdura",
+              "roman": "verdura"
+            },
+            {
+              "en": "fruit",
+              "bn": "fruta",
+              "roman": "fruta"
+            },
+            {
+              "en": "salt",
+              "bn": "sal",
+              "roman": "sal"
+            },
+            {
+              "en": "sugar",
+              "bn": "azúcar",
+              "roman": "azúcar"
+            },
+            {
+              "en": "tea",
+              "bn": "té",
+              "roman": "té"
+            }
+          ]
+        },
+        {
+          "id": "food_more",
+          "title": "Food & Drink: More",
+          "entriesPerSession": 8,
+          "entries": [
+            {
+              "en": "coffee",
+              "bn": "café",
+              "roman": "café"
+            },
+            {
+              "en": "potato",
+              "bn": "patata",
+              "roman": "patata"
+            },
+            {
+              "en": "chicken",
+              "bn": "pollo",
+              "roman": "pollo"
+            },
+            {
+              "en": "oil",
+              "bn": "aceite",
+              "roman": "aceite"
+            },
+            {
+              "en": "apple",
+              "bn": "manzana",
+              "roman": "manzana"
+            },
+            {
+              "en": "banana",
+              "bn": "plátano",
+              "roman": "plátano"
+            },
+            {
+              "en": "soup",
+              "bn": "sopa",
+              "roman": "sopa"
+            },
+            {
+              "en": "dessert",
+              "bn": "postre",
+              "roman": "postre"
+            },
+            {
+              "en": "sweet",
+              "bn": "dulce",
+              "roman": "dulce"
+            },
+            {
+              "en": "spicy",
+              "bn": "picante",
+              "roman": "picante"
+            },
+            {
+              "en": "beer",
+              "bn": "cerveza",
+              "roman": "cerveza"
+            },
+            {
+              "en": "sake (rice wine)",
+              "bn": "vino",
+              "roman": "vino"
+            }
+          ]
+        },
+        {
+          "id": "dining_basics",
+          "title": "Dining: Manners",
+          "entriesPerSession": 6,
+          "entries": [
+            {
+              "en": "Thank you for the food (before eating).",
+              "bn": "Buen provecho.",
+              "roman": "Buen provecho.",
+              "note": "Said before eating, like bon appetit - not the word for thanks."
+            },
+            {
+              "en": "Thank you for the meal (after eating).",
+              "bn": "Gracias por la comida.",
+              "roman": "Gracias por la comida.",
+              "note": "Said after eating, especially to whoever cooked or paid."
+            },
+            {
+              "en": "It is delicious.",
+              "bn": "Está delicioso.",
+              "roman": "Está delicioso."
+            },
+            {
+              "en": "This is very tasty.",
+              "bn": "Está muy rico.",
+              "roman": "Está muy rico."
+            },
+            {
+              "en": "It was delicious.",
+              "bn": "Estaba delicioso.",
+              "roman": "Estaba delicioso."
+            },
+            {
+              "en": "I am full.",
+              "bn": "Estoy lleno.",
+              "roman": "Estoy lleno."
+            },
+            {
+              "en": "A little, please.",
+              "bn": "Un poco, por favor.",
+              "roman": "Un poco, por favor."
+            },
+            {
+              "en": "A little more, please.",
+              "bn": "Un poco más, por favor.",
+              "roman": "Un poco más, por favor."
+            },
+            {
+              "en": "No more, thank you.",
+              "bn": "No más, gracias.",
+              "roman": "No más, gracias."
+            }
+          ]
+        },
+        {
+          "id": "ordering",
+          "title": "Ordering Food",
+          "entriesPerSession": 6,
+          "entries": [
+            {
+              "en": "May I have some water?",
+              "bn": "¿Me pone agua?",
+              "roman": "¿Me pone agua?"
+            },
+            {
+              "en": "May I have some tea?",
+              "bn": "¿Me pone un té?",
+              "roman": "¿Me pone un té?"
+            },
+            {
+              "en": "Cheers!",
+              "bn": "¡Salud!",
+              "roman": "¡Salud!"
+            },
+            {
+              "en": "Please help yourself.",
+              "bn": "Sírvase usted mismo.",
+              "roman": "Sírvase usted mismo."
+            },
+            {
+              "en": "No thank you.",
+              "bn": "No, gracias.",
+              "roman": "No, gracias.",
+              "note": "Polite refusal - softer than a flat no."
+            },
+            {
+              "en": "menu",
+              "bn": "carta",
+              "roman": "carta"
+            },
+            {
+              "en": "order",
+              "bn": "pedido",
+              "roman": "pedido"
+            },
+            {
+              "en": "May I order?",
+              "bn": "¿Puedo pedir?",
+              "roman": "¿Puedo pedir?"
+            },
+            {
+              "en": "Excuse me! (calling staff)",
+              "bn": "¡Perdone!",
+              "roman": "¡Perdone!"
+            },
+            {
+              "en": "This one, please.",
+              "bn": "Este, por favor.",
+              "roman": "Este, por favor."
+            },
+            {
+              "en": "Separate checks, please.",
+              "bn": "Cuentas separadas, por favor.",
+              "roman": "Cuentas separadas, por favor."
+            }
+          ]
+        },
+        {
+          "id": "food_preferences",
+          "title": "Food Preferences",
+          "entriesPerSession": 6,
+          "entries": [
+            {
+              "en": "It smells good.",
+              "bn": "Huele bien.",
+              "roman": "Huele bien."
+            },
+            {
+              "en": "I like Japanese food.",
+              "bn": "Me gusta la comida española.",
+              "roman": "Me gusta la comida española."
+            },
+            {
+              "en": "I like this.",
+              "bn": "Me gusta esto.",
+              "roman": "Me gusta esto."
+            },
+            {
+              "en": "I really like this.",
+              "bn": "Me gusta mucho esto.",
+              "roman": "Me gusta mucho esto."
+            },
+            {
+              "en": "It is a little spicy.",
+              "bn": "Está un poco picante.",
+              "roman": "Está un poco picante."
+            },
+            {
+              "en": "It is very spicy.",
+              "bn": "Está muy picante.",
+              "roman": "Está muy picante."
+            },
+            {
+              "en": "I eat everything.",
+              "bn": "Como de todo.",
+              "roman": "Como de todo."
+            },
+            {
+              "en": "Thank you for cooking.",
+              "bn": "Gracias por cocinar.",
+              "roman": "Gracias por cocinar."
+            }
+          ]
+        },
+        {
+          "id": "dietary_needs",
+          "title": "Dietary Needs",
+          "entriesPerSession": 6,
+          "entries": [
+            {
+              "en": "food allergy",
+              "bn": "alergia alimentaria",
+              "roman": "alergia alimentaria"
+            },
+            {
+              "en": "I have a food allergy.",
+              "bn": "Tengo una alergia alimentaria.",
+              "roman": "Tengo una alergia alimentaria."
+            },
+            {
+              "en": "nut allergy",
+              "bn": "alergia a los frutos secos",
+              "roman": "alergia a los frutos secos"
+            },
+            {
+              "en": "egg allergy",
+              "bn": "alergia al huevo",
+              "roman": "alergia al huevo"
+            },
+            {
+              "en": "shellfish allergy",
+              "bn": "alergia al marisco",
+              "roman": "alergia al marisco"
+            },
+            {
+              "en": "vegetarian",
+              "bn": "vegetariano",
+              "roman": "vegetariano"
+            },
+            {
+              "en": "I don't eat meat.",
+              "bn": "No como carne.",
+              "roman": "No como carne."
+            },
+            {
+              "en": "I don't eat fish.",
+              "bn": "No como pescado.",
+              "roman": "No como pescado."
+            },
+            {
+              "en": "No pork, please.",
+              "bn": "Sin cerdo, por favor.",
+              "roman": "Sin cerdo, por favor."
+            },
+            {
+              "en": "No alcohol, please.",
+              "bn": "Sin alcohol, por favor.",
+              "roman": "Sin alcohol, por favor."
+            },
+            {
+              "en": "Can I eat this?",
+              "bn": "¿Puedo comer esto?",
+              "roman": "¿Puedo comer esto?"
+            },
+            {
+              "en": "Does this contain meat?",
+              "bn": "¿Esto lleva carne?",
+              "roman": "¿Esto lleva carne?"
+            },
+            {
+              "en": "Does this contain nuts?",
+              "bn": "¿Esto lleva frutos secos?",
+              "roman": "¿Esto lleva frutos secos?"
+            },
+            {
+              "en": "Is this vegetarian?",
+              "bn": "¿Esto es vegetariano?",
+              "roman": "¿Esto es vegetariano?"
+            },
+            {
+              "en": "halal",
+              "bn": "halal",
+              "roman": "halal"
+            },
+            {
+              "en": "I can't eat this.",
+              "bn": "No puedo comer esto.",
+              "roman": "No puedo comer esto."
+            },
+            {
+              "en": "Please remove this.",
+              "bn": "Quítelo, por favor.",
+              "roman": "Quítelo, por favor."
+            },
+            {
+              "en": "I'm allergic to...",
+              "bn": "Soy alérgico a...",
+              "roman": "Soy alérgico a..."
+            }
+          ]
+        },
+        {
+          "id": "konbini_basics",
+          "title": "Convenience Store & Basics",
+          "entriesPerSession": 8,
+          "entries": [
+            {
+              "en": "convenience store",
+              "bn": "tienda de conveniencia",
+              "roman": "tienda de conveniencia"
+            },
+            {
+              "en": "Please heat it up.",
+              "bn": "Calíentelo, por favor.",
+              "roman": "Calíentelo, por favor."
+            },
+            {
+              "en": "chopsticks",
+              "bn": "palillos",
+              "roman": "palillos"
+            },
+            {
+              "en": "spoon",
+              "bn": "cuchara",
+              "roman": "cuchara"
+            },
+            {
+              "en": "fork",
+              "bn": "tenedor",
+              "roman": "tenedor"
+            },
+            {
+              "en": "bag",
+              "bn": "bolsa",
+              "roman": "bolsa"
+            },
+            {
+              "en": "I don't need a bag.",
+              "bn": "No necesito bolsa.",
+              "roman": "No necesito bolsa."
+            },
+            {
+              "en": "plastic bag",
+              "bn": "bolsa de plástico",
+              "roman": "bolsa de plástico"
+            },
+            {
+              "en": "one of these, please",
+              "bn": "uno de estos, por favor",
+              "roman": "uno de estos, por favor"
+            },
+            {
+              "en": "two of these, please",
+              "bn": "dos de estos, por favor",
+              "roman": "dos de estos, por favor"
+            },
+            {
+              "en": "Is there a microwave?",
+              "bn": "¿Hay un microondas?",
+              "roman": "¿Hay un microondas?"
+            },
+            {
+              "en": "This is a gift.",
+              "bn": "Es un regalo.",
+              "roman": "Es un regalo."
+            },
+            {
+              "en": "Is this hot?",
+              "bn": "¿Esto está caliente?",
+              "roman": "¿Esto está caliente?"
+            },
+            {
+              "en": "Is this cold?",
+              "bn": "¿Esto está frío?",
+              "roman": "¿Esto está frío?"
+            },
+            {
+              "en": "bottle",
+              "bn": "botella",
+              "roman": "botella"
+            },
+            {
+              "en": "canned coffee",
+              "bn": "café en lata",
+              "roman": "café en lata"
+            },
+            {
+              "en": "rice ball (onigiri)",
+              "bn": "bocadillo",
+              "roman": "bocadillo"
+            },
+            {
+              "en": "boxed meal (bento)",
+              "bn": "comida para llevar",
+              "roman": "comida para llevar"
+            },
+            {
+              "en": "cash register",
+              "bn": "caja",
+              "roman": "caja"
+            },
+            {
+              "en": "Would you like it heated?",
+              "bn": "¿Quiere que lo caliente?",
+              "roman": "¿Quiere que lo caliente?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "essentials",
+      "title": "Essential Words",
+      "lessons": [
+        {
+          "id": "numbers_1_10",
+          "title": "Numbers 0-10",
+          "entriesPerSession": 8,
+          "entries": [
+            {
+              "en": "zero",
+              "bn": "cero",
+              "roman": "cero"
+            },
+            {
+              "en": "one",
+              "bn": "uno",
+              "roman": "uno"
+            },
+            {
+              "en": "two",
+              "bn": "dos",
+              "roman": "dos"
+            },
+            {
+              "en": "three",
+              "bn": "tres",
+              "roman": "tres"
+            },
+            {
+              "en": "four",
+              "bn": "cuatro",
+              "roman": "cuatro"
+            },
+            {
+              "en": "five",
+              "bn": "cinco",
+              "roman": "cinco"
+            },
+            {
+              "en": "six",
+              "bn": "seis",
+              "roman": "seis"
+            },
+            {
+              "en": "seven",
+              "bn": "siete",
+              "roman": "siete"
+            },
+            {
+              "en": "eight",
+              "bn": "ocho",
+              "roman": "ocho"
+            },
+            {
+              "en": "nine",
+              "bn": "nueve",
+              "roman": "nueve"
+            },
+            {
+              "en": "ten",
+              "bn": "diez",
+              "roman": "diez"
+            }
+          ]
+        },
+        {
+          "id": "numbers_11_100",
+          "title": "Numbers 11-100",
+          "entriesPerSession": 8,
+          "entries": [
+            {
+              "en": "eleven",
+              "bn": "once",
+              "roman": "once"
+            },
+            {
+              "en": "twelve",
+              "bn": "doce",
+              "roman": "doce"
+            },
+            {
+              "en": "thirteen",
+              "bn": "trece",
+              "roman": "trece"
+            },
+            {
+              "en": "fourteen",
+              "bn": "catorce",
+              "roman": "catorce"
+            },
+            {
+              "en": "fifteen",
+              "bn": "quince",
+              "roman": "quince"
+            },
+            {
+              "en": "sixteen",
+              "bn": "dieciséis",
+              "roman": "dieciséis"
+            },
+            {
+              "en": "seventeen",
+              "bn": "diecisiete",
+              "roman": "diecisiete"
+            },
+            {
+              "en": "eighteen",
+              "bn": "dieciocho",
+              "roman": "dieciocho"
+            },
+            {
+              "en": "nineteen",
+              "bn": "diecinueve",
+              "roman": "diecinueve"
+            },
+            {
+              "en": "twenty",
+              "bn": "veinte",
+              "roman": "veinte"
+            },
+            {
+              "en": "thirty",
+              "bn": "treinta",
+              "roman": "treinta"
+            },
+            {
+              "en": "forty",
+              "bn": "cuarenta",
+              "roman": "cuarenta"
+            },
+            {
+              "en": "fifty",
+              "bn": "cincuenta",
+              "roman": "cincuenta"
+            },
+            {
+              "en": "sixty",
+              "bn": "sesenta",
+              "roman": "sesenta"
+            },
+            {
+              "en": "seventy",
+              "bn": "setenta",
+              "roman": "setenta"
+            },
+            {
+              "en": "eighty",
+              "bn": "ochenta",
+              "roman": "ochenta"
+            },
+            {
+              "en": "ninety",
+              "bn": "noventa",
+              "roman": "noventa"
+            }
+          ]
+        },
+        {
+          "id": "numbers_counters",
+          "title": "Numbers: Big & Counters",
+          "entriesPerSession": 8,
+          "entries": [
+            {
+              "en": "hundred",
+              "bn": "cien",
+              "roman": "cien"
+            },
+            {
+              "en": "thousand",
+              "bn": "mil",
+              "roman": "mil"
+            },
+            {
+              "en": "ten thousand",
+              "bn": "diez mil",
+              "roman": "diez mil"
+            },
+            {
+              "en": "first",
+              "bn": "primero",
+              "roman": "primero"
+            },
+            {
+              "en": "second",
+              "bn": "segundo",
+              "roman": "segundo"
+            },
+            {
+              "en": "half",
+              "bn": "medio",
+              "roman": "medio"
+            },
+            {
+              "en": "one person",
+              "bn": "una persona",
+              "roman": "una persona"
+            },
+            {
+              "en": "two people",
+              "bn": "dos personas",
+              "roman": "dos personas"
+            },
+            {
+              "en": "how many people",
+              "bn": "cuántas personas",
+              "roman": "cuántas personas"
+            },
+            {
+              "en": "once",
+              "bn": "una vez",
+              "roman": "una vez"
+            },
+            {
+              "en": "twice",
+              "bn": "dos veces",
+              "roman": "dos veces"
+            },
+            {
+              "en": "yen",
+              "bn": "euro",
+              "roman": "euro"
+            }
+          ]
+        },
+        {
+          "id": "time_words",
+          "title": "Time Words",
+          "entriesPerSession": 6,
+          "entries": [
+            {
+              "en": "time",
+              "bn": "tiempo",
+              "roman": "tiempo"
+            },
+            {
+              "en": "now",
+              "bn": "ahora",
+              "roman": "ahora"
+            },
+            {
+              "en": "later",
+              "bn": "más tarde",
+              "roman": "más tarde"
+            },
+            {
+              "en": "day",
+              "bn": "día",
+              "roman": "día"
+            },
+            {
+              "en": "morning",
+              "bn": "mañana",
+              "roman": "mañana"
+            },
+            {
+              "en": "noon / daytime",
+              "bn": "mediodía",
+              "roman": "mediodía"
+            },
+            {
+              "en": "night",
+              "bn": "noche",
+              "roman": "noche"
+            },
+            {
+              "en": "today",
+              "bn": "hoy",
+              "roman": "hoy"
+            },
+            {
+              "en": "tomorrow",
+              "bn": "mañana",
+              "roman": "mañana"
+            },
+            {
+              "en": "yesterday",
+              "bn": "ayer",
+              "roman": "ayer"
+            }
+          ]
+        },
+        {
+          "id": "calendar_words",
+          "title": "Calendar Words",
+          "entriesPerSession": 6,
+          "entries": [
+            {
+              "en": "week",
+              "bn": "semana",
+              "roman": "semana"
+            },
+            {
+              "en": "month",
+              "bn": "mes",
+              "roman": "mes"
+            },
+            {
+              "en": "year",
+              "bn": "año",
+              "roman": "año"
+            },
+            {
+              "en": "minute",
+              "bn": "minuto",
+              "roman": "minuto"
+            },
+            {
+              "en": "hour / o'clock",
+              "bn": "hora",
+              "roman": "hora"
+            },
+            {
+              "en": "half past",
+              "bn": "y media",
+              "roman": "y media"
+            },
+            {
+              "en": "this morning",
+              "bn": "esta mañana",
+              "roman": "esta mañana"
+            },
+            {
+              "en": "tonight",
+              "bn": "esta noche",
+              "roman": "esta noche"
+            },
+            {
+              "en": "this year",
+              "bn": "este año",
+              "roman": "este año"
+            },
+            {
+              "en": "next year",
+              "bn": "el año que viene",
+              "roman": "el año que viene"
+            },
+            {
+              "en": "last year",
+              "bn": "el año pasado",
+              "roman": "el año pasado"
+            },
+            {
+              "en": "weekday",
+              "bn": "día laborable",
+              "roman": "día laborable"
+            }
+          ]
+        },
+        {
+          "id": "days_week",
+          "title": "Days & Time Words",
+          "entriesPerSession": 7,
+          "entries": [
+            {
+              "en": "Sunday",
+              "bn": "domingo",
+              "roman": "domingo"
+            },
+            {
+              "en": "Monday",
+              "bn": "lunes",
+              "roman": "lunes"
+            },
+            {
+              "en": "Tuesday",
+              "bn": "martes",
+              "roman": "martes"
+            },
+            {
+              "en": "Wednesday",
+              "bn": "miércoles",
+              "roman": "miércoles"
+            },
+            {
+              "en": "Thursday",
+              "bn": "jueves",
+              "roman": "jueves"
+            },
+            {
+              "en": "Friday",
+              "bn": "viernes",
+              "roman": "viernes"
+            },
+            {
+              "en": "Saturday",
+              "bn": "sábado",
+              "roman": "sábado"
+            },
+            {
+              "en": "weekend",
+              "bn": "fin de semana",
+              "roman": "fin de semana"
+            },
+            {
+              "en": "this week",
+              "bn": "esta semana",
+              "roman": "esta semana"
+            },
+            {
+              "en": "next week",
+              "bn": "la semana que viene",
+              "roman": "la semana que viene"
+            },
+            {
+              "en": "last week",
+              "bn": "la semana pasada",
+              "roman": "la semana pasada"
+            },
+            {
+              "en": "every day",
+              "bn": "todos los días",
+              "roman": "todos los días"
+            },
+            {
+              "en": "every morning",
+              "bn": "todas las mañanas",
+              "roman": "todas las mañanas"
+            },
+            {
+              "en": "every night",
+              "bn": "todas las noches",
+              "roman": "todas las noches"
+            },
+            {
+              "en": "day off / holiday",
+              "bn": "día libre",
+              "roman": "día libre"
+            }
+          ]
+        },
+        {
+          "id": "pronouns_questions",
+          "title": "Pronouns & Question Words",
+          "entriesPerSession": 8,
+          "entries": [
+            {
+              "en": "I",
+              "bn": "yo",
+              "roman": "yo"
+            },
+            {
+              "en": "my",
+              "bn": "mi",
+              "roman": "mi"
+            },
+            {
+              "en": "you",
+              "bn": "tú",
+              "roman": "tú"
+            },
+            {
+              "en": "we",
+              "bn": "nosotros",
+              "roman": "nosotros"
+            },
+            {
+              "en": "what",
+              "bn": "qué",
+              "roman": "qué"
+            },
+            {
+              "en": "where",
+              "bn": "dónde",
+              "roman": "dónde"
+            },
+            {
+              "en": "how",
+              "bn": "cómo",
+              "roman": "cómo"
+            },
+            {
+              "en": "how much (price)",
+              "bn": "cuánto",
+              "roman": "cuánto"
+            },
+            {
+              "en": "how many",
+              "bn": "cuántos",
+              "roman": "cuántos"
+            },
+            {
+              "en": "who",
+              "bn": "quién",
+              "roman": "quién"
+            },
+            {
+              "en": "when",
+              "bn": "cuándo",
+              "roman": "cuándo"
+            },
+            {
+              "en": "why",
+              "bn": "por qué",
+              "roman": "por qué"
+            },
+            {
+              "en": "which",
+              "bn": "cuál",
+              "roman": "cuál"
+            },
+            {
+              "en": "this",
+              "bn": "esto",
+              "roman": "esto"
+            },
+            {
+              "en": "that",
+              "bn": "eso",
+              "roman": "eso"
+            },
+            {
+              "en": "that (over there)",
+              "bn": "aquello",
+              "roman": "aquello"
+            }
+          ]
+        },
+        {
+          "id": "common_verbs",
+          "title": "Common Verbs (polite)",
+          "entriesPerSession": 6,
+          "entries": [
+            {
+              "en": "eat",
+              "bn": "comer",
+              "roman": "comer"
+            },
+            {
+              "en": "drink",
+              "bn": "beber",
+              "roman": "beber"
+            },
+            {
+              "en": "go",
+              "bn": "ir",
+              "roman": "ir"
+            },
+            {
+              "en": "come",
+              "bn": "venir",
+              "roman": "venir"
+            },
+            {
+              "en": "see / watch",
+              "bn": "ver",
+              "roman": "ver"
+            },
+            {
+              "en": "speak / talk",
+              "bn": "hablar",
+              "roman": "hablar"
+            },
+            {
+              "en": "know",
+              "bn": "saber",
+              "roman": "saber"
+            },
+            {
+              "en": "give",
+              "bn": "dar",
+              "roman": "dar"
+            },
+            {
+              "en": "take",
+              "bn": "tomar",
+              "roman": "tomar"
+            },
+            {
+              "en": "do",
+              "bn": "hacer",
+              "roman": "hacer"
+            },
+            {
+              "en": "be / stay (living things)",
+              "bn": "estar",
+              "roman": "estar"
+            },
+            {
+              "en": "like",
+              "bn": "gustar",
+              "roman": "gustar"
+            },
+            {
+              "en": "need",
+              "bn": "necesitar",
+              "roman": "necesitar"
+            },
+            {
+              "en": "can / be able to",
+              "bn": "poder",
+              "roman": "poder"
+            },
+            {
+              "en": "read",
+              "bn": "leer",
+              "roman": "leer"
+            },
+            {
+              "en": "write",
+              "bn": "escribir",
+              "roman": "escribir"
+            },
+            {
+              "en": "sleep",
+              "bn": "dormir",
+              "roman": "dormir"
+            },
+            {
+              "en": "work",
+              "bn": "trabajar",
+              "roman": "trabajar"
+            },
+            {
+              "en": "buy",
+              "bn": "comprar",
+              "roman": "comprar"
+            },
+            {
+              "en": "wait",
+              "bn": "esperar",
+              "roman": "esperar"
+            },
+            {
+              "en": "understand",
+              "bn": "entender",
+              "roman": "entender"
+            },
+            {
+              "en": "listen / hear",
+              "bn": "escuchar",
+              "roman": "escuchar"
+            },
+            {
+              "en": "use",
+              "bn": "usar",
+              "roman": "usar"
+            },
+            {
+              "en": "pay",
+              "bn": "pagar",
+              "roman": "pagar"
+            },
+            {
+              "en": "ride / get on",
+              "bn": "subir",
+              "roman": "subir"
+            },
+            {
+              "en": "get off",
+              "bn": "bajar",
+              "roman": "bajar"
+            }
+          ]
+        },
+        {
+          "id": "adjectives_basic",
+          "title": "Adjectives: Basics",
+          "entriesPerSession": 6,
+          "entries": [
+            {
+              "en": "big",
+              "bn": "grande",
+              "roman": "grande"
+            },
+            {
+              "en": "small",
+              "bn": "pequeño",
+              "roman": "pequeño"
+            },
+            {
+              "en": "good",
+              "bn": "bueno",
+              "roman": "bueno"
+            },
+            {
+              "en": "bad",
+              "bn": "malo",
+              "roman": "malo"
+            },
+            {
+              "en": "new",
+              "bn": "nuevo",
+              "roman": "nuevo"
+            },
+            {
+              "en": "old (thing)",
+              "bn": "viejo",
+              "roman": "viejo"
+            },
+            {
+              "en": "hot (thing)",
+              "bn": "caliente",
+              "roman": "caliente"
+            },
+            {
+              "en": "cold (thing)",
+              "bn": "frío",
+              "roman": "frío"
+            },
+            {
+              "en": "easy",
+              "bn": "fácil",
+              "roman": "fácil"
+            },
+            {
+              "en": "difficult",
+              "bn": "difícil",
+              "roman": "difícil"
+            },
+            {
+              "en": "beautiful",
+              "bn": "bonito",
+              "roman": "bonito"
+            },
+            {
+              "en": "delicious",
+              "bn": "delicioso",
+              "roman": "delicioso"
+            }
+          ]
+        },
+        {
+          "id": "adjectives_more",
+          "title": "Adjectives: More",
+          "entriesPerSession": 6,
+          "entries": [
+            {
+              "en": "expensive",
+              "bn": "caro",
+              "roman": "caro"
+            },
+            {
+              "en": "cheap",
+              "bn": "barato",
+              "roman": "barato"
+            },
+            {
+              "en": "busy",
+              "bn": "ocupado",
+              "roman": "ocupado"
+            },
+            {
+              "en": "free (not busy)",
+              "bn": "libre",
+              "roman": "libre"
+            },
+            {
+              "en": "fast",
+              "bn": "rápido",
+              "roman": "rápido"
+            },
+            {
+              "en": "slow",
+              "bn": "lento",
+              "roman": "lento"
+            },
+            {
+              "en": "interesting",
+              "bn": "interesante",
+              "roman": "interesante"
+            },
+            {
+              "en": "cute",
+              "bn": "mono",
+              "roman": "mono"
+            },
+            {
+              "en": "quiet",
+              "bn": "tranquilo",
+              "roman": "tranquilo"
+            },
+            {
+              "en": "noisy",
+              "bn": "ruidoso",
+              "roman": "ruidoso"
+            },
+            {
+              "en": "dangerous",
+              "bn": "peligroso",
+              "roman": "peligroso"
+            },
+            {
+              "en": "safe",
+              "bn": "seguro",
+              "roman": "seguro"
+            }
+          ]
+        },
+        {
+          "id": "locations",
+          "title": "Places & Locations",
+          "entriesPerSession": 6,
+          "entries": [
+            {
+              "en": "home / house",
+              "bn": "casa",
+              "roman": "casa"
+            },
+            {
+              "en": "room",
+              "bn": "habitación",
+              "roman": "habitación"
+            },
+            {
+              "en": "town",
+              "bn": "pueblo",
+              "roman": "pueblo"
+            },
+            {
+              "en": "village",
+              "bn": "aldea",
+              "roman": "aldea"
+            },
+            {
+              "en": "street / road",
+              "bn": "calle",
+              "roman": "calle"
+            },
+            {
+              "en": "market",
+              "bn": "mercado",
+              "roman": "mercado"
+            },
+            {
+              "en": "shop / store",
+              "bn": "tienda",
+              "roman": "tienda"
+            },
+            {
+              "en": "bank",
+              "bn": "banco",
+              "roman": "banco"
+            },
+            {
+              "en": "temple",
+              "bn": "templo",
+              "roman": "templo"
+            },
+            {
+              "en": "shrine",
+              "bn": "santuario",
+              "roman": "santuario"
+            },
+            {
+              "en": "country",
+              "bn": "país",
+              "roman": "país"
+            },
+            {
+              "en": "park",
+              "bn": "parque",
+              "roman": "parque"
+            },
+            {
+              "en": "sea / beach",
+              "bn": "playa",
+              "roman": "playa"
+            },
+            {
+              "en": "school",
+              "bn": "escuela",
+              "roman": "escuela"
+            },
+            {
+              "en": "hospital",
+              "bn": "hospital",
+              "roman": "hospital"
+            },
+            {
+              "en": "restaurant",
+              "bn": "restaurante",
+              "roman": "restaurante"
+            },
+            {
+              "en": "post office",
+              "bn": "oficina de correos",
+              "roman": "oficina de correos"
+            },
+            {
+              "en": "mountain",
+              "bn": "montaña",
+              "roman": "montaña"
+            },
+            {
+              "en": "river",
+              "bn": "río",
+              "roman": "río"
+            },
+            {
+              "en": "castle",
+              "bn": "castillo",
+              "roman": "castillo"
+            }
+          ]
+        },
+        {
+          "id": "home_everyday",
+          "title": "Home & Everyday Things",
+          "entriesPerSession": 8,
+          "entries": [
+            {
+              "en": "door",
+              "bn": "puerta",
+              "roman": "puerta"
+            },
+            {
+              "en": "window",
+              "bn": "ventana",
+              "roman": "ventana"
+            },
+            {
+              "en": "table",
+              "bn": "mesa",
+              "roman": "mesa"
+            },
+            {
+              "en": "chair",
+              "bn": "silla",
+              "roman": "silla"
+            },
+            {
+              "en": "bed",
+              "bn": "cama",
+              "roman": "cama"
+            },
+            {
+              "en": "kitchen",
+              "bn": "cocina",
+              "roman": "cocina"
+            },
+            {
+              "en": "toilet",
+              "bn": "aseo",
+              "roman": "aseo"
+            },
+            {
+              "en": "bath",
+              "bn": "bañera",
+              "roman": "bañera"
+            },
+            {
+              "en": "phone",
+              "bn": "teléfono",
+              "roman": "teléfono"
+            },
+            {
+              "en": "car",
+              "bn": "coche",
+              "roman": "coche"
+            },
+            {
+              "en": "light / electricity",
+              "bn": "luz",
+              "roman": "luz"
+            },
+            {
+              "en": "clothes",
+              "bn": "ropa",
+              "roman": "ropa"
+            },
+            {
+              "en": "shoes",
+              "bn": "zapatos",
+              "roman": "zapatos"
+            },
+            {
+              "en": "bag / luggage",
+              "bn": "maleta",
+              "roman": "maleta"
+            },
+            {
+              "en": "book",
+              "bn": "libro",
+              "roman": "libro"
+            },
+            {
+              "en": "umbrella",
+              "bn": "paraguas",
+              "roman": "paraguas"
+            },
+            {
+              "en": "towel",
+              "bn": "toalla",
+              "roman": "toalla"
+            },
+            {
+              "en": "tissue",
+              "bn": "pañuelo",
+              "roman": "pañuelo"
+            },
+            {
+              "en": "charger",
+              "bn": "cargador",
+              "roman": "cargador"
+            },
+            {
+              "en": "medicine",
+              "bn": "medicamento",
+              "roman": "medicamento"
+            }
+          ]
+        },
+        {
+          "id": "action_feeling_words",
+          "title": "Common Actions & Feelings",
+          "entriesPerSession": 6,
+          "entries": [
+            {
+              "en": "want",
+              "bn": "querer",
+              "roman": "querer"
+            },
+            {
+              "en": "help (verb)",
+              "bn": "ayudar",
+              "roman": "ayudar"
+            },
+            {
+              "en": "cook",
+              "bn": "cocinar",
+              "roman": "cocinar"
+            },
+            {
+              "en": "learn",
+              "bn": "aprender",
+              "roman": "aprender"
+            },
+            {
+              "en": "pretty / clean",
+              "bn": "limpio",
+              "roman": "limpio"
+            },
+            {
+              "en": "happy",
+              "bn": "feliz",
+              "roman": "feliz"
+            },
+            {
+              "en": "hungry",
+              "bn": "hambriento",
+              "roman": "hambriento"
+            },
+            {
+              "en": "thirsty",
+              "bn": "sediento",
+              "roman": "sediento"
+            },
+            {
+              "en": "a little",
+              "bn": "un poco",
+              "roman": "un poco"
+            },
+            {
+              "en": "everything / all",
+              "bn": "todo",
+              "roman": "todo"
+            },
+            {
+              "en": "tired",
+              "bn": "cansado",
+              "roman": "cansado"
+            },
+            {
+              "en": "fun / enjoyable",
+              "bn": "divertido",
+              "roman": "divertido"
+            },
+            {
+              "en": "sad",
+              "bn": "triste",
+              "roman": "triste"
+            },
+            {
+              "en": "angry",
+              "bn": "enfadado",
+              "roman": "enfadado"
+            },
+            {
+              "en": "surprised",
+              "bn": "sorprendido",
+              "roman": "sorprendido"
+            },
+            {
+              "en": "lonely",
+              "bn": "solo",
+              "roman": "solo"
+            },
+            {
+              "en": "nervous",
+              "bn": "nervioso",
+              "roman": "nervioso"
+            },
+            {
+              "en": "excited",
+              "bn": "emocionado",
+              "roman": "emocionado"
+            },
+            {
+              "en": "glad",
+              "bn": "contento",
+              "roman": "contento"
+            },
+            {
+              "en": "okay / all right",
+              "bn": "bien",
+              "roman": "bien"
+            }
+          ]
+        },
+        {
+          "id": "months",
+          "title": "Months",
+          "entriesPerSession": 8,
+          "entries": [
+            {
+              "en": "January",
+              "bn": "enero",
+              "roman": "enero"
+            },
+            {
+              "en": "February",
+              "bn": "febrero",
+              "roman": "febrero"
+            },
+            {
+              "en": "March",
+              "bn": "marzo",
+              "roman": "marzo"
+            },
+            {
+              "en": "April",
+              "bn": "abril",
+              "roman": "abril"
+            },
+            {
+              "en": "May",
+              "bn": "mayo",
+              "roman": "mayo"
+            },
+            {
+              "en": "June",
+              "bn": "junio",
+              "roman": "junio"
+            },
+            {
+              "en": "July",
+              "bn": "julio",
+              "roman": "julio"
+            },
+            {
+              "en": "August",
+              "bn": "agosto",
+              "roman": "agosto"
+            },
+            {
+              "en": "September",
+              "bn": "septiembre",
+              "roman": "septiembre"
+            },
+            {
+              "en": "October",
+              "bn": "octubre",
+              "roman": "octubre"
+            },
+            {
+              "en": "November",
+              "bn": "noviembre",
+              "roman": "noviembre"
+            },
+            {
+              "en": "December",
+              "bn": "diciembre",
+              "roman": "diciembre"
+            }
+          ]
+        },
+        {
+          "id": "family",
+          "title": "Family & Relatives",
+          "entriesPerSession": 8,
+          "entries": [
+            {
+              "en": "mother",
+              "bn": "madre",
+              "roman": "madre"
+            },
+            {
+              "en": "father",
+              "bn": "padre",
+              "roman": "padre"
+            },
+            {
+              "en": "older brother",
+              "bn": "hermano mayor",
+              "roman": "hermano mayor"
+            },
+            {
+              "en": "older sister",
+              "bn": "hermana mayor",
+              "roman": "hermana mayor"
+            },
+            {
+              "en": "younger brother",
+              "bn": "hermano menor",
+              "roman": "hermano menor"
+            },
+            {
+              "en": "younger sister",
+              "bn": "hermana menor",
+              "roman": "hermana menor"
+            },
+            {
+              "en": "grandfather",
+              "bn": "abuelo",
+              "roman": "abuelo"
+            },
+            {
+              "en": "grandmother",
+              "bn": "abuela",
+              "roman": "abuela"
+            },
+            {
+              "en": "uncle",
+              "bn": "tío",
+              "roman": "tío"
+            },
+            {
+              "en": "aunt",
+              "bn": "tía",
+              "roman": "tía"
+            },
+            {
+              "en": "husband",
+              "bn": "marido",
+              "roman": "marido"
+            },
+            {
+              "en": "wife",
+              "bn": "esposa",
+              "roman": "esposa"
+            },
+            {
+              "en": "family",
+              "bn": "familia",
+              "roman": "familia"
+            },
+            {
+              "en": "relatives",
+              "bn": "parientes",
+              "roman": "parientes"
+            },
+            {
+              "en": "son",
+              "bn": "hijo",
+              "roman": "hijo"
+            },
+            {
+              "en": "daughter",
+              "bn": "hija",
+              "roman": "hija"
+            },
+            {
+              "en": "child",
+              "bn": "niño",
+              "roman": "niño"
+            },
+            {
+              "en": "parents",
+              "bn": "padres",
+              "roman": "padres"
+            },
+            {
+              "en": "friend",
+              "bn": "amigo",
+              "roman": "amigo"
+            },
+            {
+              "en": "guest",
+              "bn": "invitado",
+              "roman": "invitado"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "travel_practical",
+      "title": "Travel Practical",
+      "lessons": [
+        {
+          "id": "money_cards",
+          "title": "Money & IC Cards",
+          "entriesPerSession": 6,
+          "entries": [
+            {
+              "en": "cash",
+              "bn": "efectivo",
+              "roman": "efectivo"
+            },
+            {
+              "en": "credit card",
+              "bn": "tarjeta de crédito",
+              "roman": "tarjeta de crédito"
+            },
+            {
+              "en": "IC card",
+              "bn": "tarjeta de transporte",
+              "roman": "tarjeta de transporte"
+            },
+            {
+              "en": "Suica",
+              "bn": "tarjeta recargable",
+              "roman": "tarjeta recargable"
+            },
+            {
+              "en": "charge / top up (IC card)",
+              "bn": "recargar",
+              "roman": "recargar"
+            },
+            {
+              "en": "ATM",
+              "bn": "cajero automático",
+              "roman": "cajero automático"
+            },
+            {
+              "en": "Do you take cards?",
+              "bn": "¿Aceptan tarjeta?",
+              "roman": "¿Aceptan tarjeta?"
+            },
+            {
+              "en": "Cash only.",
+              "bn": "Solo efectivo.",
+              "roman": "Solo efectivo."
+            },
+            {
+              "en": "Where is the ATM?",
+              "bn": "¿Dónde hay un cajero?",
+              "roman": "¿Dónde hay un cajero?"
+            },
+            {
+              "en": "Where is the cashier?",
+              "bn": "¿Dónde está la caja?",
+              "roman": "¿Dónde está la caja?"
+            },
+            {
+              "en": "change (money back)",
+              "bn": "cambio",
+              "roman": "cambio"
+            },
+            {
+              "en": "receipt",
+              "bn": "recibo",
+              "roman": "recibo"
+            },
+            {
+              "en": "coin",
+              "bn": "moneda",
+              "roman": "moneda"
+            },
+            {
+              "en": "banknote",
+              "bn": "billete",
+              "roman": "billete"
+            },
+            {
+              "en": "money exchange",
+              "bn": "cambio de divisas",
+              "roman": "cambio de divisas"
+            },
+            {
+              "en": "No change.",
+              "bn": "No hay cambio.",
+              "roman": "No hay cambio."
+            },
+            {
+              "en": "Please give me a receipt.",
+              "bn": "Deme un recibo, por favor.",
+              "roman": "Deme un recibo, por favor."
+            },
+            {
+              "en": "That's too expensive.",
+              "bn": "Es demasiado caro.",
+              "roman": "Es demasiado caro."
+            },
+            {
+              "en": "Can I pay by card?",
+              "bn": "¿Puedo pagar con tarjeta?",
+              "roman": "¿Puedo pagar con tarjeta?"
+            },
+            {
+              "en": "Keep the change.",
+              "bn": "Quédese con el cambio.",
+              "roman": "Quédese con el cambio."
+            }
+          ]
+        },
+        {
+          "id": "accommodation",
+          "title": "Hotel & Accommodation",
+          "entriesPerSession": 6,
+          "entries": [
+            {
+              "en": "hotel",
+              "bn": "hotel",
+              "roman": "hotel"
+            },
+            {
+              "en": "Japanese inn (ryokan)",
+              "bn": "posada",
+              "roman": "posada"
+            },
+            {
+              "en": "check-in",
+              "bn": "registro de entrada",
+              "roman": "registro de entrada"
+            },
+            {
+              "en": "checkout",
+              "bn": "salida",
+              "roman": "salida"
+            },
+            {
+              "en": "I have a reservation.",
+              "bn": "Tengo una reserva.",
+              "roman": "Tengo una reserva."
+            },
+            {
+              "en": "Do you have a room?",
+              "bn": "¿Tienen una habitación?",
+              "roman": "¿Tienen una habitación?"
+            },
+            {
+              "en": "one night",
+              "bn": "una noche",
+              "roman": "una noche"
+            },
+            {
+              "en": "two nights",
+              "bn": "dos noches",
+              "roman": "dos noches"
+            },
+            {
+              "en": "wifi password",
+              "bn": "contraseña del wifi",
+              "roman": "contraseña del wifi"
+            },
+            {
+              "en": "key",
+              "bn": "llave",
+              "roman": "llave"
+            },
+            {
+              "en": "What time is breakfast?",
+              "bn": "¿A qué hora es el desayuno?",
+              "roman": "¿A qué hora es el desayuno?"
+            },
+            {
+              "en": "Can I leave my luggage?",
+              "bn": "¿Puedo dejar mi equipaje?",
+              "roman": "¿Puedo dejar mi equipaje?"
+            },
+            {
+              "en": "Please wake me up at seven.",
+              "bn": "Despiérteme a las siete, por favor.",
+              "roman": "Despiérteme a las siete, por favor."
+            },
+            {
+              "en": "This is my room.",
+              "bn": "Esta es mi habitación.",
+              "roman": "Esta es mi habitación."
+            },
+            {
+              "en": "The key doesn't work.",
+              "bn": "La llave no funciona.",
+              "roman": "La llave no funciona."
+            },
+            {
+              "en": "Where is the elevator?",
+              "bn": "¿Dónde está el ascensor?",
+              "roman": "¿Dónde está el ascensor?"
+            },
+            {
+              "en": "Is breakfast included?",
+              "bn": "¿El desayuno está incluido?",
+              "roman": "¿El desayuno está incluido?"
+            },
+            {
+              "en": "Can I stay one more night?",
+              "bn": "¿Puedo quedarme una noche más?",
+              "roman": "¿Puedo quedarme una noche más?"
+            },
+            {
+              "en": "What is the checkout time?",
+              "bn": "¿A qué hora hay que dejar la habitación?",
+              "roman": "¿A qué hora hay que dejar la habitación?"
+            },
+            {
+              "en": "Is there a laundry?",
+              "bn": "¿Hay lavandería?",
+              "roman": "¿Hay lavandería?"
+            }
+          ]
+        },
+        {
+          "id": "transport_places",
+          "title": "Transport: Places & Vehicles",
+          "entriesPerSession": 8,
+          "entries": [
+            {
+              "en": "station",
+              "bn": "estación",
+              "roman": "estación"
+            },
+            {
+              "en": "platform",
+              "bn": "andén",
+              "roman": "andén"
+            },
+            {
+              "en": "ticket gate",
+              "bn": "control de billetes",
+              "roman": "control de billetes"
+            },
+            {
+              "en": "ticket",
+              "bn": "billete",
+              "roman": "billete"
+            },
+            {
+              "en": "exit",
+              "bn": "salida",
+              "roman": "salida"
+            },
+            {
+              "en": "entrance",
+              "bn": "entrada",
+              "roman": "entrada"
+            },
+            {
+              "en": "bus stop",
+              "bn": "parada de autobús",
+              "roman": "parada de autobús"
+            },
+            {
+              "en": "airport",
+              "bn": "aeropuerto",
+              "roman": "aeropuerto"
+            },
+            {
+              "en": "train",
+              "bn": "tren",
+              "roman": "tren"
+            },
+            {
+              "en": "subway",
+              "bn": "metro",
+              "roman": "metro"
+            },
+            {
+              "en": "bullet train",
+              "bn": "tren de alta velocidad",
+              "roman": "tren de alta velocidad"
+            },
+            {
+              "en": "limited express",
+              "bn": "tren expreso",
+              "roman": "tren expreso"
+            },
+            {
+              "en": "local train",
+              "bn": "cercanías",
+              "roman": "cercanías"
+            },
+            {
+              "en": "bus",
+              "bn": "autobús",
+              "roman": "autobús"
+            },
+            {
+              "en": "taxi",
+              "bn": "taxi",
+              "roman": "taxi"
+            },
+            {
+              "en": "airplane",
+              "bn": "avión",
+              "roman": "avión"
+            }
+          ]
+        },
+        {
+          "id": "transport_tickets",
+          "title": "Transport: Tickets & Asking",
+          "entriesPerSession": 6,
+          "entries": [
+            {
+              "en": "transfer (noun)",
+              "bn": "transbordo",
+              "roman": "transbordo"
+            },
+            {
+              "en": "one-way ticket",
+              "bn": "billete de ida",
+              "roman": "billete de ida"
+            },
+            {
+              "en": "round-trip ticket",
+              "bn": "billete de ida y vuelta",
+              "roman": "billete de ida y vuelta"
+            },
+            {
+              "en": "reserved seat",
+              "bn": "asiento reservado",
+              "roman": "asiento reservado"
+            },
+            {
+              "en": "Where is the station?",
+              "bn": "¿Dónde está la estación?",
+              "roman": "¿Dónde está la estación?"
+            },
+            {
+              "en": "Where is the bus stop?",
+              "bn": "¿Dónde está la parada de autobús?",
+              "roman": "¿Dónde está la parada de autobús?"
+            },
+            {
+              "en": "Which platform?",
+              "bn": "¿En qué andén?",
+              "roman": "¿En qué andén?"
+            },
+            {
+              "en": "Is this the train to...?",
+              "bn": "¿Es este el tren a...?",
+              "roman": "¿Es este el tren a...?"
+            },
+            {
+              "en": "I want to go to this address.",
+              "bn": "Quiero ir a esta dirección.",
+              "roman": "Quiero ir a esta dirección."
+            },
+            {
+              "en": "Please take me here. (show map)",
+              "bn": "Lléveme aquí, por favor.",
+              "roman": "Lléveme aquí, por favor."
+            },
+            {
+              "en": "How long does it take?",
+              "bn": "¿Cuánto tarda?",
+              "roman": "¿Cuánto tarda?"
+            },
+            {
+              "en": "Where do I transfer?",
+              "bn": "¿Dónde hago transbordo?",
+              "roman": "¿Dónde hago transbordo?"
+            },
+            {
+              "en": "Where can I buy a ticket?",
+              "bn": "¿Dónde puedo comprar un billete?",
+              "roman": "¿Dónde puedo comprar un billete?"
+            },
+            {
+              "en": "How much is the ticket?",
+              "bn": "¿Cuánto cuesta el billete?",
+              "roman": "¿Cuánto cuesta el billete?"
+            }
+          ]
+        },
+        {
+          "id": "transport_trouble",
+          "title": "Transport: Troubleshooting",
+          "entriesPerSession": 5,
+          "entries": [
+            {
+              "en": "I'll get off at the next stop.",
+              "bn": "Me bajo en la próxima parada.",
+              "roman": "Me bajo en la próxima parada."
+            },
+            {
+              "en": "The train is late.",
+              "bn": "El tren va con retraso.",
+              "roman": "El tren va con retraso."
+            },
+            {
+              "en": "I missed my stop.",
+              "bn": "Me pasé de parada.",
+              "roman": "Me pasé de parada."
+            },
+            {
+              "en": "I got on the wrong train.",
+              "bn": "Me equivoqué de tren.",
+              "roman": "Me equivoqué de tren."
+            },
+            {
+              "en": "I lost my ticket.",
+              "bn": "He perdido mi billete.",
+              "roman": "He perdido mi billete."
+            },
+            {
+              "en": "I left my bag on the train.",
+              "bn": "Dejé mi bolsa en el tren.",
+              "roman": "Dejé mi bolsa en el tren."
+            },
+            {
+              "en": "This train is crowded.",
+              "bn": "Este tren va lleno.",
+              "roman": "Este tren va lleno."
+            },
+            {
+              "en": "Which train should I take?",
+              "bn": "¿Qué tren debo tomar?",
+              "roman": "¿Qué tren debo tomar?"
+            },
+            {
+              "en": "Please help me find my bag.",
+              "bn": "Ayúdeme a encontrar mi bolsa, por favor.",
+              "roman": "Ayúdeme a encontrar mi bolsa, por favor."
+            },
+            {
+              "en": "I want to get off.",
+              "bn": "Quiero bajarme.",
+              "roman": "Quiero bajarme."
+            }
+          ]
+        },
+        {
+          "id": "directions_words",
+          "title": "Directions: Words",
+          "entriesPerSession": 8,
+          "entries": [
+            {
+              "en": "left",
+              "bn": "izquierda",
+              "roman": "izquierda"
+            },
+            {
+              "en": "right",
+              "bn": "derecha",
+              "roman": "derecha"
+            },
+            {
+              "en": "straight",
+              "bn": "recto",
+              "roman": "recto"
+            },
+            {
+              "en": "behind",
+              "bn": "detrás",
+              "roman": "detrás"
+            },
+            {
+              "en": "front",
+              "bn": "delante",
+              "roman": "delante"
+            },
+            {
+              "en": "up",
+              "bn": "arriba",
+              "roman": "arriba"
+            },
+            {
+              "en": "down",
+              "bn": "abajo",
+              "roman": "abajo"
+            },
+            {
+              "en": "near",
+              "bn": "cerca",
+              "roman": "cerca"
+            },
+            {
+              "en": "far",
+              "bn": "lejos",
+              "roman": "lejos"
+            },
+            {
+              "en": "here",
+              "bn": "aquí",
+              "roman": "aquí"
+            },
+            {
+              "en": "there",
+              "bn": "ahí",
+              "roman": "ahí"
+            },
+            {
+              "en": "over there",
+              "bn": "allí",
+              "roman": "allí"
+            }
+          ]
+        },
+        {
+          "id": "directions_phrases",
+          "title": "Directions: Phrases",
+          "entriesPerSession": 5,
+          "entries": [
+            {
+              "en": "Turn left.",
+              "bn": "Gire a la izquierda.",
+              "roman": "Gire a la izquierda."
+            },
+            {
+              "en": "Turn right.",
+              "bn": "Gire a la derecha.",
+              "roman": "Gire a la derecha."
+            },
+            {
+              "en": "Go straight.",
+              "bn": "Siga recto.",
+              "roman": "Siga recto."
+            },
+            {
+              "en": "It's on the right.",
+              "bn": "Está a la derecha.",
+              "roman": "Está a la derecha."
+            },
+            {
+              "en": "It's on the left.",
+              "bn": "Está a la izquierda.",
+              "roman": "Está a la izquierda."
+            },
+            {
+              "en": "How do I get there?",
+              "bn": "¿Cómo llego allí?",
+              "roman": "¿Cómo llego allí?"
+            },
+            {
+              "en": "This way, please.",
+              "bn": "Por aquí, por favor.",
+              "roman": "Por aquí, por favor."
+            },
+            {
+              "en": "Where is it?",
+              "bn": "¿Dónde está?",
+              "roman": "¿Dónde está?"
+            }
+          ]
+        },
+        {
+          "id": "shopping_money",
+          "title": "Shopping & Money",
+          "entriesPerSession": 6,
+          "entries": [
+            {
+              "en": "How much is this?",
+              "bn": "¿Cuánto cuesta esto?",
+              "roman": "¿Cuánto cuesta esto?"
+            },
+            {
+              "en": "That is expensive.",
+              "bn": "Eso es caro.",
+              "roman": "Eso es caro."
+            },
+            {
+              "en": "Do you have a cheaper one?",
+              "bn": "¿Tiene uno más barato?",
+              "roman": "¿Tiene uno más barato?"
+            },
+            {
+              "en": "I'll take this.",
+              "bn": "Me llevo esto.",
+              "roman": "Me llevo esto."
+            },
+            {
+              "en": "I'm just looking.",
+              "bn": "Solo estoy mirando.",
+              "roman": "Solo estoy mirando."
+            },
+            {
+              "en": "Do you have a bigger size?",
+              "bn": "¿Tiene una talla más grande?",
+              "roman": "¿Tiene una talla más grande?"
+            },
+            {
+              "en": "size",
+              "bn": "talla",
+              "roman": "talla"
+            },
+            {
+              "en": "money",
+              "bn": "dinero",
+              "roman": "dinero"
+            },
+            {
+              "en": "Is this tax-free?",
+              "bn": "¿Esto está libre de impuestos?",
+              "roman": "¿Esto está libre de impuestos?"
+            },
+            {
+              "en": "Do you have this in another color?",
+              "bn": "¿Tiene esto en otro color?",
+              "roman": "¿Tiene esto en otro color?"
+            },
+            {
+              "en": "I'm looking for...",
+              "bn": "Estoy buscando...",
+              "roman": "Estoy buscando..."
+            },
+            {
+              "en": "May I try this on?",
+              "bn": "¿Puedo probármelo?",
+              "roman": "¿Puedo probármelo?"
+            },
+            {
+              "en": "I'll think about it.",
+              "bn": "Lo pensaré.",
+              "roman": "Lo pensaré."
+            },
+            {
+              "en": "That's all, thank you.",
+              "bn": "Eso es todo, gracias.",
+              "roman": "Eso es todo, gracias."
+            },
+            {
+              "en": "Can I get a refund?",
+              "bn": "¿Me pueden devolver el dinero?",
+              "roman": "¿Me pueden devolver el dinero?"
+            },
+            {
+              "en": "gift / present",
+              "bn": "regalo",
+              "roman": "regalo"
+            }
+          ]
+        },
+        {
+          "id": "travel_signs",
+          "title": "Travel Signs",
+          "entriesPerSession": 6,
+          "entries": [
+            {
+              "en": "station",
+              "bn": "estación",
+              "roman": "estación"
+            },
+            {
+              "en": "exit",
+              "bn": "salida",
+              "roman": "salida"
+            },
+            {
+              "en": "entrance",
+              "bn": "entrada",
+              "roman": "entrada"
+            },
+            {
+              "en": "ticket gate",
+              "bn": "control de billetes",
+              "roman": "control de billetes"
+            },
+            {
+              "en": "men",
+              "bn": "hombres",
+              "roman": "hombres"
+            },
+            {
+              "en": "women",
+              "bn": "mujeres",
+              "roman": "mujeres"
+            },
+            {
+              "en": "yen",
+              "bn": "euro",
+              "roman": "euro"
+            },
+            {
+              "en": "open",
+              "bn": "abierto",
+              "roman": "abierto"
+            },
+            {
+              "en": "closed",
+              "bn": "cerrado",
+              "roman": "cerrado"
+            },
+            {
+              "en": "prohibited / not allowed",
+              "bn": "prohibido",
+              "roman": "prohibido"
+            },
+            {
+              "en": "caution",
+              "bn": "atención",
+              "roman": "atención"
+            },
+            {
+              "en": "entrance / reception",
+              "bn": "recepción",
+              "roman": "recepción"
+            }
+          ]
+        },
+        {
+          "id": "common_responses",
+          "title": "Common Spanish Responses",
+          "entriesPerSession": 6,
+          "entries": [
+            {
+              "en": "Yes / that is correct.",
+              "bn": "Sí, es correcto.",
+              "roman": "Sí, es correcto."
+            },
+            {
+              "en": "No / that is not correct.",
+              "bn": "No, no es correcto.",
+              "roman": "No, no es correcto."
+            },
+            {
+              "en": "It is okay / no problem.",
+              "bn": "Está bien, no hay problema.",
+              "roman": "Está bien, no hay problema."
+            },
+            {
+              "en": "I understand.",
+              "bn": "Entiendo.",
+              "roman": "Entiendo."
+            },
+            {
+              "en": "I do not understand.",
+              "bn": "No entiendo.",
+              "roman": "No entiendo."
+            },
+            {
+              "en": "Please wait a moment.",
+              "bn": "Espere un momento, por favor.",
+              "roman": "Espere un momento, por favor."
+            },
+            {
+              "en": "This way, please.",
+              "bn": "Por aquí, por favor.",
+              "roman": "Por aquí, por favor."
+            },
+            {
+              "en": "It is over there.",
+              "bn": "Está allí.",
+              "roman": "Está allí."
+            },
+            {
+              "en": "Please say it again.",
+              "bn": "Dígalo otra vez, por favor.",
+              "roman": "Dígalo otra vez, por favor."
+            },
+            {
+              "en": "Please speak slowly.",
+              "bn": "Hable despacio, por favor.",
+              "roman": "Hable despacio, por favor."
+            },
+            {
+              "en": "Cash only.",
+              "bn": "Solo efectivo.",
+              "roman": "Solo efectivo."
+            },
+            {
+              "en": "Card is accepted.",
+              "bn": "Se acepta tarjeta.",
+              "roman": "Se acepta tarjeta."
+            },
+            {
+              "en": "Welcome! (shop greeting)",
+              "bn": "¡Bienvenido!",
+              "roman": "¡Bienvenido!",
+              "note": "You'll hear this in every shop and restaurant - no reply needed."
+            },
+            {
+              "en": "Certainly. (staff)",
+              "bn": "Por supuesto.",
+              "roman": "Por supuesto.",
+              "note": "Polite staff acknowledgement that a request was understood."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "conversation",
+      "title": "Conversation & Politeness",
+      "lessons": [
+        {
+          "id": "introductions_smalltalk",
+          "title": "Introduce Yourself & Small Talk",
+          "entriesPerSession": 6,
+          "entries": [
+            {
+              "en": "I am from...",
+              "bn": "Soy de...",
+              "roman": "Soy de..."
+            },
+            {
+              "en": "I live in...",
+              "bn": "Vivo en...",
+              "roman": "Vivo en..."
+            },
+            {
+              "en": "I work as...",
+              "bn": "Trabajo de...",
+              "roman": "Trabajo de..."
+            },
+            {
+              "en": "I am learning Japanese.",
+              "bn": "Estoy aprendiendo español.",
+              "roman": "Estoy aprendiendo español."
+            },
+            {
+              "en": "I only know a little.",
+              "bn": "Solo sé un poco.",
+              "roman": "Solo sé un poco."
+            },
+            {
+              "en": "Nice to meet you (please be kind).",
+              "bn": "Encantado de conocerte.",
+              "roman": "Encantado de conocerte."
+            },
+            {
+              "en": "How was your day?",
+              "bn": "¿Qué tal tu día?",
+              "roman": "¿Qué tal tu día?"
+            },
+            {
+              "en": "What do you do?",
+              "bn": "¿A qué te dedicas?",
+              "roman": "¿A qué te dedicas?"
+            },
+            {
+              "en": "Where do you live?",
+              "bn": "¿Dónde vives?",
+              "roman": "¿Dónde vives?"
+            },
+            {
+              "en": "Really?",
+              "bn": "¿De verdad?",
+              "roman": "¿De verdad?"
+            },
+            {
+              "en": "That's nice.",
+              "bn": "Qué bien.",
+              "roman": "Qué bien."
+            },
+            {
+              "en": "That sounds great.",
+              "bn": "Suena genial.",
+              "roman": "Suena genial."
+            },
+            {
+              "en": "I'm glad to hear that.",
+              "bn": "Me alegro de oírlo.",
+              "roman": "Me alegro de oírlo."
+            },
+            {
+              "en": "Me too.",
+              "bn": "Yo también.",
+              "roman": "Yo también."
+            },
+            {
+              "en": "How old are you?",
+              "bn": "¿Cuántos años tienes?",
+              "roman": "¿Cuántos años tienes?"
+            },
+            {
+              "en": "I'm a tourist.",
+              "bn": "Soy turista.",
+              "roman": "Soy turista."
+            },
+            {
+              "en": "I'm here on holiday.",
+              "bn": "Estoy aquí de vacaciones.",
+              "roman": "Estoy aquí de vacaciones."
+            },
+            {
+              "en": "This is my first time in Japan.",
+              "bn": "Es mi primera vez en España.",
+              "roman": "Es mi primera vez en España."
+            }
+          ]
+        },
+        {
+          "id": "pronouns_and_respect",
+          "title": "Pronouns & Politeness",
+          "entriesPerSession": 6,
+          "entries": [
+            {
+              "en": "I (casual, male)",
+              "bn": "yo (informal)",
+              "roman": "yo (informal)"
+            },
+            {
+              "en": "he",
+              "bn": "él",
+              "roman": "él"
+            },
+            {
+              "en": "she",
+              "bn": "ella",
+              "roman": "ella"
+            },
+            {
+              "en": "they",
+              "bn": "ellos",
+              "roman": "ellos"
+            },
+            {
+              "en": "your",
+              "bn": "tu",
+              "roman": "tu"
+            },
+            {
+              "en": "his",
+              "bn": "su",
+              "roman": "su"
+            },
+            {
+              "en": "her",
+              "bn": "suya",
+              "roman": "suya"
+            },
+            {
+              "en": "our",
+              "bn": "nuestro",
+              "roman": "nuestro"
+            },
+            {
+              "en": "everyone",
+              "bn": "todos",
+              "roman": "todos"
+            },
+            {
+              "en": "someone",
+              "bn": "alguien",
+              "roman": "alguien"
+            },
+            {
+              "en": "nobody",
+              "bn": "nadie",
+              "roman": "nadie"
+            },
+            {
+              "en": "Mr. / Ms. (name suffix)",
+              "bn": "señor / señora",
+              "roman": "señor / señora"
+            }
+          ]
+        },
+        {
+          "id": "plans_future",
+          "title": "Plans & Future",
+          "entriesPerSession": 6,
+          "entries": [
+            {
+              "en": "I will come tomorrow.",
+              "bn": "Vendré mañana.",
+              "roman": "Vendré mañana."
+            },
+            {
+              "en": "I'll do it tomorrow.",
+              "bn": "Lo haré mañana.",
+              "roman": "Lo haré mañana."
+            },
+            {
+              "en": "What are you doing tomorrow?",
+              "bn": "¿Qué haces mañana?",
+              "roman": "¿Qué haces mañana?"
+            },
+            {
+              "en": "What time will you come?",
+              "bn": "¿A qué hora vendrás?",
+              "roman": "¿A qué hora vendrás?"
+            },
+            {
+              "en": "I'm going now.",
+              "bn": "Me voy ya.",
+              "roman": "Me voy ya."
+            },
+            {
+              "en": "I have to go.",
+              "bn": "Me tengo que ir.",
+              "roman": "Me tengo que ir."
+            },
+            {
+              "en": "I'd like to come again.",
+              "bn": "Me gustaría volver.",
+              "roman": "Me gustaría volver."
+            },
+            {
+              "en": "I'll be back.",
+              "bn": "Vuelvo enseguida.",
+              "roman": "Vuelvo enseguida."
+            },
+            {
+              "en": "Maybe later.",
+              "bn": "Quizá más tarde.",
+              "roman": "Quizá más tarde."
+            },
+            {
+              "en": "Not today.",
+              "bn": "Hoy no.",
+              "roman": "Hoy no."
+            },
+            {
+              "en": "I'll call you.",
+              "bn": "Te llamo.",
+              "roman": "Te llamo."
+            },
+            {
+              "en": "Let's meet at the station.",
+              "bn": "Quedamos en la estación.",
+              "roman": "Quedamos en la estación."
+            },
+            {
+              "en": "I'm looking forward to it.",
+              "bn": "Tengo muchas ganas.",
+              "roman": "Tengo muchas ganas."
+            },
+            {
+              "en": "See you soon.",
+              "bn": "Hasta pronto.",
+              "roman": "Hasta pronto."
+            },
+            {
+              "en": "Are you free tomorrow?",
+              "bn": "¿Estás libre mañana?",
+              "roman": "¿Estás libre mañana?"
+            },
+            {
+              "en": "I'm busy today.",
+              "bn": "Hoy estoy ocupado.",
+              "roman": "Hoy estoy ocupado."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

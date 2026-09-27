@@ -17,6 +17,13 @@
       "nativeName": "日本語",
       "file": "content.ja.json",
       "ttsLocales": ["ja-JP", "ja"]
+    },
+    {
+      "code": "es",
+      "name": "Spanish",
+      "nativeName": "Español",
+      "file": "content.es.json",
+      "ttsLocales": ["es-ES", "es-MX", "es"]
     }
   ]
 }
