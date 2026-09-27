@@ -59,9 +59,10 @@
               "roman": "hajimemashite."
             },
             {
-              "en": "Goodbye.",
-              "bn": "さようなら。",
-              "roman": "sayōnara."
+              "en": "Goodbye. (said when leaving)",
+              "bn": "失礼します。",
+              "roman": "shitsurei shimasu.",
+              "tts": "しつれいします。"
             },
             {
               "en": "See you later.",
@@ -158,8 +159,9 @@
             },
             {
               "en": "I need a taxi.",
-              "bn": "タクシーが必要です。",
-              "roman": "takushī ga hitsuyō desu."
+              "bn": "タクシーを呼んでください。",
+              "roman": "takushī o yonde kudasai.",
+              "tts": "タクシーをよんでください。"
             },
             {
               "en": "Is it far from here?",
@@ -828,8 +830,9 @@
             },
             {
               "en": "Please help yourself.",
-              "bn": "どうぞ召し上がってください。",
-              "roman": "dōzo meshiagatte kudasai."
+              "bn": "どうぞ、食べてください。",
+              "roman": "dōzo, tabete kudasai.",
+              "tts": "どうぞ、たべてください。"
             },
             {
               "en": "No thank you.",
@@ -3560,11 +3563,6 @@
               "tts": "ぼく"
             },
             {
-              "en": "I (casual, female)",
-              "bn": "あたし",
-              "roman": "atashi"
-            },
-            {
               "en": "he",
               "bn": "彼",
               "roman": "kare",
@@ -3661,8 +3659,9 @@
             },
             {
               "en": "I have to go.",
-              "bn": "行かなければなりません。",
-              "roman": "ikanakereba narimasen."
+              "bn": "そろそろ失礼します。",
+              "roman": "sorosoro shitsurei shimasu.",
+              "tts": "そろそろしつれいします。"
             },
             {
               "en": "I'd like to come again.",
