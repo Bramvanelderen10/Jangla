@@ -81,10 +81,13 @@ never hardcodes vocabulary.
   `content.<code>.json` file in `assets/content/` and add an entry here — the
   folder is bundled wholesale via pubspec, so no `pubspec.yaml` change is needed.
 - The per-entry `bn` JSON key holds the target-language script regardless of
-  language (kept as `bn` for backward compatibility); `Entry.bengali` mirrors it.
-- Entry shape: `{ "en": <english>, "bn": <Bengali script>, "roman": <pronunciation> }`.
-  Always provide all three fields. `Entry` also has `toJson()` and a `key` getter
-  (`en|bn|roman`) used to persist and de-duplicate custom-list entries.
+  language (kept as `bn` for backward compatibility); `Entry.target` mirrors it.
+- Entry shape: `{ "en": <english>, "bn": <target script>, "roman": <pronunciation> }`.
+  Always provide all three. Two optional keys: `tts` supplies a kana reading when
+  the script is ambiguous for text-to-speech, and `note` is a short usage hint
+  (register/etiquette) shown under the word on the Learn card. `Entry` also has
+  `toJson()` and a `key` getter (`en|bn|roman`) used to persist and de-duplicate
+  custom-list entries.
 - `defaults.entriesPerSession` sets how many random entries a lesson shows;
   `0` means use the whole pool. A lesson may override with its own
   `entriesPerSession`.

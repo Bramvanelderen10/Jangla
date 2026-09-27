@@ -67,4 +67,24 @@ void main() {
     expect(content.categories.single.lessons.single.entriesPerSession, 15);
     expect(content.categories.single.lessons.single.entries.single.roman, 'ek');
   });
+
+  test('Entry round-trips an optional note', () {
+    const entry = Entry(
+      english: 'Thank you. (polite)',
+      target: 'ありがとうございます。',
+      roman: 'arigatō gozaimasu.',
+      note: 'The safe default with staff.',
+    );
+
+    final json = entry.toJson();
+    expect(json['note'], 'The safe default with staff.');
+    expect(Entry.fromJson(json).note, 'The safe default with staff.');
+  });
+
+  test('Entry omits the note key when there is no note', () {
+    const entry = Entry(english: 'a', target: 'b', roman: 'c');
+
+    expect(entry.toJson().containsKey('note'), isFalse);
+    expect(Entry.fromJson(entry.toJson()).note, isNull);
+  });
 }

@@ -50,6 +50,20 @@ listed in [`config.json`](assets/content/config.json).
   { "en": "friend", "bn": "বন্ধু", "roman": "bondhu" }
   ```
 
+  Two optional keys: `"tts"` gives a kana reading when the script would be
+  ambiguous for speech, and `"note"` is a short usage hint shown under the word
+  while learning:
+
+  ```json
+  {
+    "en": "Thank you. (polite)",
+    "bn": "ありがとうございます。",
+    "roman": "arigatō gozaimasu.",
+    "tts": "ありがとうございます。",
+    "note": "The safe default with staff, hosts and strangers."
+  }
+  ```
+
 - Add a new lesson or category by copying the existing structure.
 
 No code changes are needed — just edit the JSON and re-run the app.

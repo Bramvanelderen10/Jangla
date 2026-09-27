@@ -76,33 +76,74 @@
             },
             {
               "en": "Take care.",
-              "bn": "気をつけて。",
-              "roman": "ki o tsukete."
+              "bn": "気をつけてください。",
+              "roman": "ki o tsukete kudasai.",
+              "tts": "きをつけてください。"
+            }
+          ]
+        },
+        {
+          "id": "social_essentials",
+          "title": "Thanks, Sorry & Please",
+          "//": "Tier 1: the high-frequency social words in politeness order, so the same English word doesn't look like a different word in every sentence.",
+          "entriesPerSession": 6,
+          "entries": [
+            {
+              "en": "Thanks. (casual)",
+              "bn": "ありがとう。",
+              "roman": "arigatō.",
+              "note": "Casual — fine with friends, a little abrupt with staff."
             },
             {
-              "en": "Thank you.",
-              "bn": "ありがとう。",
-              "roman": "arigatō."
+              "en": "Thank you. (polite)",
+              "bn": "ありがとうございます。",
+              "roman": "arigatō gozaimasu.",
+              "tts": "ありがとうございます。",
+              "note": "The safe default with staff, hosts and strangers."
             },
             {
               "en": "Thank you very much.",
               "bn": "どうもありがとうございます。",
-              "roman": "dōmo arigatō gozaimasu."
+              "roman": "dōmo arigatō gozaimasu.",
+              "note": "Warmer and more emphatic than ありがとうございます。"
+            },
+            {
+              "en": "Thank you (for what you did).",
+              "bn": "ありがとうございました。",
+              "roman": "arigatō gozaimashita.",
+              "tts": "ありがとうございました。",
+              "note": "Past tense — say it when leaving a shop, restaurant or hotel."
             },
             {
               "en": "You are welcome.",
               "bn": "どういたしまして。",
-              "roman": "dō itashimashite."
+              "roman": "dō itashimashite.",
+              "note": "The reply when someone thanks you."
             },
             {
-              "en": "Excuse me.",
+              "en": "Please. / Here you go.",
+              "bn": "どうぞ。",
+              "roman": "dōzo.",
+              "note": "Handing something over, or inviting someone to go first."
+            },
+            {
+              "en": "Please. (asking a favour)",
+              "bn": "お願いします。",
+              "roman": "onegai shimasu.",
+              "tts": "お願いします。",
+              "note": "The all-purpose please — also how you call staff and place an order."
+            },
+            {
+              "en": "Excuse me. / Sorry.",
               "bn": "すみません。",
-              "roman": "sumimasen."
+              "roman": "sumimasen.",
+              "note": "Multi-purpose: excuse me, sorry, and thanks for the trouble."
             },
             {
-              "en": "I am sorry.",
+              "en": "Sorry. (to a friend)",
               "bn": "ごめんなさい。",
-              "roman": "gomen nasai."
+              "roman": "gomen nasai.",
+              "note": "Casual apology — with staff, prefer すみません。"
             },
             {
               "en": "Yes.",
@@ -267,8 +308,9 @@
             },
             {
               "en": "I need a doctor.",
-              "bn": "医者が必要です。",
-              "roman": "isha ga hitsuyō desu."
+              "bn": "医者を呼んでください。",
+              "roman": "isha o yonde kudasai.",
+              "tts": "いしゃをよんでください。"
             },
             {
               "en": "Where is the hospital?",
@@ -308,13 +350,9 @@
             },
             {
               "en": "Please call someone who speaks English.",
-              "bn": "英語が話せる人を呼んでください。",
-              "roman": "eigo ga hanaseru hito o yonde kudasai."
-            },
-            {
-              "en": "I need help.",
-              "bn": "助けが必要です。",
-              "roman": "tasuke ga hitsuyō desu."
+              "bn": "英語を話せる人はいますか？",
+              "roman": "eigo o hanaseru hito wa imasu ka?",
+              "tts": "えいごをはなせるひとはいますか？"
             }
           ]
         }
@@ -417,8 +455,9 @@
             },
             {
               "en": "I have a question.",
-              "bn": "質問があります。",
-              "roman": "shitsumon ga arimasu."
+              "bn": "質問してもいいですか？",
+              "roman": "shitsumon shite mo ii desu ka?",
+              "tts": "しつもんしてもいいですか？"
             }
           ]
         },
@@ -763,12 +802,16 @@
             {
               "en": "Thank you for the food (before eating).",
               "bn": "いただきます。",
-              "roman": "itadakimasu."
+              "roman": "itadakimasu.",
+              "tts": "いただきます。",
+              "note": "Set phrase said before eating — not the word ありがとう."
             },
             {
               "en": "Thank you for the meal (after eating).",
               "bn": "ごちそうさまでした。",
-              "roman": "gochisōsama deshita."
+              "roman": "gochisōsama deshita.",
+              "tts": "ごちそうさまでした。",
+              "note": "Set phrase said after eating, especially to whoever cooked or paid."
             },
             {
               "en": "It is delicious.",
@@ -837,7 +880,9 @@
             {
               "en": "No thank you.",
               "bn": "いいえ、けっこうです。",
-              "roman": "iie, kekkō desu."
+              "roman": "iie, kekkō desu.",
+              "tts": "いいえ、けっこうです。",
+              "note": "Polite refusal — softer than a flat いいえ。"
             },
             {
               "en": "menu",
@@ -3445,6 +3490,19 @@
               "en": "Card is accepted.",
               "bn": "カードが使えます。",
               "roman": "kādo ga tsukaemasu."
+            },
+            {
+              "en": "Welcome! (shop greeting)",
+              "bn": "いらっしゃいませ。",
+              "roman": "irasshaimase.",
+              "note": "You'll hear this in every shop and restaurant — no reply needed."
+            },
+            {
+              "en": "Certainly. (staff)",
+              "bn": "かしこまりました。",
+              "roman": "kashikomarimashita.",
+              "tts": "かしこまりました。",
+              "note": "Polite staff acknowledgement that a request was understood."
             }
           ]
         }

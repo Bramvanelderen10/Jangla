@@ -251,6 +251,14 @@ class _LearnScreenState extends State<LearnScreen> {
             ),
           ],
         ),
+        if (entry.note != null) ...[
+          const SizedBox(height: 16),
+          Text(
+            entry.note!,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 14, color: Colors.grey[700]),
+          ),
+        ],
       ],
     );
   }

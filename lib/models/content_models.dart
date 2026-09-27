@@ -9,11 +9,16 @@ class Entry {
   final String roman;
   final String? ttsText;
 
+  /// Optional usage hint shown while learning — e.g. register guidance such as
+  /// "casual; use ありがとうございます with staff".
+  final String? note;
+
   const Entry({
     required this.english,
     required this.target,
     required this.roman,
     this.ttsText,
+    this.note,
   });
 
   factory Entry.fromJson(Map<String, dynamic> json) => Entry(
@@ -21,6 +26,7 @@ class Entry {
     target: (json['target'] ?? json['bn']) as String,
     roman: (json['roman'] ?? '') as String,
     ttsText: json['tts'] as String?,
+    note: json['note'] as String?,
   );
 
   Map<String, dynamic> toJson() => {
@@ -28,6 +34,7 @@ class Entry {
     'bn': target,
     'roman': roman,
     if (ttsText != null) 'tts': ttsText,
+    if (note != null) 'note': note,
   };
 
   /// Stable string identity used to de-duplicate entries in custom lists.
