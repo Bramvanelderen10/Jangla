@@ -1,10 +1,10 @@
 {
-  "//": "EASY CONFIG (Spanish, Spain). Travel-first order: survival -> numbers -> food -> getting around -> money/shopping -> hotel -> extra words -> conversation. Word lessons sit directly before the phrase lessons that use them. Entries marked (staff) / (you'll hear) are for recognition. Requests to strangers use usted; in Spain tu is also common with younger staff.",
+  "//": "EASY CONFIG (Latin American Spanish). Travel-first order: survival -> numbers -> food -> getting around -> money/shopping -> hotel -> extra words -> conversation. Word lessons sit directly before the phrase lessons that use them. Entries marked (staff) / (you'll hear) are for recognition. Requests to strangers use usted; tu is also common with younger staff.",
   "name": "Spanish",
   "language": {
     "code": "es",
     "nativeName": "Español",
-    "ttsLocales": ["es-ES", "es-MX", "es"]
+    "ttsLocales": ["es-US", "es-MX", "es-419", "es-ES", "es"]
   },
   "defaults": {
     "entriesPerSession": 10
@@ -21,8 +21,8 @@
           "entriesPerSession": 6,
           "entries": [
             { "en": "hello", "bn": "hola", "note": "h is always silent." },
-            { "en": "thank you", "bn": "gracias", "note": "In Spain, c before e/i sounds like English 'th'." },
-            { "en": "beer", "bn": "cerveza", "note": "z and c (before e/i) both sound like 'th' in Spain." },
+            { "en": "thank you", "bn": "gracias", "note": "c before e/i sounds like 's'. In Spain it sounds like 'th'." },
+            { "en": "beer", "bn": "cerveza", "note": "z and c (before e/i) sound like 's'. In Spain they sound like 'th'." },
             { "en": "ham", "bn": "jamón", "note": "j is a throaty h, like 'ch' in Scottish 'loch'." },
             { "en": "people", "bn": "gente", "note": "g before e/i sounds like j." },
             { "en": "street", "bn": "calle", "note": "ll sounds like English 'y'." },
