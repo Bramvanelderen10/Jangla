@@ -159,16 +159,23 @@ void main() {
     });
   });
 
-  group('studyEntries', () {
-    test('entriesPerSession of 0 returns the whole lesson', () {
+  group('newEntries', () {
+    test('entriesPerSession of 0 returns every unlearned entry', () {
       final stats = QuizStatsService()..setLanguageScope('ja');
       final chapter = lesson('l', [entry('a'), entry('b'), entry('c')]);
 
-      expect(stats.studyEntries(chapter).length, 3);
+      expect(stats.newEntries(chapter).length, 3);
     });
 
-    test('unlearned entries are always included, learned ones fill the rest',
-        () async {
+    test('a partially practised word is still returned', () async {
+      final stats = QuizStatsService()..setLanguageScope('ja');
+      final e = entry('a');
+      await stats.record('l', e, true, now: day1); // box 1, not mastered
+
+      expect(stats.newEntries(lesson('l', [e])), [e]);
+    });
+
+    test('learned entries are never reintroduced', () async {
       final stats = QuizStatsService()..setLanguageScope('ja');
       final unlearned = [entry('new1'), entry('new2')];
       final learned = [entry('old1'), entry('old2'), entry('old3')];
@@ -180,18 +187,12 @@ void main() {
         await stats.record('l', e, true, now: day3);
       }
 
-      final chapter = Lesson(
-        id: 'l',
-        title: 'l',
-        entriesPerSession: 4,
-        entries: [...unlearned, ...learned],
-      );
+      final chapter = lesson('l', [...unlearned, ...learned]);
 
-      final picked = stats.studyEntries(chapter);
-      expect(picked.length, 4);
-      // Both new words are guaranteed a slot; learned ones make up the rest.
+      final picked = stats.newEntries(chapter);
+      expect(picked.length, 2);
+      expect(picked.where(learned.contains), isEmpty);
       expect(picked.where(unlearned.contains).length, 2);
-      expect(picked.where(learned.contains).length, 2);
     });
 
     test('a session full of unlearned words wastes no slot on a learned word',
@@ -210,13 +211,13 @@ void main() {
         entries: [...unlearned, old],
       );
 
-      final picked = stats.studyEntries(chapter);
+      final picked = stats.newEntries(chapter);
       expect(picked.length, 2);
       expect(picked.contains(old), isFalse);
       expect(picked.where(unlearned.contains).length, 2);
     });
 
-    test('a fully learned lesson still returns entries', () async {
+    test('a fully learned lesson has nothing new to learn', () async {
       final stats = QuizStatsService()..setLanguageScope('ja');
       final e = entry('a');
       for (final day in [day1, day2, day3]) {
@@ -230,7 +231,7 @@ void main() {
         entries: [e],
       );
 
-      expect(stats.studyEntries(chapter).length, 1);
+      expect(stats.newEntries(chapter), isEmpty);
     });
   });
 }

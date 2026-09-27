@@ -68,6 +68,7 @@ class _CustomListEditScreenState extends State<CustomListEditScreen> {
   @override
   Widget build(BuildContext context) {
     final entries = _list.entries;
+    final mastery = widget.stats.mastery(_list.toLesson());
     return Scaffold(
       appBar: AppBar(
         title: Text(_list.name),
@@ -96,8 +97,10 @@ class _CustomListEditScreenState extends State<CustomListEditScreen> {
                             stats: widget.stats,
                           ),
                         ),
-                    icon: const Icon(Icons.school),
-                    label: const Text('Learn'),
+                    icon: Icon(
+                      mastery.isComplete ? Icons.replay : Icons.school,
+                    ),
+                    label: Text(mastery.isComplete ? 'Learn again' : 'Learn'),
                   ),
                 ),
                 const SizedBox(height: 8),

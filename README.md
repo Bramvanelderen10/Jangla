@@ -11,7 +11,7 @@ Every lesson picks a **random set** of entries each time you open it.
 ## Features
 
 - Categories → Lessons → practice modes
-- **Learn**: interleaved introduce → quiz → retry with in-session spaced review — always mixing in the words you haven't learned yet, so a lesson can't stall on its last few
+- **Learn**: interleaved introduce → quiz → retry with in-session spaced review — introduces only the words you haven't learned yet (mixed with the rest of the lesson for quiz options), and ends once the lesson is fully learned. Starting it again replays the whole lesson without touching your saved progress
 - **Quiz**: shuffled multiple-choice and typed answers, in both directions — typed answers forgive accents (`o` for `ō`) and bracketed asides (`rice` for `rice (cooked)`)
 - **Listening cards**: some quiz cards play the audio only ("What did you hear?") and ask for the meaning — switched on automatically when a target-language voice is installed
 - **Daily Review**: a spaced-repetition queue of everything due today, across every lesson you've already started

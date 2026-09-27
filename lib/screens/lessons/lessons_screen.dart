@@ -74,8 +74,12 @@ class _LessonsScreenState extends State<LessonsScreen> {
                               stats: widget.stats,
                             ),
                           ),
-                      icon: const Icon(Icons.school),
-                      label: const Text('Learn'),
+                      icon: Icon(
+                        mastery.isComplete ? Icons.replay : Icons.school,
+                      ),
+                      label: Text(
+                        mastery.isComplete ? 'Learn again' : 'Learn',
+                      ),
                     ),
                   ),
                   const SizedBox(height: 8),

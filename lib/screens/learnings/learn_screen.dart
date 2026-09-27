@@ -11,6 +11,11 @@ class LearnScreen extends StatefulWidget {
   final TtsService tts;
   final QuizStatsService stats;
 
+  /// When true (the lesson list's Learn button), the session introduces only
+  /// words that have not been learned yet. Daily Review sets this to false so
+  /// its due entries are practised as before.
+  final bool focusOnNewWords;
+
   /// Maps an entry back to the lesson it came from. Defaults to [lesson]'s id;
   /// Daily Review uses it so a mixed session still records results (and thus
   /// the review schedule) against each entry's original lesson.
@@ -21,6 +26,7 @@ class LearnScreen extends StatefulWidget {
     required this.lesson,
     required this.tts,
     required this.stats,
+    this.focusOnNewWords = true,
     this.lessonIdFor,
   });
 
@@ -37,6 +43,10 @@ class _LearnScreenState extends State<LearnScreen> {
   Entry? _selectedOption;
   bool _flipped = false;
 
+  /// True when the lesson is fully learned and the whole pool is being
+  /// replayed in memory (the non-destructive "reset").
+  bool _replayingAll = false;
+
   @override
   void initState() {
     super.initState();
@@ -44,18 +54,36 @@ class _LearnScreenState extends State<LearnScreen> {
     _advance();
   }
 
-  /// Builds the next session from the lesson. Entries that have not been
-  /// learned yet are always included (plus learned ones to fill the session),
-  /// so the last few words are never left to chance.
+  /// Builds the next session from the lesson.
+  ///
+  /// Learn focuses on words that have not been learned yet, mixed with the rest
+  /// of the lesson for quiz options. Once every word has stuck there is nothing
+  /// new left, so the whole lesson is replayed in memory — the "reset" that
+  /// lets the learner go through the flow again without touching saved stats.
   void _startSession() {
+    final pool = widget.lesson.entries;
+
+    List<Entry> studyEntries;
+    if (widget.focusOnNewWords) {
+      studyEntries = widget.stats.newEntries(widget.lesson);
+      _replayingAll = studyEntries.isEmpty && pool.isNotEmpty;
+      if (_replayingAll) studyEntries = pool;
+    } else {
+      studyEntries = pool;
+      _replayingAll = false;
+    }
+
     _session = LearnSession(
       Lesson(
         id: widget.lesson.id,
         title: widget.lesson.title,
         entriesPerSession: 0,
-        entries: widget.stats.studyEntries(widget.lesson),
+        entries: studyEntries,
       ),
       allowAudio: widget.tts.voiceAvailable,
+      // Keep the whole lesson in the mix so new words are quizzed alongside
+      // words the learner has already seen.
+      distractorPool: pool,
     );
   }
 
@@ -123,7 +151,18 @@ class _LearnScreenState extends State<LearnScreen> {
     }
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.lesson.title),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(widget.lesson.title),
+            if (_replayingAll)
+              const Text(
+                'All learned — revising',
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal),
+              ),
+          ],
+        ),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(6),
           child: LinearProgressIndicator(

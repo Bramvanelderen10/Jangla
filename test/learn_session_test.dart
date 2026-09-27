@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:jangla/models/content_models.dart';
 import 'package:jangla/models/quiz_models.dart';
 import 'package:jangla/services/learn_session.dart';
@@ -73,6 +75,30 @@ void main() {
     final correctCount =
         quiz.options.where((e) => e.key == quiz.entry.key).length;
     expect(correctCount, 1);
+  });
+
+  test('quiz distractors can come from words outside the study batch', () {
+    final study = _makeLesson(totalEntries: 2);
+    final extra = List.generate(
+      10,
+      (i) => Entry(english: 'x$i', target: 'y$i', roman: 'z$i'),
+    );
+    final session = LearnSession(
+      study,
+      random: Random(1),
+      distractorPool: [...study.entries, ...extra],
+    );
+
+    session.nextAction();
+    session.completeIntroduction();
+    session.nextAction();
+    session.completeIntroduction();
+    final quiz = session.nextAction() as ShowQuiz;
+
+    expect(quiz.options.length, quizOptionCount);
+    // Only one study word is left as a candidate, so the rest of the options
+    // must come from the wider distractor pool.
+    expect(quiz.options.where(extra.contains), isNotEmpty);
   });
 
   test('session completes when all words are learned', () {

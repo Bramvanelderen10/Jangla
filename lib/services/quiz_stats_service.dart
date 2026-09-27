@@ -249,41 +249,31 @@ class QuizStatsService {
     return items;
   }
 
-  /// Entries to study in the next session.
+  /// Entries that still need to be learned in the next Learn session.
   ///
-  /// Everything that has not been learned yet comes first, so a lesson keeps
-  /// making progress instead of leaving the last few words to chance; learned
-  /// entries (most overdue first) fill whatever room is left. The lesson's
-  /// `entriesPerSession` caps the result, where `0` means the whole pool.
-  List<Entry> studyEntries(Lesson lesson, {Random? random}) {
+  /// Only words that have not been mastered yet are returned — never answered,
+  /// or still below [masteredBox] — so a lesson stops reintroducing words that
+  /// have already stuck. The lesson's `entriesPerSession` caps the batch, where
+  /// `0` means the whole remaining pool. Learned words are handled by Daily
+  /// Review instead.
+  List<Entry> newEntries(Lesson lesson, {Random? random}) {
     final rng = random ?? Random();
 
-    final unlearned = <Entry>[];
-    final learned = <Entry>[];
-
+    final pool = <Entry>[];
     for (final entry in lesson.entries) {
       final stat = _stats[_keyFor(lesson.id, entry)];
-      if (stat != null && stat.isScheduled && stat.box >= masteredBox) {
-        learned.add(entry);
-      } else {
-        unlearned.add(entry);
-      }
+      final mastered =
+          stat != null && stat.isScheduled && stat.box >= masteredBox;
+      if (!mastered) pool.add(entry);
     }
 
-    unlearned.shuffle(rng);
-    learned.sort(
-      (a, b) => _dueDayFor(lesson.id, a).compareTo(_dueDayFor(lesson.id, b)),
-    );
+    pool.shuffle(rng);
 
-    final pool = [...unlearned, ...learned];
     final cap = lesson.entriesPerSession <= 0
         ? pool.length
         : min(lesson.entriesPerSession, pool.length);
     return pool.take(cap).toList();
   }
-
-  int _dueDayFor(String lessonId, Entry entry) =>
-      _stats[_keyFor(lessonId, entry)]?.dueDay ?? 0;
 
   Future<void> _persist() async {
     try {

@@ -117,8 +117,10 @@ class LearnSession {
     this.lesson, {
     Random? random,
     bool allowAudio = false,
+    List<Entry>? distractorPool,
   }) : _rng = random ?? Random(),
-       _allowAudio = allowAudio {
+       _allowAudio = allowAudio,
+       _distractorPool = distractorPool {
     _words =
         lesson
             .sessionEntries(_rng)
@@ -139,6 +141,11 @@ class LearnSession {
   /// When false (e.g. no target-language voice is installed), audio-prompt
   /// questions are never generated because they would be silent.
   final bool _allowAudio;
+
+  /// Entries quiz distractors are drawn from. Defaults to the studied lesson's
+  /// own entries, but Learn passes the full lesson so a focused batch of new
+  /// words is still mixed with words the learner already knows.
+  final List<Entry>? _distractorPool;
 
   late final List<LearnWord> _words;
 
@@ -424,7 +431,7 @@ class LearnSession {
     final usedKeys = <String>{correct.key};
 
     final pool =
-        List<Entry>.from(lesson.entries)
+        List<Entry>.from(_distractorPool ?? lesson.entries)
           ..removeWhere((entry) => entry.key == correct.key)
           ..shuffle(_rng);
 

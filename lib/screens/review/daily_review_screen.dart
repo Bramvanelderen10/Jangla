@@ -62,6 +62,7 @@ class _DailyReviewScreenState extends State<DailyReviewScreen> {
       lesson: _lesson,
       tts: widget.tts,
       stats: widget.stats,
+      focusOnNewWords: false,
       lessonIdFor: _lessonIdFor,
     );
   }
