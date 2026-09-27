@@ -188,107 +188,85 @@ class _LearnScreenState extends State<LearnScreen> {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () => setState(() => _flipped = !_flipped),
-      child: SizedBox(
-        width: double.infinity,
-        height: double.infinity,
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const SizedBox(height: 12),
-                Text(
-                  action.isRetry ? "Let's try again!" : 'New word',
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: action.isRetry ? Colors.orange : Colors.grey,
+      // Scrollable so a long sentence (or a note) never runs off the screen;
+      // while it fits, the card stays vertically centred.
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: constraints.maxHeight),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const SizedBox(height: 12),
+                      Text(
+                        action.isRetry ? "Let's try again!" : 'New word',
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: action.isRetry ? Colors.orange : Colors.grey,
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      _englishSide(entry),
+                      const SizedBox(height: 32),
+                      FilledButton.icon(
+                        onPressed: _onIntroductionDone,
+                        icon: const Icon(Icons.check),
+                        label: const Text('Got it'),
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(height: 16),
-                _englishSide(entry),
-                const SizedBox(height: 32),
-                FilledButton.icon(
-                  onPressed: _onIntroductionDone,
-                  icon: const Icon(Icons.check),
-                  label: const Text('Got it'),
-                ),
-              ],
+              ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }
 
   Widget _englishSide(Entry entry) {
+    // Deliberately no surrounding Row: the texts need the full width so they
+    // can wrap, and the listen button sits underneath rather than squeezing
+    // them off the screen.
     return Column(
       key: const ValueKey('en'),
       mainAxisSize: MainAxisSize.min,
       children: [
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      entry.english,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      entry.target,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      entry.roman,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontStyle: FontStyle.italic,
-                        color: Colors.teal,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            Column(
-              children: [
-                IconButton.filledTonal(
-                  iconSize: 26,
-                  onPressed:
-                      () => widget.tts.speak(
-                        entry.target,
-                        pronunciation: entry.ttsText,
-                      ),
-                  icon: const Icon(Icons.volume_up),
-                  tooltip: 'Listen in ${widget.tts.languageName}',
-                ),
-              ],
-            ),
-          ],
+        Text(
+          entry.english,
+          textAlign: TextAlign.center,
+          style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w600),
+        ),
+        const SizedBox(height: 12),
+        Text(
+          entry.target,
+          textAlign: TextAlign.center,
+          style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          entry.roman,
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            fontSize: 20,
+            fontStyle: FontStyle.italic,
+            color: Colors.teal,
+          ),
+        ),
+        const SizedBox(height: 12),
+        IconButton.filledTonal(
+          iconSize: 26,
+          onPressed:
+              () => widget.tts.speak(
+                entry.target,
+                pronunciation: entry.ttsText,
+              ),
+          icon: const Icon(Icons.volume_up),
+          tooltip: 'Listen in ${widget.tts.languageName}',
         ),
         if (entry.note != null) ...[
           const SizedBox(height: 16),
