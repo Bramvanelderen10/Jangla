@@ -167,6 +167,27 @@ void main() {
       expect(stats.newEntries(chapter).length, 3);
     });
 
+    test('shuffle: false keeps the lesson order', () {
+      final stats = QuizStatsService()..setLanguageScope('ja');
+      final chapter = lesson('l', [entry('a'), entry('b'), entry('c')]);
+
+      final picked = stats.newEntries(chapter, shuffle: false);
+      expect(picked.map((e) => e.english), ['a', 'b', 'c']);
+    });
+
+    test('shuffle: false still caps at entriesPerSession from the front', () {
+      final stats = QuizStatsService()..setLanguageScope('ja');
+      final chapter = Lesson(
+        id: 'l',
+        title: 'l',
+        entriesPerSession: 2,
+        entries: [entry('a'), entry('b'), entry('c')],
+      );
+
+      final picked = stats.newEntries(chapter, shuffle: false);
+      expect(picked.map((e) => e.english), ['a', 'b']);
+    });
+
     test('a partially practised word is still returned', () async {
       final stats = QuizStatsService()..setLanguageScope('ja');
       final e = entry('a');

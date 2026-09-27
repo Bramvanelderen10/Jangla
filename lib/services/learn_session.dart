@@ -117,19 +117,24 @@ class LearnSession {
     this.lesson, {
     Random? random,
     bool allowAudio = false,
+    bool shuffle = true,
     List<Entry>? distractorPool,
   }) : _rng = random ?? Random(),
        _allowAudio = allowAudio,
        _distractorPool = distractorPool {
-    _words =
-        lesson
-            .sessionEntries(_rng)
-            .map((entry) => LearnWord(entry: entry))
-            .toList();
+    // When [shuffle] is true the studied words and the order they are
+    // introduced in are both randomised. Learn passes false so new words are
+    // introduced in the order they appear in the content file.
+    final entries =
+        shuffle
+            ? lesson.sessionEntries(_rng)
+            : lesson.sessionEntriesInOrder();
+
+    _words = entries.map((entry) => LearnWord(entry: entry)).toList();
 
     if (_words.isNotEmpty) {
-      _newPool = List<int>.generate(_words.length, (index) => index)
-        ..shuffle(_rng);
+      _newPool = List<int>.generate(_words.length, (index) => index);
+      if (shuffle) _newPool.shuffle(_rng);
     } else {
       _newPool = [];
     }

@@ -256,9 +256,14 @@ class QuizStatsService {
   /// have already stuck. The lesson's `entriesPerSession` caps the batch, where
   /// `0` means the whole remaining pool. Learned words are handled by Daily
   /// Review instead.
-  List<Entry> newEntries(Lesson lesson, {Random? random}) {
-    final rng = random ?? Random();
-
+  ///
+  /// Pass `shuffle: false` to keep the lesson's authored order, which is what
+  /// Learn does so new words are introduced in document order.
+  List<Entry> newEntries(
+    Lesson lesson, {
+    Random? random,
+    bool shuffle = true,
+  }) {
     final pool = <Entry>[];
     for (final entry in lesson.entries) {
       final stat = _stats[_keyFor(lesson.id, entry)];
@@ -267,7 +272,7 @@ class QuizStatsService {
       if (!mastered) pool.add(entry);
     }
 
-    pool.shuffle(rng);
+    if (shuffle) pool.shuffle(random ?? Random());
 
     final cap = lesson.entriesPerSession <= 0
         ? pool.length

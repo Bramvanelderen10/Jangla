@@ -78,6 +78,18 @@ class Lesson {
             : min(entriesPerSession, pool.length);
     return pool.take(count).toList();
   }
+
+  /// Returns a subset of entries for one practice session in the lesson's
+  /// authored order — no shuffling. If [entriesPerSession] is 0 or larger than
+  /// the pool, all entries are used. Used by Learn so new words are introduced
+  /// in the order they appear in the content file.
+  List<Entry> sessionEntriesInOrder() {
+    final count =
+        entriesPerSession <= 0
+            ? entries.length
+            : min(entriesPerSession, entries.length);
+    return entries.take(count).toList();
+  }
 }
 
 /// A category groups related lessons.

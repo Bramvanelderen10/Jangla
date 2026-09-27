@@ -121,6 +121,55 @@ void main() {
         done.results.length);
   });
 
+  test('shuffle: false introduces new words in lesson order', () {
+    final session = LearnSession(
+      _makeLesson(totalEntries: 5),
+      shuffle: false,
+    );
+
+    final introduced = <String>[];
+    LearnAction? action;
+    int loops = 0;
+    while (loops < 200) {
+      loops++;
+      action = session.nextAction();
+      if (action is SessionComplete) break;
+      if (action is ShowIntroduction) {
+        if (!action.isRetry) introduced.add(action.entry.english);
+        session.completeIntroduction();
+      } else if (action is ShowQuiz) {
+        session.answerQuiz(action.wordIndex, action.entry);
+      }
+    }
+
+    expect(introduced, ['e0', 'e1', 'e2', 'e3', 'e4']);
+  });
+
+  test('shuffle: true (default) may reorder the studied words', () {
+    final session = LearnSession(
+      _makeLesson(totalEntries: 5),
+      random: Random(3),
+    );
+
+    final introduced = <String>[];
+    LearnAction? action;
+    int loops = 0;
+    while (loops < 200) {
+      loops++;
+      action = session.nextAction();
+      if (action is SessionComplete) break;
+      if (action is ShowIntroduction) {
+        if (!action.isRetry) introduced.add(action.entry.english);
+        session.completeIntroduction();
+      } else if (action is ShowQuiz) {
+        session.answerQuiz(action.wordIndex, action.entry);
+      }
+    }
+
+    expect(introduced.toSet(), {'e0', 'e1', 'e2', 'e3', 'e4'});
+    expect(introduced, isNot(['e0', 'e1', 'e2', 'e3', 'e4']));
+  });
+
   test('empty lesson returns SessionComplete immediately', () {
     final lesson = Lesson(
       id: 'x',

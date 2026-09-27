@@ -63,9 +63,16 @@ class _LearnScreenState extends State<LearnScreen> {
   void _startSession() {
     final pool = widget.lesson.entries;
 
+    // Learn introduces new words in the lesson's authored order; Daily Review
+    // (focusOnNewWords == false) keeps shuffling its due queue.
+    final shuffleWords = !widget.focusOnNewWords;
+
     List<Entry> studyEntries;
     if (widget.focusOnNewWords) {
-      studyEntries = widget.stats.newEntries(widget.lesson);
+      studyEntries = widget.stats.newEntries(
+        widget.lesson,
+        shuffle: shuffleWords,
+      );
       _replayingAll = studyEntries.isEmpty && pool.isNotEmpty;
       if (_replayingAll) studyEntries = pool;
     } else {
@@ -81,6 +88,7 @@ class _LearnScreenState extends State<LearnScreen> {
         entries: studyEntries,
       ),
       allowAudio: widget.tts.voiceAvailable,
+      shuffle: shuffleWords,
       // Keep the whole lesson in the mix so new words are quizzed alongside
       // words the learner has already seen.
       distractorPool: pool,
