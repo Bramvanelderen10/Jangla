@@ -1,5 +1,11 @@
 {
   "//": "EASY CONFIG (Spanish). Same lesson structure as the Japanese course.",
+  "name": "Spanish",
+  "language": {
+    "code": "es",
+    "nativeName": "Español",
+    "ttsLocales": ["es-ES", "es-MX", "es"]
+  },
   "defaults": {
     "entriesPerSession": 10
   },

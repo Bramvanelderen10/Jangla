@@ -26,7 +26,7 @@ void main() {
 
   group('scheduling', () {
     test('an unseen entry is not due', () {
-      final stats = QuizStatsService()..setLanguageScope('ja');
+      final stats = QuizStatsService()..setCourseScope('ja');
       final e = entry('a');
 
       expect(stats.isDue('l', e, now: day1), isFalse);
@@ -34,7 +34,7 @@ void main() {
     });
 
     test('a correct answer schedules the next review one day out', () async {
-      final stats = QuizStatsService()..setLanguageScope('ja');
+      final stats = QuizStatsService()..setCourseScope('ja');
       final e = entry('a');
       await stats.record('l', e, true, now: day1);
 
@@ -45,7 +45,7 @@ void main() {
     });
 
     test('consecutive correct answers grow the interval', () async {
-      final stats = QuizStatsService()..setLanguageScope('ja');
+      final stats = QuizStatsService()..setCourseScope('ja');
       final e = entry('a');
       await stats.record('l', e, true, now: day1); // box 1 -> due next day
       await stats.record('l', e, true, now: day2); // box 2 -> due in 3 days
@@ -55,7 +55,7 @@ void main() {
     });
 
     test('a wrong answer resets the box, lapses, and leaves it due', () async {
-      final stats = QuizStatsService()..setLanguageScope('ja');
+      final stats = QuizStatsService()..setCourseScope('ja');
       final e = entry('a');
       await stats.record('l', e, true, now: day1);
       await stats.record('l', e, true, now: day2);
@@ -72,7 +72,7 @@ void main() {
   group('dueEntries', () {
     test('returns only due entries, most overdue first, capped by limit',
         () async {
-      final stats = QuizStatsService()..setLanguageScope('ja');
+      final stats = QuizStatsService()..setCourseScope('ja');
       final a = entry('a');
       final b = entry('b');
       final c = entry('c');
@@ -99,21 +99,21 @@ void main() {
       final stats = QuizStatsService();
       final e = entry('hello');
 
-      stats.setLanguageScope('ja');
+      stats.setCourseScope('ja');
       await stats.record('greetings', e, true, now: day1);
 
-      stats.setLanguageScope('bn');
+      stats.setCourseScope('bn');
       expect(stats.isDue('greetings', e, now: day2), isFalse);
       expect(stats.statFor('greetings', e).attempts, 0);
 
-      stats.setLanguageScope('ja');
+      stats.setCourseScope('ja');
       expect(stats.isDue('greetings', e, now: day2), isTrue);
     });
   });
 
   group('mastery', () {
     test('an unanswered lesson has no progress', () {
-      final stats = QuizStatsService()..setLanguageScope('ja');
+      final stats = QuizStatsService()..setCourseScope('ja');
       final m = stats.mastery(
         lesson('l', [entry('a'), entry('b')]),
         now: day1,
@@ -128,7 +128,7 @@ void main() {
     });
 
     test('three correct answers mark an entry learned', () async {
-      final stats = QuizStatsService()..setLanguageScope('ja');
+      final stats = QuizStatsService()..setCourseScope('ja');
       final e = entry('a');
       final chapter = lesson('l', [e]);
 
@@ -146,7 +146,7 @@ void main() {
 
     test('a wrong answer keeps the entry in the learning bucket and due',
         () async {
-      final stats = QuizStatsService()..setLanguageScope('ja');
+      final stats = QuizStatsService()..setCourseScope('ja');
       final e = entry('a');
       await stats.record('l', e, false, now: day1);
 
@@ -161,14 +161,14 @@ void main() {
 
   group('newEntries', () {
     test('entriesPerSession of 0 returns every unlearned entry', () {
-      final stats = QuizStatsService()..setLanguageScope('ja');
+      final stats = QuizStatsService()..setCourseScope('ja');
       final chapter = lesson('l', [entry('a'), entry('b'), entry('c')]);
 
       expect(stats.newEntries(chapter).length, 3);
     });
 
     test('shuffle: false keeps the lesson order', () {
-      final stats = QuizStatsService()..setLanguageScope('ja');
+      final stats = QuizStatsService()..setCourseScope('ja');
       final chapter = lesson('l', [entry('a'), entry('b'), entry('c')]);
 
       final picked = stats.newEntries(chapter, shuffle: false);
@@ -176,7 +176,7 @@ void main() {
     });
 
     test('shuffle: false still caps at entriesPerSession from the front', () {
-      final stats = QuizStatsService()..setLanguageScope('ja');
+      final stats = QuizStatsService()..setCourseScope('ja');
       final chapter = Lesson(
         id: 'l',
         title: 'l',
@@ -189,7 +189,7 @@ void main() {
     });
 
     test('a partially practised word is still returned', () async {
-      final stats = QuizStatsService()..setLanguageScope('ja');
+      final stats = QuizStatsService()..setCourseScope('ja');
       final e = entry('a');
       await stats.record('l', e, true, now: day1); // box 1, not mastered
 
@@ -197,7 +197,7 @@ void main() {
     });
 
     test('learned entries are never reintroduced', () async {
-      final stats = QuizStatsService()..setLanguageScope('ja');
+      final stats = QuizStatsService()..setCourseScope('ja');
       final unlearned = [entry('new1'), entry('new2')];
       final learned = [entry('old1'), entry('old2'), entry('old3')];
 
@@ -218,7 +218,7 @@ void main() {
 
     test('a session full of unlearned words wastes no slot on a learned word',
         () async {
-      final stats = QuizStatsService()..setLanguageScope('ja');
+      final stats = QuizStatsService()..setCourseScope('ja');
       final unlearned = [entry('n1'), entry('n2'), entry('n3')];
       final old = entry('old');
       await stats.record('l', old, true, now: day1);
@@ -239,7 +239,7 @@ void main() {
     });
 
     test('a fully learned lesson has nothing new to learn', () async {
-      final stats = QuizStatsService()..setLanguageScope('ja');
+      final stats = QuizStatsService()..setCourseScope('ja');
       final e = entry('a');
       for (final day in [day1, day2, day3]) {
         await stats.record('l', e, true, now: day);

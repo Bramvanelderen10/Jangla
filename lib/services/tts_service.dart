@@ -13,16 +13,19 @@ import '../models/language.dart';
 /// the language's configured [LanguageOption.ttsLocales] (ordered by
 /// preference, best first).
 class TtsService {
-  TtsService(this.language);
+  TtsService(this.language, {required this.displayName});
 
   final LanguageOption language;
+
+  /// Display name of the course being studied (e.g. "Japanese").
+  final String displayName;
   final FlutterTts _tts = FlutterTts();
   bool _ready = false;
   bool _voiceAvailable = false;
   String? _resolvedLocale;
 
-  /// English display name of the language being spoken (for UI labels).
-  String get languageName => language.name;
+  /// Course display name (for UI labels such as "Listen in Japanese").
+  String get languageName => displayName;
 
   /// Whether a genuine voice for the language was found and selected.
   bool get voiceAvailable => _voiceAvailable;

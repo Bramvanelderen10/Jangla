@@ -2,12 +2,14 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import '../../data/course_repository.dart';
 import '../../models/content_models.dart';
-import '../../models/language.dart';
+import '../../models/course.dart';
 import '../../services/custom_list_service.dart';
 import '../../services/quiz_stats_service.dart';
 import '../../services/tts_service.dart';
 import '../custom_lists/custom_lists_screen.dart';
+import '../languages/languages_screen.dart';
 import '../lessons/lessons_screen.dart';
 import '../review/daily_review_screen.dart';
 
@@ -16,9 +18,11 @@ class CategoriesScreen extends StatelessWidget {
   final TtsService tts;
   final QuizStatsService stats;
   final CustomListService customLists;
-  final LanguageOption language;
-  final List<LanguageOption> languages;
-  final ValueChanged<LanguageOption> onSelectLanguage;
+  final Course course;
+  final List<Course> courses;
+  final CourseRepository repo;
+  final ValueChanged<Course> onSelectCourse;
+  final Future<void> Function(Course? select) onCoursesChanged;
 
   const CategoriesScreen({
     super.key,
@@ -26,40 +30,66 @@ class CategoriesScreen extends StatelessWidget {
     required this.tts,
     required this.stats,
     required this.customLists,
-    required this.language,
-    required this.languages,
-    required this.onSelectLanguage,
+    required this.course,
+    required this.courses,
+    required this.repo,
+    required this.onSelectCourse,
+    required this.onCoursesChanged,
   });
+
+  /// Opens the language manager (import / rename / remove / switch).
+  void _openLanguages(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder:
+            (_) => LanguagesScreen(
+              courses: courses,
+              current: course,
+              repo: repo,
+              onSelect: onSelectCourse,
+              onChanged: onCoursesChanged,
+            ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Learn ${language.name}'),
+        title: Text('Learn ${course.name}'),
         actions: [
-          if (languages.length > 1)
-            PopupMenuButton<LanguageOption>(
+          if (courses.length > 1)
+            PopupMenuButton<Course>(
               icon: const Icon(Icons.language),
-              tooltip: 'Language',
-              onSelected: onSelectLanguage,
+              tooltip: 'Course',
+              onSelected: onSelectCourse,
               itemBuilder:
                   (context) => [
-                    for (final option in languages)
+                    for (final option in courses)
                       PopupMenuItem(
                         value: option,
                         child: Row(
                           children: [
                             Icon(
-                              option.code == language.code ? Icons.check : null,
+                              option.id == course.id ? Icons.check : null,
                               size: 18,
                             ),
                             const SizedBox(width: 8),
-                            Text('${option.name} · ${option.nativeName}'),
+                            Text(
+                              '${option.name} · ${option.language.nativeName}',
+                            ),
                           ],
                         ),
                       ),
                   ],
             ),
+          IconButton(
+            icon: const Icon(Icons.upload_file),
+            tooltip: 'Add or manage languages',
+            onPressed: () => _openLanguages(context),
+          ),
           IconButton(
             icon: const Icon(Icons.collections_bookmark_outlined),
             tooltip: 'My Lists',

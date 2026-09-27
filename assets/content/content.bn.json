@@ -1,6 +1,12 @@
 {
   "//": "EASY CONFIG. Edit this file to add/change words and sentences.",
   "//defaults": "entriesPerSession = how many random entries a lesson shows each time. Set 0 to use all entries. A lesson can override it with its own 'entriesPerSession'.",
+  "name": "Bengali",
+  "language": {
+    "code": "bn",
+    "nativeName": "বাংলা",
+    "ttsLocales": ["bn-IN", "bn-BD", "bn"]
+  },
   "defaults": {
     "entriesPerSession": 15,
     "shuffle": true

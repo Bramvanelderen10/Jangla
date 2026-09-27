@@ -9,9 +9,7 @@ import 'package:jangla/services/tts_service.dart';
 void main() {
   const ja = LanguageOption(
     code: 'ja',
-    name: 'Japanese',
     nativeName: '日本語',
-    file: 'content.ja.json',
     ttsLocales: ['ja-JP'],
   );
 
@@ -36,8 +34,8 @@ void main() {
         entriesPerSession: 0,
         entries: [entry],
       ),
-      tts: TtsService(ja),
-      stats: QuizStatsService()..setLanguageScope('ja'),
+      tts: TtsService(ja, displayName: 'Japanese'),
+      stats: QuizStatsService()..setCourseScope('ja'),
     ),
   );
 

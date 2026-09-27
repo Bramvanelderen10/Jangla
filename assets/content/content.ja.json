@@ -1,5 +1,12 @@
 {
   "//": "EASY CONFIG (Japanese) v2. Travel-first order: survival -> numbers -> food -> getting around -> money/shopping -> hotel -> extra words -> conversation. Word lessons sit directly before the phrase lessons that use them. Entries marked (staff) / (you'll hear) are for recognition. Every entry containing kanji has a kana tts.",
+  "name": "Japanese",
+  "language": {
+    "code": "ja",
+    "nativeName": "日本語",
+    "ttsLocales": ["ja-JP", "ja"],
+    "default": true
+  },
   "defaults": {
     "entriesPerSession": 10
   },

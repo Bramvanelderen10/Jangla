@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/content_models.dart';
+import 'course_id.dart';
 
 /// Right/wrong tally plus the spaced-repetition state for a single entry.
 class EntryStat {
@@ -123,14 +124,48 @@ class QuizStatsService {
           _stats[key] = EntryStat.fromJson(value as Map<String, dynamic>);
         });
       }
+      if (_migrateLegacyScopes()) await _persist();
     } catch (_) {
       // Start with empty stats if storage is unavailable.
     }
   }
 
-  /// Selects which language's stats are read and written.
-  void setLanguageScope(String code) {
-    _language = code;
+  /// Selects which course's stats are read and written (the course id).
+  void setCourseScope(String id) {
+    _language = id;
+  }
+
+  /// Moves a course's progress to a new scope. Used when a course is renamed,
+  /// because a course's id is derived from its name.
+  Future<void> renameCourseScope(String oldId, String newId) async {
+    if (oldId == newId) return;
+    final prefix = '$oldId::';
+    final keys = _stats.keys.where((k) => k.startsWith(prefix)).toList();
+    for (final key in keys) {
+      final value = _stats.remove(key);
+      if (value == null) continue;
+      _stats.putIfAbsent('$newId::${key.substring(prefix.length)}', () => value);
+    }
+    if (_language == oldId) _language = newId;
+    await _persist();
+  }
+
+  /// One-time remap of the scopes the bundled courses used before their ids
+  /// were derived from names, so existing progress is carried over.
+  bool _migrateLegacyScopes() {
+    var changed = false;
+    for (final alias in legacyCourseIdAliases.entries) {
+      final prefix = '${alias.key}::';
+      final keys = _stats.keys.where((k) => k.startsWith(prefix)).toList();
+      for (final key in keys) {
+        final value = _stats.remove(key);
+        if (value == null) continue;
+        final target = '${alias.value}::${key.substring(prefix.length)}';
+        _stats.putIfAbsent(target, () => value);
+        changed = true;
+      }
+    }
+    return changed;
   }
 
   /// Maps a [date] to a stable day number for its local calendar date.

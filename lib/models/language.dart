@@ -1,69 +1,35 @@
-/// One learnable language, described in `assets/content/config.json`.
+/// The target language a course teaches, described by the `language` block of
+/// a course file. A course's own display name lives on [Course]; this is only
+/// what the app needs to recognise and speak the language.
 class LanguageOption {
+  /// Short language code, e.g. "ja". Drives text-to-speech and is the fallback
+  /// identity when a course name cannot be turned into a slug.
   final String code;
 
-  /// English display name, e.g. "Bengali".
-  final String name;
-
-  /// The language's own script name, e.g. "বাংলা" — shown in the picker.
+  /// The language's own script name, e.g. "日本語" — shown as the subtitle in
+  /// the picker so a themed course is recognisable by language.
   final String nativeName;
 
-  /// Content asset file name, e.g. "content.bn.json".
-  final String file;
-
-  /// Preferred text-to-speech locales, best first (e.g. `bn-IN`, `ja-JP`).
+  /// Preferred text-to-speech locales, best first (e.g. `ja-JP`, `bn-IN`).
   final List<String> ttsLocales;
 
   const LanguageOption({
     required this.code,
-    required this.name,
     required this.nativeName,
-    required this.file,
     required this.ttsLocales,
   });
 
   factory LanguageOption.fromJson(Map<String, dynamic> json) => LanguageOption(
-        code: json['code'] as String,
-        name: json['name'] as String,
-        nativeName: (json['nativeName'] ?? json['name']) as String,
-        file: json['file'] as String,
-        ttsLocales:
-            (json['ttsLocales'] as List?)?.map((e) => e.toString()).toList() ??
-                const [],
-      );
-}
+    code: (json['code'] ?? '') as String,
+    nativeName: (json['nativeName'] ?? '') as String,
+    ttsLocales:
+        (json['ttsLocales'] as List?)?.map((e) => e.toString()).toList() ??
+        const [],
+  );
 
-/// The multi-language config: which languages exist and which is the default.
-class AppConfig {
-  final String defaultLanguageCode;
-  final List<LanguageOption> languages;
-
-  const AppConfig({
-    required this.defaultLanguageCode,
-    required this.languages,
-  });
-
-  /// The language with the given [code], or null if it isn't configured.
-  LanguageOption? languageForCode(String? code) {
-    if (code == null) return null;
-    for (final language in languages) {
-      if (language.code == code) return language;
-    }
-    return null;
-  }
-
-  /// The configured default, falling back to the first available language.
-  LanguageOption get defaultLanguage =>
-      languageForCode(defaultLanguageCode) ?? languages.first;
-
-  factory AppConfig.fromJson(Map<String, dynamic> json) {
-    final languages = (json['languages'] as List)
-        .map((e) => LanguageOption.fromJson(e as Map<String, dynamic>))
-        .toList();
-    return AppConfig(
-      defaultLanguageCode: (json['defaultLanguage'] as String?) ??
-          (languages.isNotEmpty ? languages.first.code : ''),
-      languages: languages,
-    );
-  }
+  Map<String, dynamic> toJson() => {
+    'code': code,
+    'nativeName': nativeName,
+    'ttsLocales': ttsLocales,
+  };
 }

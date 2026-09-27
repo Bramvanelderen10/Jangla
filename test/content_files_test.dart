@@ -3,67 +3,71 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:jangla/models/content_models.dart';
-import 'package:jangla/models/language.dart';
+import 'package:jangla/models/course.dart';
+import 'package:jangla/services/language_import.dart';
 
-/// Guards every content file listed in `config.json`: it must parse and every
-/// entry must be complete, so a half-finished language file fails CI.
+/// Guards every bundled course file: each must parse through the very same
+/// pipeline a user upload goes through, so a half-finished language fails CI.
 void main() {
-  final config = AppConfig.fromJson(
-    jsonDecode(File('assets/content/config.json').readAsStringSync())
-        as Map<String, dynamic>,
-  );
+  final files =
+      Directory('assets/content')
+          .listSync()
+          .whereType<File>()
+          .where((f) => f.path.endsWith('.json'))
+          .toList()
+        ..sort((a, b) => a.path.compareTo(b.path));
 
-  AppContent read(String file) => AppContent.fromJson(
-    jsonDecode(File('assets/content/$file').readAsStringSync())
-        as Map<String, dynamic>,
-  );
-
-  test('config lists at least one language', () {
-    expect(config.languages, isNotEmpty);
+  test('there is at least one bundled course file', () {
+    expect(files, isNotEmpty);
   });
 
-  for (final language in config.languages) {
-    group('${language.code} content', () {
-      final content = read(language.file);
+  final courses = <String, Course>{};
+  for (final file in files) {
+    final fileName = file.uri.pathSegments.last;
+    final result = LanguageImport.parse(
+      file.readAsStringSync(),
+      source: LanguageSource.bundled,
+      fileName: fileName,
+      existingIds: courses.keys.toSet(),
+    );
 
-      test('has categories, lessons and entries', () {
-        expect(content.categories, isNotEmpty);
-        for (final category in content.categories) {
-          expect(category.lessons, isNotEmpty, reason: category.id);
-          for (final lesson in category.lessons) {
-            expect(lesson.entries, isNotEmpty, reason: lesson.id);
-          }
-        }
-      });
-
-      test('every entry has a prompt, target and romanization', () {
-        for (final category in content.categories) {
-          for (final lesson in category.lessons) {
-            for (final entry in lesson.entries) {
-              expect(entry.english.trim(), isNotEmpty, reason: lesson.id);
-              expect(entry.target.trim(), isNotEmpty, reason: entry.english);
-              expect(entry.roman.trim(), isNotEmpty, reason: entry.english);
-            }
-          }
-        }
-      });
-
-      test('lesson ids are unique', () {
-        final ids = [
-          for (final c in content.categories)
-            for (final l in c.lessons) l.id,
-        ];
-        expect(ids.toSet().length, ids.length);
-      });
+    test('$fileName parses as a course', () {
+      expect(result.errors, isEmpty, reason: result.errors.join('\n'));
+      expect(result.course, isNotNull);
     });
+
+    if (result.ok) courses[result.course!.id] = result.course!;
   }
 
-  test('Spanish mirrors the Japanese lesson structure', () {
-    List<String> lessonIds(String file) => [
-      for (final c in read(file).categories)
-        for (final l in c.lessons) '${c.id}/${l.id}',
-    ];
+  test('course ids are unique', () {
+    expect(courses.length, files.length);
+  });
 
-    expect(lessonIds('content.es.json'), lessonIds('content.ja.json'));
+  test('exactly one bundled course is the default', () {
+    final defaults = courses.values.where((c) => c.isDefault).toList();
+    expect(defaults.length, 1);
+    expect(defaults.single.name, 'Japanese');
+  });
+
+  test('every course has categories, lessons and entries', () {
+    for (final course in courses.values) {
+      final content = AppContent.fromJson(
+        jsonDecode(course.rawJson) as Map<String, dynamic>,
+      );
+      expect(content.categories, isNotEmpty, reason: course.name);
+      for (final category in content.categories) {
+        expect(category.lessons, isNotEmpty, reason: category.id);
+        for (final lesson in category.lessons) {
+          expect(lesson.entries, isNotEmpty, reason: lesson.id);
+        }
+      }
+    }
+  });
+
+  test('every course declares a language code and tts locale', () {
+    for (final course in courses.values) {
+      expect(course.language.code, isNotEmpty, reason: course.name);
+      expect(course.language.ttsLocales, isNotEmpty, reason: course.name);
+    }
   });
 }

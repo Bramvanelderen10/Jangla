@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'data/content_repository.dart';
+import 'data/course_repository.dart';
 import 'models/content_models.dart';
-import 'models/language.dart';
+import 'models/course.dart';
 import 'screens/categories/categories_screen.dart';
 import 'services/custom_list_service.dart';
+import 'services/imported_course_service.dart';
 import 'services/quiz_stats_service.dart';
 import 'services/tts_service.dart';
 
@@ -29,9 +30,9 @@ class JanglaApp extends StatelessWidget {
   }
 }
 
-/// Loads the language config and the selected language's content, then shows
-/// the category list. Switching language re-loads the matching content file
-/// and reconfigures text-to-speech.
+/// Loads the available courses and the selected course's content, then shows
+/// the category list. Switching course re-loads the matching content and
+/// reconfigures text-to-speech.
 class HomeLoader extends StatefulWidget {
   const HomeLoader({super.key});
 
@@ -40,12 +41,13 @@ class HomeLoader extends StatefulWidget {
 }
 
 class _HomeLoaderState extends State<HomeLoader> {
-  final ContentRepository _repo = ContentRepository();
+  final ImportedCourseService _imported = ImportedCourseService();
   final QuizStatsService _stats = QuizStatsService();
   final CustomListService _customLists = CustomListService();
+  late final CourseRepository _repo = CourseRepository(_imported, _stats);
 
-  AppConfig? _config;
-  LanguageOption? _language;
+  List<Course> _courses = const [];
+  Course? _course;
   TtsService? _tts;
   late Future<AppContent> _future;
 
@@ -58,32 +60,53 @@ class _HomeLoaderState extends State<HomeLoader> {
   Future<AppContent> _bootstrap() async {
     await _stats.init();
     await _customLists.init();
-    final config = await _repo.loadConfig();
-    _config = config;
-    final savedCode = await _repo.loadSelectedLanguageCode();
-    final language =
-        config.languageForCode(savedCode) ?? config.defaultLanguage;
-    return _selectAndLoad(language);
+    await _imported.init();
+    final courses = await _repo.loadCourses();
+    _courses = courses;
+    final course = _repo.resolveSelection(
+      courses,
+      await _repo.loadSelectedCourseId(),
+    );
+    if (course == null) {
+      throw StateError('No courses are available.');
+    }
+    return _selectAndLoad(course);
   }
 
-  /// Points the app at [language]: reconfigures TTS and loads its content.
-  Future<AppContent> _selectAndLoad(LanguageOption language) async {
-    _language = language;
-    // Stats are language-scoped, so switch the namespace before any content
-    // (and therefore any lesson id) is used.
-    _stats.setLanguageScope(language.code);
+  /// Points the app at [course]: reconfigures TTS and loads its content.
+  Future<AppContent> _selectAndLoad(Course course) async {
+    _course = course;
+    // Stats are course-scoped, so switch the namespace before any lesson id
+    // is used.
+    _stats.setCourseScope(course.id);
     await _tts?.stop();
-    final tts = TtsService(language);
+    final tts = TtsService(course.language, displayName: course.name);
     _tts = tts;
     await tts.init();
-    return _repo.loadContent(language);
+    return _repo.contentFor(course);
   }
 
-  void _switchLanguage(LanguageOption language) {
-    if (language.code == _language?.code) return;
-    _repo.saveSelectedLanguageCode(language.code);
+  void _switchCourse(Course course) {
+    if (course.id == _course?.id) return;
+    _repo.saveSelectedCourseId(course.id);
     setState(() {
-      _future = _selectAndLoad(language);
+      _future = _selectAndLoad(course);
+    });
+  }
+
+  /// Reloads the course list after the languages screen imports or deletes
+  /// something. Pass [select] to jump to a newly imported course; if the active
+  /// course is gone the default takes over.
+  Future<void> _reloadCourses(Course? select) async {
+    final courses = await _repo.loadCourses();
+    if (!mounted) return;
+    final target = select ?? _repo.resolveSelection(courses, _course?.id);
+    setState(() {
+      _courses = courses;
+      if (target != null && target.id != _course?.id) {
+        _repo.saveSelectedCourseId(target.id);
+        _future = _selectAndLoad(target);
+      }
     });
   }
 
@@ -112,9 +135,11 @@ class _HomeLoaderState extends State<HomeLoader> {
           tts: _tts!,
           stats: _stats,
           customLists: _customLists,
-          language: _language!,
-          languages: _config!.languages,
-          onSelectLanguage: _switchLanguage,
+          course: _course!,
+          courses: _courses,
+          repo: _repo,
+          onSelectCourse: _switchCourse,
+          onCoursesChanged: _reloadCourses,
         );
       },
     );

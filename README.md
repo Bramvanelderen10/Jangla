@@ -20,6 +20,7 @@ of entries each time you open it.
 - **Progress**: every lesson shows a mastery bar (learned / total) and how many of its entries are due today
 - **Text-to-speech** playback of the target language (uses the device's `bn-BD` / `ja-JP` / `es-ES` voice)
 - Lessons are **randomized** and show a configurable number of entries per session
+- **Import your own course**: pick a `.json` course file (e.g. "Business Japanese") and it becomes a learnable language — no app update needed
 
 ## Content
 
@@ -35,13 +36,37 @@ learner moves words → simple frames → longer sentences, e.g. *Transport: Pla
 & Vehicles* (nouns) → *Transport: Tickets & Asking* (frames) → *Transport:
 Troubleshooting* (full sentences).
 
-## Easy config
+## Course files
 
-All content lives in per-language files — [`content.ja.json`](assets/content/content.ja.json)
+Every language is one self-describing JSON file in
+[`assets/content/`](assets/content) — [`content.ja.json`](assets/content/content.ja.json)
 (Japanese), [`content.es.json`](assets/content/content.es.json) (Spanish) and
-[`content.bn.json`](assets/content/content.bn.json) (Bengali) — listed in
-[`config.json`](assets/content/config.json). The Spanish course mirrors the
-Japanese lesson structure (same categories, lessons and sizes).
+[`content.bn.json`](assets/content/content.bn.json) (Bengali). Each file carries
+its own `name` and `language` metadata, so there is no separate `config.json`;
+the bundled files are discovered automatically, so dropping a new file into the
+folder adds a language with no code changes.
+
+```json
+{
+  "name": "Japanese",
+  "language": {
+    "code": "ja",
+    "nativeName": "日本語",
+    "ttsLocales": ["ja-JP", "ja"],
+    "default": true
+  },
+  "defaults": { "entriesPerSession": 10 },
+  "categories": [ /* ... */ ]
+}
+```
+
+- `name` is the course's display name **and its identity** — give each course a
+  unique name (the app derives its internal id from it).
+- `language.code` is the language for text-to-speech; several courses may share
+  it (e.g. Japanese and Business Japanese).
+- `language.default: true` marks the course shown on first launch (only one).
+- `language.nativeName` and `language.ttsLocales` are optional; they fall back
+  to the course name and the language code.
 
 - `defaults.entriesPerSession` — how many random entries each lesson shows
   (set `0` to use every entry in the lesson).
@@ -71,6 +96,23 @@ Japanese lesson structure (same categories, lessons and sizes).
 - Add a new lesson or category by copying the existing structure.
 
 No code changes are needed — just edit the JSON and re-run the app.
+
+## Import your own language
+
+You can also add a language at runtime, without building a new APK:
+
+1. Create a course JSON file like the one above — a good starting point is to
+   copy [`content.ja.json`](assets/content/content.ja.json) and give it a unique
+   `name`, e.g. `"Business Japanese"`.
+2. In the app, open the language menu and tap the **upload** icon in the top
+   bar, then **Import JSON**.
+3. Pick the file, check the preview, adjust the name/code if needed, and tap
+   **Import**.
+
+The new course appears in the language menu and keeps its own progress.
+Imported courses can be **renamed** (their progress follows the new name) or
+**removed** from the same **Languages** screen; the bundled courses are built
+in and read-only.
 
 ## Requirements
 
